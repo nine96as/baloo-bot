@@ -12,9 +12,26 @@ const client = new Discord.Client({
     ]
 }); 
 
-client.on("ready", () => { //anonymous function - once a ready event happens, runs function
-    console.log(`Logged in as ${client.user.tag}`);
-});
+let bot = {
+    client,
+    prefix: "a.",
+    owners: ["973639270625574932"],
+}
+
+client.commands = new Discord.Collection();
+client.events = new Discord.Collection();
+
+client.loadEvents = (bot, reload) => require("./handlers/events")(bot, reload);
+client.loadCommands = (bot, reload) => require("./handlers/commands")(bot, reload);
+
+client.loadEvents(bot, false);
+client.loadCommands(bot, false);
+
+module.exports = bot
+
+//client.on("ready", () => { //anonymous function - once a ready event happens, runs function
+//    console.log(`Logged in as ${client.user.tag}`);
+//});
 
 //sends message everytime "hi" is sent by user
 client.on("messageCreate", (message) => {
