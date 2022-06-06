@@ -1,7 +1,6 @@
 const Discord = require("discord.js"); //imports discord.js package
-require("dotenv").config();
-
 const generateImage = require("./generateImage");
+require("dotenv").config();
 
 //creates bot client - used to access discord api
 const client = new Discord.Client({ 
@@ -10,35 +9,16 @@ const client = new Discord.Client({
         "GUILD_MESSAGES",
         "GUILD_MEMBERS"
     ]
-}); 
+})
 
 let bot = {
     client,
-    prefix: "a.",
     owners: ["973639270625574932"],
 }
 
-client.commands = new Discord.Collection();
-client.events = new Discord.Collection();
-
-client.loadEvents = (bot, reload) => require("./handlers/events")(bot, reload);
-client.loadCommands = (bot, reload) => require("./handlers/commands")(bot, reload);
-
-client.loadEvents(bot, false);
-client.loadCommands(bot, false);
-
-module.exports = bot
-
-//client.on("ready", () => { //anonymous function - once a ready event happens, runs function
-//    console.log(`Logged in as ${client.user.tag}`);
-//});
-
-//sends message everytime "hi" is sent by user
-client.on("messageCreate", (message) => {
-    if (message.content == "hi") {
-        message.reply("Hello World!");
-    }
-});
+client.on("ready", () => { //anonymous function - once a ready event happens, runs function
+    console.log(`Logged in as ${client.user.tag}`);
+})
 
 const welcomeChannelID = "982009784305860678";
 //new member welcome message
@@ -48,6 +28,26 @@ client.on("guildMemberAdd", async (member) => {
        content: `<@${member.id}> Welcome to the server!`,
        files: [img]
     })
-});
+})
+
+client.slashcommands = new Discord.Collection();
+
+client.loadSlashCommands = (bot, reload) => require("./handlers/slashcommands")(bot, reload);
+client.loadSlashCommands(bot, false);
+
+client.on("interactionCreate", (interaction) => {
+    if (!interaction.isCommand()) return;
+    if (!interaction.inGuild()) return interaction.reply("This command can only be used in a server");
+
+    const slashcommand = client.slashcommands.get(interaction.commandName);
+
+    if (!slashcommand) return interaction.reply("Invalid slash command");
+
+    if (slashcommand.perm && !interaction.member.permissions.has(slashcommand.perm)) {
+        return interaction.reply("You do not have permission for this command");
+    }
+
+    slashcommand.run(client, interaction);
+})
 
 client.login(process.env.TOKEN); //login to bot

@@ -12,7 +12,7 @@ const av = {
     size: 256,
     x: 480,
     y: 170
-};
+}
 
 const generateImage = async (member) => {
     let username = member.user.username;
