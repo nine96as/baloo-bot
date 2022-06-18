@@ -1,53 +1,89 @@
-const Discord = require("discord.js"); //imports discord.js package
+const fs = require("node:fs");
+const path = require("node:path");
+const {Client, Collection, Intents} = require("discord.js"); //imports discord.js package
+const dotenv = require("dotenv");
 const generateImage = require("./generateImage");
-require("dotenv").config();
+
+dotenv.config();
+
+const TOKEN = process.env.TOKEN;
+const WELCOME_CHANNEL_ID = process.env.WELCOME_CHANNEL_ID;
 
 //creates bot client - used to access discord api
-const client = new Discord.Client({ 
-    intents: [ //things to look out for
-        "GUILDS",
-        "GUILD_MESSAGES",
-        "GUILD_MEMBERS"
+const client = new Client({ 
+    //things to look out for
+    intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.GUILD_MEMBERS
     ]
 })
 
-let bot = {
-    client,
-    owners: ["973639270625574932"],
+//devises the dynamic retrieval of command files
+client.commands = new Collection();
+//constructs and stores path "commands"
+const commandsPath = path.join(__dirname, "commands");
+//returns array of file names in directory
+const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith(".js"));
+
+for (const file of commandFiles) {
+    const filePath = path.join(commandsPath, file);
+    const command = require(filePath);
+    //set new item in collection
+    //key as command name, value as exported module
+    client.commands.set(command.data.name, command);
 }
 
-client.on("ready", () => { //anonymous function - once a ready event happens, runs function
-    console.log(`Logged in as ${client.user.tag}`);
+//constructs and stores path "events"
+const eventsPath = path.join(__dirname, "events");
+//returns array of file names in directory
+const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith(".js"));
+
+for (const file of eventFiles) {
+    const filePath = path.join(eventsPath, file);
+    const event = require(filePath);
+    /*
+    * "on" and "once" methods take event name and a callback function
+    * callback function takes arguments returned by respective event,
+    * collects them in args array using ... syntax
+    */
+    if (event.once) {
+        client.once(event.name, (...args) => event.execute(...args));
+    } else {
+        client.on(event.name, (...args) => event.execute(...args));
+    }
+}
+
+//interaction listener
+client.on("interactionCreate", async interaction => {
+    if (!interaction.isCommand()) return;
+
+    //checks if command exists in commands collection
+    const command = client.commands.get(interaction.commandName);
+
+    //exits early if command doesn't exist
+    if (!command) return;
+
+    //if command exists, tries to carry out "execute" function
+    try {
+        await command.execute(interaction);
+    } catch (e) {
+        console.error(e);
+        await interaction.reply({
+            content: "error executing this command",
+            ephemeral: true
+        })
+    }
 })
 
-const welcomeChannelID = "982009784305860678";
 //new member welcome message
 client.on("guildMemberAdd", async (member) => {
     const img = await generateImage(member);
-    member.guild.channels.cache.get(welcomeChannelID).send({
-       content: `<@${member.id}> Welcome to the server!`,
+    member.guild.channels.cache.get(WELCOME_CHANNEL_ID).send({
+       content: `<@${member.id}> welcome to the server!`,
        files: [img]
     })
 })
 
-client.slashcommands = new Discord.Collection();
-
-client.loadSlashCommands = (bot, reload) => require("./handlers/slashcommands")(bot, reload);
-client.loadSlashCommands(bot, false);
-
-client.on("interactionCreate", (interaction) => {
-    if (!interaction.isCommand()) return;
-    if (!interaction.inGuild()) return interaction.reply("This command can only be used in a server");
-
-    const slashcommand = client.slashcommands.get(interaction.commandName);
-
-    if (!slashcommand) return interaction.reply("Invalid slash command");
-
-    if (slashcommand.perm && !interaction.member.permissions.has(slashcommand.perm)) {
-        return interaction.reply("You do not have permission for this command");
-    }
-
-    slashcommand.run(client, interaction);
-})
-
-client.login(process.env.TOKEN); //login to bot
+//login to bot
+client.login(TOKEN); 

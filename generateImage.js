@@ -1,5 +1,5 @@
-const Canvas = require("canvas");
-const Discord = require("discord.js");
+const {createCanvas, loadImage} = require("canvas");
+const {MessageAttachment} = require("discord.js");
 const background = "https://i.imgur.com/8Z1KB2g.jpg";
 
 const dim = {
@@ -19,18 +19,18 @@ const generateImage = async (member) => {
     let discrim = member.user.discriminator;
     let avatarURL = member.user.displayAvatarURL({format: "png", dynamic: false, size: av.size});
 
-    const canvas = Canvas.createCanvas(dim.width, dim.height);
+    const canvas = createCanvas(dim.width, dim.height);
     const ctx = canvas.getContext("2d");
 
     //draw in the background
-    const backgroundImg = await Canvas.loadImage(background);
+    const backgroundImg = await loadImage(background);
     ctx.drawImage(backgroundImg, 0, 0);
 
     //draw black tinted box
     ctx.fillStyle = "rgba(0,0,0,0.8)"
     ctx.fillRect(dim.margin, dim.margin, dim.width - 2 * dim.margin, dim.height - 2 * dim.margin)
 
-    const avImg = await Canvas.loadImage(avatarURL);
+    const avImg = await loadImage(avatarURL);
     ctx.save();
 
     ctx.beginPath();
@@ -56,7 +56,7 @@ const generateImage = async (member) => {
     ctx.font = "40px Inter";
     ctx.fillText("to the server", dim.width / 2, dim.height - dim.margin - 50);
 
-    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), "welcome.png");
+    const attachment = new MessageAttachment(canvas.toBuffer(), "welcome.png");
     return attachment;
 }
 
