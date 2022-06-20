@@ -33,7 +33,7 @@ module.exports = {
                         {name: "registered", value: member.user.createdAt.toLocaleString()},
                         {name: "roles", value: `${member.roles.cache.map(r => r).join(" ").replace("@everyone", "") || "none"}`},
                     )
-                await interaction.reply({
+                await interaction.editReply({
                     embeds: [embed]
                 })
             } else if (interaction.options.getSubcommand() === "server") {
@@ -51,7 +51,7 @@ module.exports = {
                         {name: "created at", value: interaction.guild.createdAt.toLocaleString()}
                     )
 
-                await interaction.reply({
+                await interaction.editReply({
                     embeds: [embed]
                 })
             }

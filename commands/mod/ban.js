@@ -17,17 +17,17 @@ module.exports = {
         const member = interaction.options.getMember("target");
         const reason = interaction.options.getString("reason") || "no reason given";
     
-        if (!member) return interaction.reply("invalid member");
+        if (!member) return interaction.editReply("invalid member");
     
         try {
             await interaction.guild.bans.create(member, {
                 reason
             })
-            return interaction.reply(`${member.user.tag} has been banned for "${reason}"`);
+            return interaction.editReply(`${member.user.tag} has been banned for "${reason}"`);
         } catch (e) {
             if (e) {
                 console.log(e);
-                return interaction.reply(`failed to ban ${member.user.tag}`);
+                return interaction.editReply(`failed to ban ${member.user.tag}`);
             }
         }
     }

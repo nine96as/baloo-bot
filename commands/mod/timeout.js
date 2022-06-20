@@ -41,15 +41,15 @@ module.exports = {
         const duration = interaction.options.getNumber("duration");
         const reason = interaction.options.getString("reason") || "no reason given"
     
-        if (!member) return interaction.reply("invalid member");
+        if (!member) return interaction.editReply("invalid member");
     
         try {
             await member.timeout(duration, reason);
-            return interaction.reply(`${member.user.tag} has been timed out for ${durations.find(d => duration === d.value)?.name} with a reason of "${reason}"`);
+            return interaction.editReply(`${member.user.tag} has been timed out for ${durations.find(d => duration === d.value)?.name} with a reason of "${reason}"`);
         } catch (e) {
             if (e) {
                 console.log(e);
-                return interaction.reply(`failed to timeout ${member.user.tag}`)
+                return interaction.editReply(`failed to timeout ${member.user.tag}`)
             }
         }
     }

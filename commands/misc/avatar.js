@@ -15,7 +15,7 @@ module.exports = {
             .setTitle(`${member.user.tag}`)
             .setImage(member.user.avatarURL({size: 2048, dynamic: true}))
         
-        await interaction.reply({
+        await interaction.editReply({
             embeds: [embed]
         })
     }

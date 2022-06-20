@@ -11,7 +11,7 @@ module.exports = {
     async execute(interaction) {
         if (interaction.commandName === "echo") {
             const message = interaction.options.getString("input");
-            await interaction.reply(`${message}`);
+            await interaction.editReply(`${message}`);
         }
     }
 }
