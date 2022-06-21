@@ -5,7 +5,7 @@ const {QueryType} = require('discord-player');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("play")
-        .setDescription("plays a song")
+        .setDescription("plays a song/playlist")
         .addStringOption(option => option
             .setName("song")
             .setDescription("the song to play")
@@ -50,13 +50,14 @@ module.exports = {
 
         const embed = new MessageEmbed()
             .setColor(`RANDOM`)
-            .setTitle(`new ${result.playlist ? "playlist" : "song"} added to queue`)
+            .setTitle(`▶️ | new ${result.playlist ? "playlist" : "song"} added to queue`)
 
         //checks if result is a single track or a playlist
         if (!result.playlist) {
             const track = result.tracks[0];
             embed.setThumbnail(track.thumbnail)
-            embed.setDescription(`${track.title}`);
+            embed.setDescription(`**[${track.title}](${track.url})**`);
+            embed.setFooter({text: `duration: ${track.duration}`})
         }
 
         //checks if there is any music being played
