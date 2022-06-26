@@ -3,6 +3,7 @@ const {Player} = require("discord-player");
 const handleEvents = require("./handlers/eventHandler");
 const handleCommands = require("./handlers/commandHandler");
 const handlePlayer = require("./handlers/playerEventHandler");
+const handleJTC = require("./handlers/jtcHandler");
 const init = require("./handlers/init");
 
 //creates bot client - used to access discord api
@@ -18,6 +19,7 @@ const client = new Client({
 })
 
 client.commands = new Collection();
+client.voiceGenerator = new Collection();
 client.player = new Player(client, {
     ytdlOptions: {
         quality: "highestaudio",
@@ -28,6 +30,7 @@ client.player = new Player(client, {
 handleEvents(client, `${__dirname}/events`);
 handleCommands(client, __dirname);
 handlePlayer(client, `${__dirname}/events/player`);
+handleJTC(client, `${__dirname}/events/voice`);
 init(client);
 
 //login to bot
