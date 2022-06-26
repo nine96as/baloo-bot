@@ -1,10 +1,5 @@
 const {Client, Collection, Intents} = require("discord.js"); //imports discord.js package
 const {Player} = require("discord-player");
-const handleEvents = require("./handlers/eventHandler");
-const handleCommands = require("./handlers/commandHandler");
-const handlePlayer = require("./handlers/playerEventHandler");
-const handleJTC = require("./handlers/jtcHandler");
-const init = require("./handlers/init");
 
 //creates bot client - used to access discord api
 const client = new Client({ 
@@ -14,7 +9,6 @@ const client = new Client({
         Intents.FLAGS.GUILD_MESSAGES,
         Intents.FLAGS.GUILD_MEMBERS,
         Intents.FLAGS.GUILD_VOICE_STATES,
-        Intents.FLAGS.DIRECT_MESSAGES
     ]
 })
 
@@ -27,11 +21,12 @@ client.player = new Player(client, {
     }
 })
 
-handleEvents(client, `${__dirname}/events`);
-handleCommands(client, __dirname);
-handlePlayer(client, `${__dirname}/events/player`);
-handleJTC(client, `${__dirname}/events/voice`);
-init(client);
+//initialises all handlers
+require("./handlers/eventHandler")(client, `${__dirname}/events`);
+require("./handlers/commandHandler")(client, __dirname);
+require("./handlers/playerHandler")(client, `${__dirname}/events/player`);
+require("./handlers/jtcHandler") (client, `${__dirname}/events/voice`);
+require("./handlers/init")(client);
 
 //login to bot
 client.login(process.env.TOKEN); 
