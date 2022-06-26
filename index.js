@@ -25,7 +25,6 @@ client.player = new Player(client, {
 require("./handlers/eventHandler")(client, `${__dirname}/events`);
 require("./handlers/commandHandler")(client, __dirname);
 require("./handlers/playerHandler")(client, `${__dirname}/events/player`);
-require("./handlers/jtcHandler") (client, `${__dirname}/events/voice`);
 require("./handlers/init")(client);
 
 //login to bot
