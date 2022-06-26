@@ -32,6 +32,7 @@ module.exports = {
                         {name: "joined", value: member.joinedAt.toLocaleString()},
                         {name: "registered", value: member.user.createdAt.toLocaleString()},
                         {name: "roles", value: `${member.roles.cache.map(r => r).join(" ").replace("@everyone", "") || "none"}`},
+                        {name: "permissions", value: `${member.permissions.toArray().map(p => p.toLowerCase()).join(", ").replaceAll("_", " ") || "none"}`}
                     )
                 await interaction.editReply({
                     embeds: [embed]
@@ -43,8 +44,12 @@ module.exports = {
                     .setColor(member.user.displayHexColor === "#000000" ? "#ffffff" : member.displayHexColor)
                     .setTitle(`${interaction.guild.name}`)
                     .setThumbnail(interaction.guild.iconURL({size: 512, dynamic: true}))
+                    .setFooter({
+                        text: `ID: ${interaction.guild.id}` 
+                    })
+                    .setTimestamp()
                     .addFields(
-                        {name: "owner", value: `${interaction.guild.owner}`},
+                        {name: "owner", value: `<@${interaction.guild.ownerId}>`},
                         {name: "total members", value: `${interaction.guild.memberCount}`},
                         {name: "total roles", value: `${interaction.guild.roles.cache.size}`},
                         {name: "total channels", value: `${interaction.guild.channels.cache.size}`},

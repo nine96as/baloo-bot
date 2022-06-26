@@ -9,9 +9,7 @@ module.exports = {
             .setDescription("input to echo back")
             .setRequired(true)),
     async execute(interaction) {
-        if (interaction.commandName === "echo") {
-            const message = interaction.options.getString("input");
-            await interaction.editReply(`${message}`);
-        }
+        const message = interaction.options.getString("input");
+        await interaction.editReply(`${message}`);
     }
 }
