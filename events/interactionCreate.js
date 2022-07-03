@@ -21,24 +21,41 @@ module.exports = {
                     ephemeral: true
                 })
             }
-        }
+        } else if (interaction.isButton()) {
+            //checks if button exists in buttons collection
+            const button = client.buttons.get(interaction.customId);
 
-        if (await interaction.isSelectMenu()) {
-            //filters out the specific menu commands we want
-            if (interaction.customId !== "reactionroles") return;
-            
-            await interaction.deferReply({ephemeral: true});
-            const roleId = interaction.values[0];
-            const role = interaction.guild.roles.cache.get(roleId);
-            const memberRoles = interaction.member.roles;
-            const hasRole = memberRoles.cache.has(roleId);
+            //exits early if button doesn't exist
+            if (!button) return;
 
-            if (hasRole) {
-                memberRoles.remove(roleId);
-                interaction.editReply(`${role.name} has been removed from you!`);
-            } else {
-                memberRoles.add(roleId);
-                interaction.editReply(`${role.name} has been assigned to you!`);
+            //if button exists, tries to carry out "execute" function
+            try {
+                await interaction.deferReply({ephemeral: true});
+                await button.execute(interaction);
+            } catch (e) {
+                console.error(e);
+                await interaction.editReply({
+                    content: "error executing this button",
+                    ephemeral: true
+                })
+            }
+        } else if (interaction.isSelectMenu()) {
+            //checks if menu exists in menus collection
+            const menu = client.menus.get(interaction.customId);
+
+            //exits early if menu doesn't exist
+            if (!menu) return;
+
+            //if menu exists, tries to carry out "execute" function
+            try {
+                await interaction.deferReply({ephemeral: true});
+                await menu.execute(interaction);
+            } catch (e) {
+                console.error(e);
+                await interaction.editReply({
+                    content: "error executing this menu",
+                    ephemeral: true
+                })
             }
         }
     }

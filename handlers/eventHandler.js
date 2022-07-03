@@ -1,16 +1,16 @@
 const fs = require("node:fs");
-let count = 0;
+let eventCount = 0;
+let playerCount = 0;
 
-//registers "events" path
-const handleEvents = (client, filePath) => {
+const handleEvents = (client) => {
     //returns array of file names in given directory
     const eventFiles = fs
-        .readdirSync(`${filePath}`)
+        .readdirSync(`./events`)
         .filter(file => file.endsWith(".js"));
     
     for (const file of eventFiles) {
-        count++;
-        const event = require(`${filePath}/${file}`);
+        eventCount++;
+        const event = require(`../events/${file}`);
         /* "on" and "once" methods take event name and a callback function
         * callback function takes arguments returned by respective event,
         * collects them in args array using ... syntax */
@@ -21,7 +21,25 @@ const handleEvents = (client, filePath) => {
         }
     }
 
-    console.log(`${count} events loaded.`);
+    //returns array of file names in given directory
+    const playerFiles = fs
+        .readdirSync(`./events/player`)
+        .filter(file => file.endsWith(".js"));
+    
+    for (const file of playerFiles) {
+        playerCount++;
+        const event = require(`../events/player/${file}`);
+        /* when an event is triggered by player, takes arguments
+        * returned by event and collects them in args array using
+        * ... syntax */
+        client.player.on(
+			event.name,
+			async (...args) => await event.execute(...args)
+		)
+    }
+
+    console.log(`${eventCount} event(s) loaded.`);
+    console.log(`${playerCount} player event(s) loaded.`);
 }
 
 module.exports = handleEvents;

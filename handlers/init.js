@@ -1,9 +1,8 @@
 const {REST} = require("@discordjs/rest");
 const {Routes} = require("discord-api-types/v9");
-const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 
-dotenv.config();
+require("dotenv").config();
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const GUILD_ID = process.env.GUILD_ID;

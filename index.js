@@ -13,7 +13,8 @@ const client = new Client({
 })
 
 client.commands = new Collection();
-client.voiceGenerator = new Collection();
+client.buttons = new Collection();
+client.menus = new Collection();
 client.player = new Player(client, {
     ytdlOptions: {
         quality: "highestaudio",
@@ -22,9 +23,8 @@ client.player = new Player(client, {
 })
 
 //initialises all handlers
-require("./handlers/eventHandler")(client, `${__dirname}/events`);
-require("./handlers/commandHandler")(client, __dirname);
-require("./handlers/playerHandler")(client, `${__dirname}/events/player`);
+require("./handlers/eventHandler")(client);
+require("./handlers/interactionHandler")(client);
 require("./handlers/init")(client);
 
 //login to bot
