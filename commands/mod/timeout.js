@@ -1,6 +1,16 @@
 const {SlashCommandBuilder} = require("@discordjs/builders");
 const {PermissionFlagsBits} = require('discord-api-types/v10');
 
+const durations = [
+    {name: "60 seconds", value: 60 * 1000},
+    {name: "5 minutes", value: 5 * 60 * 1000},
+    {name: "10 minutes", value: 10 * 60 * 1000},
+    {name: "30 minutes", value: 30 * 60 * 1000},
+    {name: "1 hour", value: 60 * 60 * 1000},
+    {name: "1 day", value: 24 * 60 * 60 * 1000},
+    {name: "1 week", value: 7 * 24 * 60 * 60 * 1000},
+];
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("timeout")
@@ -35,7 +45,7 @@ module.exports = {
     
         try {
             await member.timeout(duration, reason);
-            return interaction.editReply(`${member.user.tag} has been timed out for ${duration} with a reason of "${reason}"`);
+            return interaction.editReply(`${member.user.tag} has been timed out for ${durations.find(d => duration === d.value)?.name} with a reason of "${reason}"`);
         } catch (e) {
             if (e) {
                 console.log(e);
