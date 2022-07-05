@@ -39,7 +39,7 @@ module.exports = {
     async execute(interaction) {
         const member = interaction.options.getMember("target");
         const duration = interaction.options.getNumber("duration");
-        const reason = interaction.options.getString("reason") || "no reason given"
+        const reason = interaction.options.getString("reason") || "no reason given";
     
         if (!member) return interaction.editReply("invalid member");
     

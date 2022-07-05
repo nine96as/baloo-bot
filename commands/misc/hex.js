@@ -10,17 +10,17 @@ module.exports = {
             new MessageActionRow().addComponents(
                 new MessageButton()
                     .setCustomId("danger")
-                    .setLabel("danger")
+                    .setLabel("<<")
                     .setStyle("DANGER"),
 
                 new MessageButton()
                     .setCustomId("success")
-                    .setLabel("success")
+                    .setLabel("||")
                     .setStyle("SUCCESS"),
                 
                 new MessageButton()
                     .setCustomId("primary")
-                    .setLabel("primary")
+                    .setLabel(">>")
                     .setStyle("PRIMARY"),
             )
         ]

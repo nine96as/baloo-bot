@@ -21,7 +21,7 @@ module.exports = {
 
                 const embed = new MessageEmbed()
                     .setColor(member.user.displayHexColor === "#000000" ? "#ffffff" : member.displayHexColor)
-                    .setTitle(`${member.user.tag}`)
+                    .setAuthor(member.user.tag, member.user.avatarURL({size: 512, dynamic: true}))
                     .setDescription(`${member.user}`)
                     .setFooter({
                       text: `ID: ${member.user.id}` 
@@ -31,7 +31,7 @@ module.exports = {
                     .addFields(
                         {name: "joined", value: member.joinedAt.toLocaleString()},
                         {name: "registered", value: member.user.createdAt.toLocaleString()},
-                        {name: "roles", value: `${member.roles.cache.map(r => r).join(" ").replace("@everyone", "") || "none"}`},
+                        {name: "roles", value: `${member.roles.cache.map((r) => r).join(" ").replace("@everyone", "") || "none"}`},
                         {name: "permissions", value: `${member.permissions.toArray().map(p => p.toLowerCase()).join(", ").replaceAll("_", " ") || "none"}`}
                     )
                 await interaction.editReply({
@@ -42,8 +42,8 @@ module.exports = {
 
                 const embed = new MessageEmbed()
                     .setColor(member.user.displayHexColor === "#000000" ? "#ffffff" : member.displayHexColor)
-                    .setTitle(`${interaction.guild.name}`)
-                    .setThumbnail(interaction.guild.iconURL({size: 512, dynamic: true}))
+                    .setAuthor(interaction.guild.name, interaction.guild.iconURL({dynamic: true}))
+                    .setThumbnail(interaction.guild.iconURL({dynamic: true}))
                     .setFooter({
                         text: `ID: ${interaction.guild.id}` 
                     })
@@ -53,7 +53,10 @@ module.exports = {
                         {name: "total members", value: `${interaction.guild.memberCount}`},
                         {name: "total roles", value: `${interaction.guild.roles.cache.size}`},
                         {name: "total channels", value: `${interaction.guild.channels.cache.size}`},
-                        {name: "created at", value: interaction.guild.createdAt.toLocaleString()}
+                        {name: "text channels", value: `${interaction.guild.channels.cache.filter((c) => c.type === "GUILD_TEXT").size}`},
+                        {name: "voice channels", value: `${interaction.guild.channels.cache.filter((c) => c.type === "GUILD_VOICE").size}`},
+                        {name: "role list", value: `${interaction.guild.roles.cache.map((r) => r).join(" ") || "none"}`},
+                        {name: "created at", value: `||${interaction.guild.createdAt.toLocaleString()}||`}
                     )
 
                 await interaction.editReply({
