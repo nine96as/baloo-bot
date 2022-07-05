@@ -8,6 +8,6 @@ module.exports = {
     async execute(interaction) {
         await interaction.editReply("pong!");
         await wait(2000);
-		await interaction.editReply('pong again!');
+		await interaction.editReply("pong again!");
     }
 }
