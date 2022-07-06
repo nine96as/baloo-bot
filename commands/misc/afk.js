@@ -1,5 +1,6 @@
 const afkModel = require('../../models/afk');
 const {SlashCommandBuilder} = require("@discordjs/builders");
+const wait = require('node:timers/promises').setTimeout;
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -34,10 +35,9 @@ module.exports = {
                         userId: interaction.user.id
                     })
 
-                    return interaction.editReply({
-                        content: "your AFK status has been removed.",
-                        ephemeral: true,
-                    })
+                    interaction.editReply("your AFK status has been removed.");
+                    await wait(5000);
+                    return await interaction.deleteReply();
             }
         } catch (e) {
             console.error(e);
