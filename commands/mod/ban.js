@@ -23,7 +23,14 @@ module.exports = {
             await interaction.guild.bans.create(member, {
                 reason
             })
-            return interaction.editReply(`${member.user.tag} has been banned for "${reason}"`);
+            const embed = new MessageEmbed()
+                .setTitle(`🔨 | ${member.user.tag} has been banned.`)
+                .setColor(`RANDOM`)
+                .setDescription(
+                    `**reason**: ${reason}`
+                )
+                .setTimestamp()
+            return interaction.editReply({embeds: [embed]});
         } catch (e) {
             if (e) {
                 console.log(e);

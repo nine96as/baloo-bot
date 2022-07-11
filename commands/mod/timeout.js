@@ -1,4 +1,5 @@
 const {SlashCommandBuilder} = require("@discordjs/builders");
+const {MessageEmbed} = require("discord.js");
 const {PermissionFlagsBits} = require('discord-api-types/v10');
 
 const durations = [
@@ -45,11 +46,19 @@ module.exports = {
     
         try {
             await member.timeout(duration, reason);
-            return interaction.editReply(`${member.user.tag} has been timed out for ${durations.find(d => duration === d.value)?.name} with a reason of "${reason}"`);
+            const embed = new MessageEmbed()
+                .setTitle(`🔇 | ${member.user.tag} has been timed out.`)
+                .setColor(`RANDOM`)
+                .setDescription(
+                    `**duration**: ${durations.find(d => duration === d.value)?.name}\n` +
+                    `**reason**: ${reason}`
+                )
+                .setTimestamp()
+            return interaction.editReply({embeds: [embed]});
         } catch (e) {
             if (e) {
                 console.log(e);
-                return interaction.editReply(`failed to timeout ${member.user.tag}`)
+                return interaction.editReply(`failed to timeout ${member.user.tag}`);
             }
         }
     }

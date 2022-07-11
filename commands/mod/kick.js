@@ -1,5 +1,6 @@
 const {SlashCommandBuilder} = require("@discordjs/builders");
 const {PermissionFlagsBits} = require('discord-api-types/v10');
+const {MessageEmbed} = require("discord.js");
 const wait = require('node:timers/promises').setTimeout;
 
 module.exports = {
@@ -22,7 +23,14 @@ module.exports = {
     
         try {
             await interaction.guild.members.kick(member, reason);
-            return interaction.editReply(`${member.user.tag} has been kicked for "${reason}"`);
+            const embed = new MessageEmbed()
+                .setTitle(`👋 | ${member.user.tag} has been kicked.`)
+                .setColor(`RANDOM`)
+                .setDescription(
+                    `**reason**: ${reason}`
+                )
+                .setTimestamp()
+            return interaction.editReply({embeds: [embed]});
         } catch (e) {
             if (e) {
                 console.log(e);
