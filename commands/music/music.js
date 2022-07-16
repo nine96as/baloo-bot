@@ -1,7 +1,6 @@
 const {SlashCommandBuilder} = require("@discordjs/builders");
-const {MessageEmbed} = require("discord.js");
-const {QueryType} = require('discord-player');
-const {QueueRepeatMode} = require("discord-player");
+const {MessageEmbed, MessageActionRow, MessageButton} = require("discord.js");
+const {QueryType, QueueRepeatMode} = require("discord-player");
 const finder = require("lyrics-finder");
 
 module.exports = {
@@ -177,7 +176,7 @@ module.exports = {
                     //checks if inputted page num exceeds total page number
                     if (page > totalPages) {
                         return interaction.editReply(
-                            `page provided invalid; there are only ${totalPages} pages of songs`
+                            `❌ | page provided invalid; there are only ${totalPages} pages of songs`
                             )
                     }
                 
@@ -200,8 +199,33 @@ module.exports = {
                             text: `page ${page + 1} of ${totalPages}`
                         })
                         .setThumbnail(currentTrack.thumbnail)
+                    
+                    const components = [
+                        new MessageActionRow().addComponents(
+                            new MessageButton()
+                                .setCustomId("rewind")
+                                .setLabel("⏮️")
+                                .setStyle("PRIMARY"),
+                            new MessageButton()
+                                .setCustomId("skip")
+                                .setLabel("⏭️")
+                                .setStyle("PRIMARY"),
+                            new MessageButton()
+                                .setCustomId("stop")
+                                .setLabel("⏹️")
+                                .setStyle("PRIMARY"),
+                            new MessageButton()
+                                .setCustomId("loop")
+                                .setLabel("🔁")
+                                .setStyle("PRIMARY"),
+                            new MessageButton()
+                                .setCustomId("shuffle")
+                                .setLabel("🔀")
+                                .setStyle("PRIMARY"),
+                        )
+                    ]
                         
-                    return interaction.editReply({embeds: [embed]});
+                    return interaction.editReply({embeds: [embed], components});
                 } else if (interaction.options.getSubcommand() === "skip") {
                     //checks if user is in a voice channel
                     if (!interaction.member.voice.channel) {
@@ -343,8 +367,33 @@ module.exports = {
                             {name: "requested by", value: `<@${queue.nowPlaying().requestedBy.id}>`},
                             {name: "progress", value: queue.createProgressBar({timecodes: true})},
                         )
-    
-                    await interaction.editReply({embeds: [embed]});
+                    
+                    const components = [
+                        new MessageActionRow().addComponents(
+                            new MessageButton()
+                                .setCustomId("rewind")
+                                .setLabel("⏮️")
+                                .setStyle("PRIMARY"),
+                            new MessageButton()
+                                .setCustomId("skip")
+                                .setLabel("⏭️")
+                                .setStyle("PRIMARY"),
+                            new MessageButton()
+                                .setCustomId("stop")
+                                .setLabel("⏹️")
+                                .setStyle("PRIMARY"),
+                            new MessageButton()
+                                .setCustomId("loop")
+                                .setLabel("🔁")
+                                .setStyle("PRIMARY"),
+                            new MessageButton()
+                                .setCustomId("shuffle")
+                                .setLabel("🔀")
+                                .setStyle("PRIMARY"),
+                        )
+                    ]
+                        
+                    return interaction.editReply({embeds: [embed], components});
                 } else if (interaction.options.getSubcommand() === "clearqueue") {
                     //checks if user is in a voice channel
                     if (!interaction.member.voice.channel) {

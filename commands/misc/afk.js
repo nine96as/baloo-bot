@@ -28,7 +28,7 @@ module.exports = {
                         {new: true, upsert: true}
                     )
 
-                    return interaction.editReply(`${interaction.member} has gone AFK: ${status}`)
+                    return interaction.editReply(`${interaction.member} has gone AFK: ${status}`);
                 case "return":
                     await afkModel.deleteOne({
                         guildId: interaction.guildId,

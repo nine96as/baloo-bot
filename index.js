@@ -23,8 +23,7 @@ client.player = new Player(client, {
 })
 
 //initialises all handlers
-require("./handlers/eventHandler")(client);
-require("./handlers/interactionHandler")(client);
+require("./handlers/botHandler")(client);
 require("./handlers/init")(client);
 
 //login to bot

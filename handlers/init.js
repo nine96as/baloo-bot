@@ -18,6 +18,7 @@ const init = (client) => {
 
     (async () => {
         try {
+            console.log("--- initialisation ---");
             console.log("refreshing application (/) commands.");
             await rest.put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), {body: commandsData});
             console.log("successfully reloaded application (/) commands.");
