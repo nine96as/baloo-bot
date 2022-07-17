@@ -34,7 +34,7 @@ module.exports = {
         } catch (e) {
             if (e) {
                 console.log(e);
-                return interaction.editReply(`failed to kick ${member.user.tag}`);
+                return interaction.editReply(`❌ | failed to kick ${member.user.tag}`);
             }
         }
         await wait(5000);

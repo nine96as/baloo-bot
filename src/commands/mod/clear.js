@@ -31,11 +31,11 @@ module.exports = {
             })
 
             await interaction.channel.bulkDelete(filtered, true).then(messages => {
-                interaction.editReply(`cleared ${messages.size} message(s) from ${target}.`);
+                interaction.editReply(`🧼 | cleared ${messages.size} message(s) from ${target}.`);
             })
         } else {
             await interaction.channel.bulkDelete(number, true).then(messages => {
-                interaction.editReply(`cleared ${messages.size} message(s) from this channel.`);
+                interaction.editReply(`🧼 | cleared ${messages.size} message(s) from this channel.`);
             })
         }
         await wait(5000);

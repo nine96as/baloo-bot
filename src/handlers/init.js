@@ -25,7 +25,7 @@ const init = (client) => {
             mongoose.connect(MONGOOSE_STRING, {
                 useUnifiedTopology: true,
                 useNewUrlParser: true
-            }).then(() => console.log("connected to mongodb."))
+            }).then(() => console.log("✅ | connected to mongodb."))
         } catch (e) {
             console.error(e);
         }

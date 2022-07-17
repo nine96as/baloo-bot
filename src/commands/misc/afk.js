@@ -35,7 +35,7 @@ module.exports = {
                         userId: interaction.user.id
                     })
 
-                    interaction.editReply("your AFK status has been removed.");
+                    interaction.editReply("✅ | your AFK status has been removed.");
                     await wait(5000);
                     return await interaction.deleteReply();
             }

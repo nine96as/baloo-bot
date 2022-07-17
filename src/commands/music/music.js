@@ -91,7 +91,7 @@ module.exports = {
                     } catch (e) {
                         queue.destroy();
                         return interaction.editReply({
-                            content: "could not join your voice channel!",
+                            content: "❌ | could not join your voice channel!",
                             ephemeral: true
                         })
                     }
@@ -104,7 +104,7 @@ module.exports = {
                     //checks if result was successfully fetched
                     if (!result || !result.tracks.length) {
                         return interaction.editReply({
-                            content: `nothing was found when searching for: ${result}`,
+                            content: `❌ | nothing was found when searching for: ${result}`,
                             ephemeral: true
                         })
                     }
@@ -131,14 +131,14 @@ module.exports = {
                 } else if (interaction.options.getSubcommand() === "pause") {
                     //checks if user is in a voice channel
                     if (!interaction.member.voice.channel) {
-                        return interaction.editReply("please join a voice channel first!");
+                        return interaction.editReply("❌ | please join a voice channel first!");
                     }
                         
                     const queue = interaction.client.player.getQueue(interaction.guildId);
                 
                     //checks if queue is empty
                     if (!queue) {
-                        return await interaction.editReply("there are no songs in the queue");
+                        return await interaction.editReply("❌ | there are no songs in the queue");
                     }
                 
                     queue.setPaused(true);
@@ -147,14 +147,14 @@ module.exports = {
                 } else if (interaction.options.getSubcommand() === "resume") {
                     //checks if user is in a voice channel
                     if (!interaction.member.voice.channel) {
-                        return interaction.editReply("please join a voice channel first!");
+                        return interaction.editReply("❌ | please join a voice channel first!");
                     }
                         
                     const queue = interaction.client.player.getQueue(interaction.guildId);
                 
                     //checks if queue is empty
                     if (!queue) {
-                        return await interaction.editReply("there are no songs in the queue");
+                        return await interaction.editReply("❌ | there are no songs in the queue");
                     }
                 
                     queue.setPaused(false);
@@ -163,14 +163,14 @@ module.exports = {
                 } else if (interaction.options.getSubcommand() === "queue") {
                     //checks if user is in a voice channel
                     if (!interaction.member.voice.channel) {
-                        return interaction.editReply("please join a voice channel first!");
+                        return interaction.editReply("❌ | please join a voice channel first!");
                     }
                         
                     const queue = interaction.client.player.getQueue(interaction.guildId);
                 
                     //checks if queue is empty
                     if (!queue) {
-                        return await interaction.editReply("there are no songs in the queue");
+                        return await interaction.editReply("❌ | there are no songs in the queue");
                     }
                 
                     const totalPages = Math.ceil(queue.tracks.length / 10) || 1;
@@ -232,14 +232,14 @@ module.exports = {
                 } else if (interaction.options.getSubcommand() === "skip") {
                     //checks if user is in a voice channel
                     if (!interaction.member.voice.channel) {
-                        return interaction.editReply("please join a voice channel first!");
+                        return interaction.editReply("❌ | please join a voice channel first!");
                     }
     
                     const queue = interaction.client.player.getQueue(interaction.guildId);
     
                     //checks if there is anything playing
                     if (!queue || !queue.playing) {
-                        return interaction.editReply("no music is being played in this guild");
+                        return interaction.editReply("❌ | no music is being played in this guild");
                     }
     
                     const embed = new MessageEmbed()
@@ -253,14 +253,14 @@ module.exports = {
                 } else if (interaction.options.getSubcommand() === "stop") {
                     //checks if user is in a voice channel
                     if (!interaction.member.voice.channel) {
-                        return interaction.editReply("please join a voice channel first!");
+                        return interaction.editReply("❌ | please join a voice channel first!");
                     }
     
                     const queue = interaction.client.player.getQueue(interaction.guildId);
     
                     //checks if there is anything playing
                     if (!queue || !queue.playing) {
-                        return interaction.editReply("no music is being played in this guild");
+                        return interaction.editReply("❌ | no music is being played in this guild");
                     }
     
                     queue.destroy();
@@ -269,14 +269,14 @@ module.exports = {
                 } else if (interaction.options.getSubcommand() === "volume") {
                     //checks if user is in a voice channel
                     if (!interaction.member.voice.channel) {
-                        return interaction.editReply("please join a voice channel first!");
+                        return interaction.editReply("❌ | please join a voice channel first!");
                     }
     
                     const queue = interaction.client.player.getQueue(interaction.guildId);
     
                     //checks if there is anything playing
                     if (!queue || !queue.playing) {
-                        return interaction.editReply("no music is being played in this guild");
+                        return interaction.editReply("❌ | no music is being played in this guild");
                     }
     
                     const volume = interaction.options.getInteger("level");
@@ -284,26 +284,26 @@ module.exports = {
                     if (!volume) {
                         return interaction.editReply(`🔊 | volume: ${queue.volume}`);
                     } else if (volume.value < 0 || volume.value > 100) {
-                        interaction.editReply("volume must be within 1-100");
+                        interaction.editReply("❌ | volume must be within 1-100");
                     }
             
                     const v = await queue.setVolume(volume);
                     return interaction.editReply(
                         v 
                             ? `🔊 | volume set to ${volume}`
-                            : `volume change failed!`
+                            : `❌ | volume change failed!`
                     )
                 } else if (interaction.options.getSubcommand() === "loop") {
                     //checks if user is in a voice channel
                     if (!interaction.member.voice.channel) {
-                        return interaction.editReply("please join a voice channel first!");
+                        return interaction.editReply("❌ | please join a voice channel first!");
                     }
     
                     const queue = interaction.client.player.getQueue(interaction.guildId);
     
                     //checks if there is anything playing
                     if (!queue || !queue.playing) {
-                        return interaction.editReply("no music is being played in this guild");
+                        return interaction.editReply("❌ | no music is being played in this guild");
                     }
     
                     const mode = interaction.options.getString("mode");
@@ -313,34 +313,34 @@ module.exports = {
                         return await interaction.editReply(
                             x
                                 ? `🔁 | looping ${mode}!`
-                                : `loop mode change failed`
+                                : `❌ | loop mode change failed`
                         )
                     } else if (mode === "queue") {
                         const x  = await queue.setRepeatMode(QueueRepeatMode.QUEUE);
                         return await interaction.editReply(
                             x
                                 ? `🔁 | looping ${mode}!`
-                                : `loop mode change failed`
+                                : `❌ | loop mode change failed`
                         )
                     } else if (mode === "track") {
                         const x  = await queue.setRepeatMode(QueueRepeatMode.TRACK);
                         return await interaction.editReply(
                             x
                                 ? `🔁 | looping ${mode}!`
-                                : `loop mode change failed`
+                                : `❌ | loop mode change failed`
                         )
                     }
                 } else if (interaction.options.getSubcommand() === "shuffle") {
                     //checks if user is in a voice channel
                     if (!interaction.member.voice.channel) {
-                        return interaction.editReply("please join a voice channel first!");
+                        return interaction.editReply("❌ | please join a voice channel first!");
                     }
             
                     const queue = interaction.client.player.getQueue(interaction.guildId);
     
                     //checks if queue is empty
                     if (!queue) {
-                        return await interaction.editReply("there are no songs in the queue");
+                        return await interaction.editReply("❌ | there are no songs in the queue");
                     }
     
                     queue.shuffle();
@@ -349,14 +349,14 @@ module.exports = {
                 } else if (interaction.options.getSubcommand() === "nowplaying") {
                     //checks if user is in a voice channel
                     if (!interaction.member.voice.channel) {
-                        return interaction.editReply("please join a voice channel first!");
+                        return interaction.editReply("❌ | please join a voice channel first!");
                     }
     
                     const queue = interaction.client.player.getQueue(interaction.guildId);
     
                     //checks if there is anything playing
                     if (!queue || !queue.playing) {
-                        return interaction.editReply("no music is being played in this guild");
+                        return interaction.editReply("❌ | no music is being played in this guild");
                     }
     
                     const embed = new MessageEmbed()
@@ -400,14 +400,14 @@ module.exports = {
                 } else if (interaction.options.getSubcommand() === "clearqueue") {
                     //checks if user is in a voice channel
                     if (!interaction.member.voice.channel) {
-                        return interaction.editReply("please join a voice channel first!");
+                        return interaction.editReply("❌ | please join a voice channel first!");
                     }
     
                     const queue = interaction.client.player.getQueue(interaction.guildId);
     
                     //checks if there is anything playing
                     if (!queue || !queue.playing) {
-                        return interaction.editReply("no music is being played in this guild");
+                        return interaction.editReply("❌ | no music is being played in this guild");
                     }
     
                     queue.clear();
@@ -452,6 +452,32 @@ module.exports = {
                     }
     
                     return interaction.editReply({embeds: [embed]})
+                } else if (interaction.options.getSubcommand() === "rewind") {
+                    //checks if user is in a voice channel
+                    if (!interaction.member.voice.channel) {
+                        return interaction.editReply("❌ | please join a voice channel first!");
+                    }
+            
+                    const queue = interaction.client.player.getQueue(interaction.guildId);
+    
+                    //checks if queue is empty
+                    if (!queue) {
+                        return await interaction.editReply("❌ | there are no songs in the queue");
+                    }
+
+                    if (queue.previousTracks.length > 1) {
+                        const rewind = queue.back();
+                        return await interaction.editReply(
+                            rewind
+                                ? "⏮️ | rewinded to previous track!"
+                                : "❌ | failed to rewind to previous track"
+                        )
+                    } else {
+                        return interaction.editReply({
+                            content: "❌ | no previous track to rewind to",
+                            ephemeral: true
+                        })
+                    }
                 }
             } catch (e) {
                 console.error(e);

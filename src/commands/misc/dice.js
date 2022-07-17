@@ -13,6 +13,6 @@ module.exports = {
     async execute(interaction) {
         const min = interaction.options.getNumber("min") || 1;
         const max = interaction.options.getNumber("max") || 6;
-        interaction.editReply(`${Math.floor(Math.random() * max) + min}`);
+        interaction.editReply(`🎲 | rolled ${Math.floor(Math.random() * max) + min}!`);
     }
 }

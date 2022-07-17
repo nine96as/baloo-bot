@@ -58,7 +58,7 @@ module.exports = {
         } catch (e) {
             if (e) {
                 console.log(e);
-                return interaction.editReply(`failed to timeout ${member.user.tag}`);
+                return interaction.editReply(`❌ | failed to timeout ${member.user.tag}`);
             }
         }
     }

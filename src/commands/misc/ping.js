@@ -6,8 +6,8 @@ module.exports = {
         .setName("ping")
         .setDescription("replies with pong twice!"),
     async execute(interaction) {
-        await interaction.editReply("pong!");
+        await interaction.editReply("🏓 | pong!");
         await wait(2000);
-		await interaction.editReply("pong again!");
+		await interaction.editReply("🏓 | pong again!");
     }
 }

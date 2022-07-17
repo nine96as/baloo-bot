@@ -32,7 +32,7 @@ module.exports = {
         const guildData = await rrModel.findOne({guildId: interaction.guildId});
 
         if (!guildData?.roles) {
-            return interaction.editReply("there are no roles in this guild!");
+            return interaction.editReply("❌ | there are no roles in this guild!");
         }
 
         const options = guildData.roles.map((x) => {

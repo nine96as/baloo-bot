@@ -8,10 +8,10 @@ module.exports = {
 
         if (hasRole) {
             memberRoles.remove(roleId);
-            interaction.editReply(`${role.name} has been removed from you!`);
+            interaction.editReply(`✅ | ${role.name} has been removed from you!`);
         } else {
             memberRoles.add(roleId);
-            interaction.editReply(`${role.name} has been assigned to you!`);
+            interaction.editReply(`✅ | ${role.name} has been assigned to you!`);
         }
     }
 }

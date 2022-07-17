@@ -18,7 +18,7 @@ module.exports = {
         const guildData = await rrModel.findOne({guildId: interaction.guildId});
 
         if (!guildData) {
-            return interaction.editReply("there are no roles in this guild!");
+            return interaction.editReply("❌ | there are no roles in this guild!");
         }
 
         const guildRoles = guildData.roles;
@@ -27,7 +27,7 @@ module.exports = {
         const findRole = guildRoles.find((r) => r.roleId === role.id);
 
         if (!findRole) {
-            return interaction.editReply("that role isn't in the reaction role list!");
+            return interaction.editReply("❌ | that role isn't in the reaction role list!");
         }
 
         //stores roles not equal to the role.id specified (systematic removal)
@@ -36,6 +36,6 @@ module.exports = {
 
         await guildData.save();
 
-        interaction.editReply(`removed ${role.name}`);
+        interaction.editReply(`✅ | removed ${role.name}`);
     }
 }

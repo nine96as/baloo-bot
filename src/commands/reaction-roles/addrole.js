@@ -24,7 +24,7 @@ module.exports = {
 
         //checks if role to be assigned is equal to or higher than bot's role
         if (role.position >= interaction.guild.me.roles.highest.position) {
-            return interaction.editReply("i can't assign a role that is equal to or higher than me");
+            return interaction.editReply("❌ | i can't assign a role that is equal to or higher than me");
         }
 
         //fetches data on guild
@@ -56,6 +56,6 @@ module.exports = {
             })
         }
 
-        interaction.editReply(`created role ${role.name}`);
+        interaction.editReply(`✅ | created role ${role.name}`);
     }
 }

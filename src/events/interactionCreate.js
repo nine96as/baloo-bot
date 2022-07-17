@@ -17,7 +17,7 @@ module.exports = {
             } catch (e) {
                 console.error(e);
                 await interaction.editReply({
-                    content: "error executing this command",
+                    content: "❌ | error executing this command",
                     ephemeral: true
                 })
             }
@@ -35,7 +35,7 @@ module.exports = {
             } catch (e) {
                 console.error(e);
                 await interaction.editReply({
-                    content: "error executing this button",
+                    content: "❌ | error executing this button",
                     ephemeral: true
                 })
             }
@@ -53,7 +53,7 @@ module.exports = {
             } catch (e) {
                 console.error(e);
                 await interaction.editReply({
-                    content: "error executing this menu",
+                    content: "❌ | error executing this menu",
                     ephemeral: true
                 })
             }
