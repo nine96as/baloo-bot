@@ -1,7 +1,7 @@
 const {QueueRepeatMode} = require("discord-player");
 
 module.exports = {
-    name: "loop",
+    name: "loopqueue",
     async execute(interaction) {
         //checks if user is in a voice channel
         if (!interaction.member.voice.channel) {
@@ -18,7 +18,7 @@ module.exports = {
         const x  = await queue.setRepeatMode(QueueRepeatMode.TRACK);
         return await interaction.editReply(
             x
-                ? `🔁 | looping track!`
+                ? `🔁 | looping queue!`
                 : `loop mode change failed`
         )
     }

@@ -29,7 +29,7 @@ module.exports = {
                     .setLabel("⏹️")
                     .setStyle("PRIMARY"),
                 new MessageButton()
-                    .setCustomId("loop")
+                    .setCustomId("looptrack")
                     .setLabel("🔁")
                     .setStyle("PRIMARY"),
                 new MessageButton()

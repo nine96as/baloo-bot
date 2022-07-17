@@ -31,6 +31,9 @@ module.exports = {
             .setName("skip")
             .setDescription("skips current song"))
         .addSubcommand(subcommand => subcommand
+            .setName("rewind")
+            .setDescription("rewinds to previous song"))
+        .addSubcommand(subcommand => subcommand
             .setName("stop")
             .setDescription("stops all music and clears queue"))
         .addSubcommand(subcommand => subcommand
@@ -215,7 +218,7 @@ module.exports = {
                                 .setLabel("⏹️")
                                 .setStyle("PRIMARY"),
                             new MessageButton()
-                                .setCustomId("loop")
+                                .setCustomId("loopqueue")
                                 .setLabel("🔁")
                                 .setStyle("PRIMARY"),
                             new MessageButton()
@@ -383,7 +386,7 @@ module.exports = {
                                 .setLabel("⏹️")
                                 .setStyle("PRIMARY"),
                             new MessageButton()
-                                .setCustomId("loop")
+                                .setCustomId("looptrack")
                                 .setLabel("🔁")
                                 .setStyle("PRIMARY"),
                             new MessageButton()

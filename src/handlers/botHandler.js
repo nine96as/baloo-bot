@@ -8,7 +8,7 @@ let menuCount = 0;
 const handleBot = (client) => {
     //returns array of file names in given directory
     const eventFiles = fs
-        .readdirSync(`./events`)
+        .readdirSync(`./src/events`)
         .filter(file => file.endsWith(".js"));
 
     console.log(`--- loading events ---`);
@@ -29,7 +29,7 @@ const handleBot = (client) => {
 
     //returns array of file names in given directory
     const playerFiles = fs
-        .readdirSync(`./events/player`)
+        .readdirSync(`./src/events/player`)
         .filter(file => file.endsWith(".js"));
     
     console.log(`--- loading player events ---`);
@@ -47,13 +47,13 @@ const handleBot = (client) => {
 		)
     }
 
-    const commands = fs.readdirSync(`./commands`);
+    const commands = fs.readdirSync(`./src/commands`);
 
     console.log(`--- loading commands ---`);
     
     for (const module of commands) {
         const commandFiles = fs
-            .readdirSync(`./commands/${module}`)
+            .readdirSync(`./src/commands/${module}`)
             .filter(file => file.endsWith(".js"));
 
         for (const file of commandFiles) {
@@ -66,13 +66,13 @@ const handleBot = (client) => {
         }
     }
 
-    const buttons = fs.readdirSync(`./buttons`);
+    const buttons = fs.readdirSync(`./src/buttons`);
 
     console.log(`--- loading buttons ---`);
 
     for (const module of buttons) {
         const buttonFiles = fs
-            .readdirSync(`./buttons/${module}`)
+            .readdirSync(`./src/buttons/${module}`)
             .filter(file => file.endsWith(".js"));
 
         for (const file of buttonFiles) {
@@ -85,13 +85,13 @@ const handleBot = (client) => {
         }
     }
 
-    const menus = fs.readdirSync(`./menus`);
+    const menus = fs.readdirSync(`./src/menus`);
 
     console.log(`--- loading menus ---`);
 
     for (const module of menus) {
         const menuFiles = fs
-            .readdirSync(`./menus/${module}`)
+            .readdirSync(`./src/menus/${module}`)
             .filter(file => file.endsWith(".js"));
 
         for (const file of menuFiles) {
