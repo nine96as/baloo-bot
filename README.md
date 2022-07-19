@@ -1,16 +1,23 @@
 # baloo-bot
-a multi-purpose discord bot made using discord.js and discord-player
+a multi-purpose discord bot made using [discord.js](https://github.com/discordjs/discord.js) and [discord-player](https://github.com/Androz2091/discord-player)
 
+## auto-deployment
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/996as/baloo-bot)
 
 ## features
 - a dedicated welcome banner system, lockdown system, afk system, role menu system
+- fully-featured music system with lyrics search (yt, soundcloud, spotify)
 - makes use of slash commands, buttons and select menus
-- an array of commands; misc, music, moderation, reaction roles, information
+- an array of commands; misc, moderation, reaction roles, information etc
 
-## installation
+## manual installation
+
+### requirements
+- node.js (v16.6>)
+- npm
 
 ### initialisation
+- create a discord bot application [here](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)
 - clone the bot project using below command
 ```bash
 git clone https://github.com/996as/baloo-bot
