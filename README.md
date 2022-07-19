@@ -1,6 +1,8 @@
 # baloo-bot
 a multi-purpose discord bot made using discord.js and discord-player
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/996as/baloo-bot)
+
 ## features
 - a dedicated welcome banner system, lockdown system, afk system, role menu system
 - makes use of slash commands, buttons and select menus
@@ -30,7 +32,7 @@ npm i #install dependencies from package.json
 | `GUILD_ID`           | `string` | ID of guild                          |
 | `MONGOOSE_STRING`    | `string` | mongodb database string              |
 
-
+### deployment
 - deploy bot using below command
 ```sh
 npm run start
