@@ -1,5 +1,4 @@
-const {SlashCommandBuilder} = require("@discordjs/builders");
-const {MessageEmbed, MessageActionRow, MessageButton} = require("discord.js");
+const {SlashCommandBuilder, MessageEmbed, MessageActionRow, MessageButton} = require("discord.js");
 const {QueryType, QueueRepeatMode} = require("discord-player");
 const finder = require("lyrics-finder");
 

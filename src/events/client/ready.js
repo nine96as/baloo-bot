@@ -6,6 +6,6 @@ module.exports = {
         console.log(`✅ | logged in as ${client.user.tag}.`);
         client.user.setActivity("🧸 | some goofy bear stuff", {type: "PLAYING"})
         //load up lockdown system
-        require("../systems/lockdownSystem")(client);
+        require("../../systems/lockdownSystem")(client);
     }
 }

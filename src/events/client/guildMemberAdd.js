@@ -1,4 +1,4 @@
-const generateImage = require("../generateImage");
+const generateImage = require("../../generateImage");
 
 //new member welcome message
 module.exports = {

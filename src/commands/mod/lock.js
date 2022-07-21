@@ -1,6 +1,6 @@
 const ldModel = require("../../models/lockdown");
 const ms = require("ms");
-const {SlashCommandBuilder} = require("@discordjs/builders");
+const {SlashCommandBuilder} = require("discord.js");
 const {PermissionFlagsBits} = require('discord-api-types/v10');
 
 module.exports = {

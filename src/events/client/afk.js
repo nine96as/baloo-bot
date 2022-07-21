@@ -1,4 +1,4 @@
-const afkModel = require('../models/afk');
+const afkModel = require('../../models/afk');
 const {Message} = require("discord.js");
 
 module.exports = {
