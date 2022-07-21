@@ -6,46 +6,89 @@ let buttonCount = 0;
 let menuCount = 0;
 
 const handleBot = (client) => {
-    //returns array of file names in given directory
-    const eventFiles = fs
-        .readdirSync(`./src/events`)
-        .filter(file => file.endsWith(".js"));
 
-    console.log(`--- loading events ---`);
+    const events = fs.readdirSync(`./src/events`)
+
+    for (const module of events) {
+        //returns array of file names in given directory
+        const eventFiles = fs
+            .readdirSync(`./src/events/${module}`)
+            .filter(file => file.endsWith(".js"));
     
-    for (const file of eventFiles) {
-        eventCount++;
-        const event = require(`../events/${file}`);
-        console.log(`-> loaded event ${event.name.toLowerCase()}`);
-        /* "on" and "once" methods take event name and a callback function
-        * callback function takes arguments returned by respective event,
-        * collects them in args array using ... syntax */
-        if (event.once) {
-            client.once(event.name, (...args) => event.execute(...args, client));
-        } else {
-            client.on(event.name, (...args) => event.execute(...args, client));
+        switch (module) {
+            case "client":
+                console.log(`--- loading events ---`);
+                for (const file of eventFiles) {
+                    eventCount++;
+                    const event = require(`../events/${module}/${file}`);
+                    console.log(`-> loaded event ${event.name.toLowerCase()}`);
+                    /* "on" and "once" methods take event name and a callback function
+                    * callback function takes arguments returned by respective event,
+                    * collects them in args array using ... syntax */
+                    if (event.once) {
+                        client.once(event.name, (...args) => event.execute(...args, client));
+                    } else {
+                        client.on(event.name, (...args) => event.execute(...args, client));
+                    }
+                }
+                break;
+            // case "player":
+            //     console.log(`--- loading player events ---`);
+    
+            //     for (const file of eventFiles) {
+            //         playerCount++;
+            //         const event = require(`../events/${module}/${file}`);
+            //         console.log(`-> loaded player event ${event.name.toLowerCase()}`);
+            //         /* when an event is triggered by player, takes arguments
+            //         * returned by event and collects them in args array using
+            //         * ... syntax */
+            //         client.player.on(
+            //             event.name,
+            //             async (...args) => await event.execute(...args)
+            //         )
+            //     }
+            //     break;
+            default: 
+                break;
         }
     }
+    
 
-    //returns array of file names in given directory
-    const playerFiles = fs
-        .readdirSync(`./src/events/player`)
-        .filter(file => file.endsWith(".js"));
+    // console.log(`--- loading events ---`);
     
-    console.log(`--- loading player events ---`);
+    // for (const file of eventFiles) {
+    //     eventCount++;
+    //     const event = require(`../events/${file}`);
+    //     console.log(`-> loaded event ${event.name.toLowerCase()}`);
+    //     /* "on" and "once" methods take event name and a callback function
+    //     * callback function takes arguments returned by respective event,
+    //     * collects them in args array using ... syntax */
+    //     if (event.once) {
+    //         client.once(event.name, (...args) => event.execute(...args, client));
+    //     } else {
+    //         client.on(event.name, (...args) => event.execute(...args, client));
+    //     }
+    // }
+
+    // //returns array of file names in given directory
+    // const playerFiles = fs
+    //     .readdirSync(`./src/events/player`)
+    //     .filter(file => file.endsWith(".js"));
     
-    for (const file of playerFiles) {
-        playerCount++;
-        const event = require(`../events/player/${file}`);
-        console.log(`-> loaded player event ${event.name.toLowerCase()}`);
-        /* when an event is triggered by player, takes arguments
-        * returned by event and collects them in args array using
-        * ... syntax */
-        client.player.on(
-			event.name,
-			async (...args) => await event.execute(...args)
-		)
-    }
+    // console.log(`--- loading player events ---`);
+    
+    // for (const file of playerFiles) {
+    //     playerCount++;
+    //     const event = require(`../events/player/${file}`);
+    //     console.log(`-> loaded player event ${event.name.toLowerCase()}`);
+    //     /* when an event is triggered by player, takes arguments
+    //     * returned by event and collects them in args array using
+    //     * ... syntax */
+    //     client.player.on(
+	// 		event.name,
+	// 		async (...args) => await event.execute(...args)
+	// 	)
+    // }
 
     const commands = fs.readdirSync(`./src/commands`);
 

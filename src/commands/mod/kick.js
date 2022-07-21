@@ -1,6 +1,5 @@
-const {SlashCommandBuilder} = require("@discordjs/builders");
+const {MessageEmbed, SlashCommandBuilder} = require("discord.js");
 const {PermissionFlagsBits} = require('discord-api-types/v10');
-const {MessageEmbed} = require("discord.js");
 const wait = require('node:timers/promises').setTimeout;
 
 module.exports = {

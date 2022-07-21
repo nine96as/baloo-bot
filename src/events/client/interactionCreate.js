@@ -3,7 +3,7 @@ module.exports = {
     async execute(interaction) {
         const {client} = interaction;
 
-        if (interaction.isCommand()) {
+        if (interaction.isChatInputCommand()) {
             //checks if command exists in commands collection
             const command = client.commands.get(interaction.commandName);
 
