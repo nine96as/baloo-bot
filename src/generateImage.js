@@ -1,5 +1,5 @@
 const {createCanvas, loadImage} = require("canvas");
-const {MessageAttachment} = require("discord.js");
+const {AttachmentBuilder} = require("discord.js");
 const background = "https://i.imgur.com/8Z1KB2g.jpg";
 
 const dim = {
@@ -56,7 +56,7 @@ const generateImage = async (member) => {
     ctx.font = "40px Inter";
     ctx.fillText("to the server", dim.width / 2, dim.height - dim.margin - 50);
 
-    const attachment = new MessageAttachment(canvas.toBuffer(), "welcome.png");
+    const attachment = new AttachmentBuilder(canvas.toBuffer(), {name: "welcome.png"});
     return attachment;
 }
 
