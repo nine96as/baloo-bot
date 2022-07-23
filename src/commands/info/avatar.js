@@ -1,4 +1,4 @@
-const {SlashCommandBuilder, MessageEmbed} = require("discord.js");
+const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,7 +10,7 @@ module.exports = {
     async execute(interaction) {
         const member = interaction.options.getMember("target") || interaction.member;
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setTitle(`${member.user.tag}`)
             .setImage(member.user.avatarURL({size: 2048, dynamic: true}))
         

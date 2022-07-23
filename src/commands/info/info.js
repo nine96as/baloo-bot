@@ -1,4 +1,4 @@
-const {MessageEmbed, SlashCommandBuilder} = require("discord.js");
+const {EmbedBuilder, SlashCommandBuilder} = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -18,9 +18,9 @@ module.exports = {
             if (interaction.options.getSubcommand() === "user") {
                 const member = interaction.options.getMember("target") || interaction.member;
 
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                     .setColor(member.user.displayHexColor === "#000000" ? "#ffffff" : member.displayHexColor)
-                    .setAuthor(member.user.tag, member.user.avatarURL({size: 512, dynamic: true}))
+                    // .setAuthor(member.user.tag, member.user.avatarURL({size: 512, dynamic: true}))
                     .setDescription(`${member.user}`)
                     .setFooter({
                       text: `ID: ${member.user.id}` 
@@ -39,7 +39,7 @@ module.exports = {
             } else if (interaction.options.getSubcommand() === "server") {
                 const member = interaction.member
 
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                     .setColor(member.user.displayHexColor === "#000000" ? "#ffffff" : member.displayHexColor)
                     .setAuthor(interaction.guild.name, interaction.guild.iconURL({dynamic: true}))
                     .setThumbnail(interaction.guild.iconURL({dynamic: true}))
