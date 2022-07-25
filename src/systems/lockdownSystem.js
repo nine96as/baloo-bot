@@ -1,10 +1,10 @@
-const {Client} = require("discord.js");
-const ldModel = require("../models/lockdown");
+import {Client} from "discord.js";
+import {ldModel} from "../models/lockdown.js";
 
 /**
  * @param {Client} client;
  */
-module.exports = async (client) => {
+export const ldSystem = async (client) => {
     ldModel.find().then(async (docArray) => {
         docArray.forEach(async (d) => {
             //finds locked channels (if any)

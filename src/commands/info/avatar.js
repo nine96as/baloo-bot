@@ -1,21 +1,20 @@
-const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
+import {SlashCommandBuilder, EmbedBuilder} from "discord.js";
 
-module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("avatar")
-        .setDescription("get a user's avatar")
-        .addUserOption(option => option
-            .setName("target")
-            .setDescription("member to the avatar from")),
-    async execute(interaction) {
-        const member = interaction.options.getMember("target") || interaction.member;
+export const data = new SlashCommandBuilder()
+    .setName("avatar")
+    .setDescription("get a user's avatar")
+    .addUserOption(option => option
+        .setName("target")
+        .setDescription("member to the avatar from"))
 
-        const embed = new EmbedBuilder()
-            .setTitle(`${member.user.tag}`)
-            .setImage(member.user.avatarURL({size: 2048, dynamic: true}))
-        
-        await interaction.editReply({
-            embeds: [embed]
-        })
-    }
+export async function execute(interaction) {
+    const member = interaction.options.getMember("target") || interaction.member;
+
+    const embed = new EmbedBuilder()
+        .setTitle(`${member.user.tag}`)
+        .setImage(member.user.avatarURL({size: 2048, dynamic: true}))
+    
+    await interaction.editReply({
+        embeds: [embed]
+    })
 }

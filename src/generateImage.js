@@ -1,5 +1,6 @@
-const {createCanvas, loadImage} = require("canvas");
-const {AttachmentBuilder} = require("discord.js");
+import {createCanvas, loadImage} from "canvas";
+import {AttachmentBuilder} from "discord.js";
+
 const background = "https://i.imgur.com/8Z1KB2g.jpg";
 
 const dim = {
@@ -14,7 +15,7 @@ const av = {
     y: 170
 }
 
-const generateImage = async (member) => {
+export const generateImage = async (member) => {
     let username = member.user.username;
     let discrim = member.user.discriminator;
     let avatarURL = member.user.displayAvatarURL({format: "png", dynamic: false, size: av.size});
@@ -59,5 +60,3 @@ const generateImage = async (member) => {
     const attachment = new AttachmentBuilder(canvas.toBuffer(), {name: "welcome.png"});
     return attachment;
 }
-
-module.exports = generateImage;
