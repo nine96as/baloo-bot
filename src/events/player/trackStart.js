@@ -4,7 +4,7 @@ export const name =  "trackStart"
 
 export async function execute(queue) {
     const embed = new EmbedBuilder()
-        .setColor(`RANDOM`)
+        .setColor("Random")
         .setTitle("🎶 | now playing")
         .setDescription(`**[${queue.nowPlaying().title}](${queue.nowPlaying().url})**`)
         .setThumbnail(queue.nowPlaying().thumbnail)

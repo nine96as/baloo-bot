@@ -40,12 +40,12 @@ export async function execute(interaction) {
             label: role.name,
             value: role.id,
             description: x.roleDesc || "no description",
-            emoji: x.roleEmoji
+            emoji: x.roleEmoji || "no emoji",
         }
     })
 
     const title = interaction.options.getString("title");
-    const description = interaction.options.getString("description") || "";
+    const description = interaction.options.getString("description");
     const image = interaction.options.getString("image");
     const colour = interaction.options.getString("colour");
     const thumbnail = interaction.options.getString("thumbnail");

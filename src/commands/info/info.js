@@ -20,7 +20,7 @@ export async function execute(interaction) {
 
             const embed = new EmbedBuilder()
                 .setColor(member.user.displayHexColor === "#000000" ? "#ffffff" : member.displayHexColor)
-                // .setAuthor(member.user.tag, member.user.avatarURL({size: 512, dynamic: true}))
+                .setAuthor({iconURL: member.user.displayAvatarURL(), name: member.user.tag})
                 .setDescription(`${member.user}`)
                 .setFooter({
                   text: `ID: ${member.user.id}` 
@@ -40,8 +40,8 @@ export async function execute(interaction) {
             const member = interaction.member
 
             const embed = new EmbedBuilder()
-                .setColor(member.user.displayHexColor === "#000000" ? "#ffffff" : member.displayHexColor)
-                .setAuthor(interaction.guild.name, interaction.guild.iconURL({dynamic: true}))
+                .setColor("Random")
+                .setAuthor({name: interaction.guild.name, iconURL: interaction.guild.iconURL({dynamic: true})})
                 .setThumbnail(interaction.guild.iconURL({dynamic: true}))
                 .setFooter({
                     text: `ID: ${interaction.guild.id}` 

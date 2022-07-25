@@ -1,6 +1,6 @@
 import {REST} from "@discordjs/rest";
 import {Routes} from "discord.js";
-import {mongoose} from "mongoose";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 dotenv.config();
