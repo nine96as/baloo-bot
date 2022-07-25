@@ -57,6 +57,8 @@ export const generateImage = async (member) => {
     ctx.font = "40px Inter";
     ctx.fillText("to the server", dim.width / 2, dim.height - dim.margin - 50);
 
-    const attachment = new AttachmentBuilder(canvas.toBuffer(), {name: "welcome.png"});
+    const attachment = new AttachmentBuilder()
+        .setFile(canvas.toBuffer())
+        .setName("welcome.png")
     return attachment;
 }
