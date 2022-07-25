@@ -11,8 +11,10 @@ export async function execute(interaction) {
     const member = interaction.options.getMember("target") || interaction.member;
 
     const embed = new EmbedBuilder()
-        .setTitle(`${member.user.tag}`)
+        .setColor("Random")
+        .setAuthor({iconURL: member.user.displayAvatarURL(), name: member.user.tag})
         .setImage(member.user.avatarURL({size: 2048, dynamic: true}))
+        .setTimestamp(Date.now());
     
     await interaction.editReply({
         embeds: [embed]

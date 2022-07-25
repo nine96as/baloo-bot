@@ -4,7 +4,7 @@ export const name = "queueEnd"
 
 export async function execute(queue) {
     const embed = new EmbedBuilder()
-        .setColor(`RANDOM`)
+        .setColor("Random")
         .setTitle("🎶 | queue end")
         .setDescription("the queue has ended, leaving...")
 

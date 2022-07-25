@@ -22,7 +22,7 @@ export async function execute(interaction) {
     const roleEmoji = interaction.options.getString("emoji") || null;
 
     //checks if role to be assigned is equal to or higher than bot's role
-    if (role.position >= interaction.guild.me.roles.highest.position) {
+    if (role.position >= interaction.guild.members.me.roles.highest.position) {
         return interaction.editReply("❌ | i can't assign a role that is equal to or higher than me");
     }
 
