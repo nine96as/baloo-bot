@@ -24,7 +24,7 @@ export async function execute(interaction) {
         })
         const embed = new EmbedBuilder()
             .setTitle(`🔨 | ${member.user.tag} has been banned.`)
-            .setColor(`RANDOM`)
+            .setColor("Random")
             .setDescription(
                 `**reason**: ${reason}`
             )

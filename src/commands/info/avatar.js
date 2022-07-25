@@ -5,7 +5,7 @@ export const data = new SlashCommandBuilder()
     .setDescription("get a user's avatar")
     .addUserOption(option => option
         .setName("target")
-        .setDescription("member to the avatar from"))
+        .setDescription("member to fetch the avatar from"))
 
 export async function execute(interaction) {
     const member = interaction.options.getMember("target") || interaction.member;

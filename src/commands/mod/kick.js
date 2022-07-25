@@ -23,7 +23,7 @@ export async function execute(interaction) {
         await interaction.guild.members.kick(member, reason);
         const embed = new EmbedBuilder()
             .setTitle(`👋 | ${member.user.tag} has been kicked.`)
-            .setColor(`RANDOM`)
+            .setColor("Random")
             .setDescription(
                 `**reason**: ${reason}`
             )
