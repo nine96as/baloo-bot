@@ -188,7 +188,7 @@ export async function execute(interaction) {
                 }).join("\n");
             
                 const embed = new EmbedBuilder()
-                    .setColor(`RANDOM`)
+                    .setColor("Random")
                     .setTitle(`queue for ${interaction.guild.name}`)
                     .setDescription(
                         `**🎶 | now playing**\n` + 
@@ -359,7 +359,7 @@ export async function execute(interaction) {
                 }
 
                 const embed = new EmbedBuilder()
-                    .setColor(`RANDOM`)
+                    .setColor("Random")
                     .setTitle("🎶 | now playing")
                     .setDescription(`[${queue.nowPlaying().title}](${queue.nowPlaying().url})`)
                     .setThumbnail(queue.nowPlaying().thumbnail)
@@ -437,7 +437,7 @@ export async function execute(interaction) {
                 }
 
                 let embed = new EmbedBuilder()
-                    .setColor(`RANDOM`)
+                    .setColor("Random")
                     .setTitle(`lyrics for ${track.title}\n(${track.url})`)
                     .setDescription(lyrics)
                     .setThumbnail(`${track.thumbnail}`)

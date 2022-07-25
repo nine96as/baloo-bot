@@ -46,7 +46,7 @@ export async function execute(interaction) {
         await member.timeout(duration, reason);
         const embed = new EmbedBuilder()
             .setTitle(`🔇 | ${member.user.tag} has been timed out.`)
-            .setColor(`RANDOM`)
+            .setColor("Random")
             .setDescription(
                 `**duration**: ${durations.find(d => duration === d.value)?.name}\n` +
                 `**reason**: ${reason}`
