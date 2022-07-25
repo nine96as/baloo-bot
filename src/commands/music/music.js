@@ -1,4 +1,4 @@
-import {SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder} from "discord.js";
+import {SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle} from "discord.js";
 import {QueryType, QueueRepeatMode} from "discord-player";
 import finder from "lyrics-finder";
 
@@ -207,23 +207,23 @@ export async function execute(interaction) {
                         new ButtonBuilder()
                             .setCustomId("rewind")
                             .setLabel("⏮️")
-                            .setStyle("PRIMARY"),
+                            .setStyle(ButtonStyle.Primary),
                         new ButtonBuilder()
                             .setCustomId("skip")
                             .setLabel("⏭️")
-                            .setStyle("PRIMARY"),
+                            .setStyle(ButtonStyle.Primary),
                         new ButtonBuilder()
                             .setCustomId("stop")
                             .setLabel("⏹️")
-                            .setStyle("PRIMARY"),
+                            .setStyle(ButtonStyle.Primary),
                         new ButtonBuilder()
                             .setCustomId("loopqueue")
                             .setLabel("🔁")
-                            .setStyle("PRIMARY"),
+                            .setStyle(ButtonStyle.Primary),
                         new ButtonBuilder()
                             .setCustomId("shuffle")
                             .setLabel("🔀")
-                            .setStyle("PRIMARY"),
+                            .setStyle(ButtonStyle.Primary),
                     )
                 ]
                     
@@ -375,23 +375,23 @@ export async function execute(interaction) {
                         new ButtonBuilder()
                             .setCustomId("rewind")
                             .setLabel("⏮️")
-                            .setStyle("PRIMARY"),
+                            .setStyle(ButtonStyle.Primary),
                         new ButtonBuilder()
                             .setCustomId("skip")
                             .setLabel("⏭️")
-                            .setStyle("PRIMARY"),
+                            .setStyle(ButtonStyle.Primary),
                         new ButtonBuilder()
                             .setCustomId("stop")
                             .setLabel("⏹️")
-                            .setStyle("PRIMARY"),
+                            .setStyle(ButtonStyle.Primary),
                         new ButtonBuilder()
                             .setCustomId("looptrack")
                             .setLabel("🔁")
-                            .setStyle("PRIMARY"),
+                            .setStyle(ButtonStyle.Primary),
                         new ButtonBuilder()
                             .setCustomId("shuffle")
                             .setLabel("🔀")
-                            .setStyle("PRIMARY"),
+                            .setStyle(ButtonStyle.Primary),
                     )
                 ]
                     
