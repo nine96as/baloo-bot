@@ -1,4 +1,4 @@
-import {EmbedBuilder, ActionRowBuilder, ButtonBuilder} from "discord.js";
+import {EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle} from "discord.js";
 
 export const name =  "trackStart"
 
@@ -19,23 +19,23 @@ export async function execute(queue) {
             new ButtonBuilder()
                 .setCustomId("rewind")
                 .setLabel("⏮️")
-                .setStyle("PRIMARY"),
+                .setStyle(ButtonStyle.Primary),
             new ButtonBuilder()
                 .setCustomId("skip")
                 .setLabel("⏭️")
-                .setStyle("PRIMARY"),
+                .setStyle(ButtonStyle.Primary),
             new ButtonBuilder()
                 .setCustomId("stop")
                 .setLabel("⏹️")
-                .setStyle("PRIMARY"),
+                .setStyle(ButtonStyle.Primary),
             new ButtonBuilder()
                 .setCustomId("looptrack")
                 .setLabel("🔁")
-                .setStyle("PRIMARY"),
+                .setStyle(ButtonStyle.Primary),
             new ButtonBuilder()
                 .setCustomId("shuffle")
                 .setLabel("🔀")
-                .setStyle("PRIMARY"),
+                .setStyle(ButtonStyle.Primary),
         )
     ]
 
