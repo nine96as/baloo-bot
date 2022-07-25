@@ -1,13 +1,14 @@
-const fs = require("node:fs");
+import * as fs from "fs";
+
 let eventCount = 0;
 let playerCount = 0;
 let commandCount = 0;
 let buttonCount = 0;
 let menuCount = 0;
 
-const handleBot = (client) => {
+export const handleBot = async (client) => {
 
-    const events = fs.readdirSync(`./src/events`)
+    const events = fs.readdirSync(`./src/events`);
 
     for (const module of events) {
         //returns array of file names in given directory
@@ -20,7 +21,7 @@ const handleBot = (client) => {
                 console.log(`--- loading events ---`);
                 for (const file of eventFiles) {
                     eventCount++;
-                    const event = require(`../events/${module}/${file}`);
+                    const event = await import(`../events/${module}/${file}`);
                     console.log(`-> loaded event ${event.name.toLowerCase()}`);
                     /* "on" and "once" methods take event name and a callback function
                     * callback function takes arguments returned by respective event,
@@ -37,7 +38,7 @@ const handleBot = (client) => {
     
             //     for (const file of eventFiles) {
             //         playerCount++;
-            //         const event = require(`../events/${module}/${file}`);
+            //         const {event} = await import(`../events/${module}/${file}`);
             //         console.log(`-> loaded player event ${event.name.toLowerCase()}`);
             //         /* when an event is triggered by player, takes arguments
             //         * returned by event and collects them in args array using
@@ -58,7 +59,7 @@ const handleBot = (client) => {
     
     // for (const file of eventFiles) {
     //     eventCount++;
-    //     const event = require(`../events/${file}`);
+    //     const {event} = require(`../events/${file}`);
     //     console.log(`-> loaded event ${event.name.toLowerCase()}`);
     //     /* "on" and "once" methods take event name and a callback function
     //     * callback function takes arguments returned by respective event,
@@ -79,7 +80,7 @@ const handleBot = (client) => {
     
     // for (const file of playerFiles) {
     //     playerCount++;
-    //     const event = require(`../events/player/${file}`);
+    //     const {event} = require(`../events/player/${file}`);
     //     console.log(`-> loaded player event ${event.name.toLowerCase()}`);
     //     /* when an event is triggered by player, takes arguments
     //     * returned by event and collects them in args array using
@@ -101,7 +102,7 @@ const handleBot = (client) => {
 
         for (const file of commandFiles) {
             commandCount++;
-            const command = require(`../commands/${module}/${file}`);
+            const command = await import(`../commands/${module}/${file}`);
             //set new item in collection
             //key as command name, value as exported module
             client.commands.set(command.data.name, command);
@@ -120,7 +121,7 @@ const handleBot = (client) => {
 
         for (const file of buttonFiles) {
             buttonCount++;
-            const button = require(`../buttons/${module}/${file}`);
+            const button = await import(`../buttons/${module}/${file}`);
             //set new item in collection
             //key as button name, value as exported module
             client.buttons.set(button.name, button);
@@ -139,7 +140,7 @@ const handleBot = (client) => {
 
         for (const file of menuFiles) {
             menuCount++;
-            const menu = require(`../menus/${module}/${file}`);
+            const menu = await import(`../menus/${module}/${file}`);
             //set new item in collection
             //key as menu name, value as exported module
             client.menus.set(menu.name, menu);
@@ -154,5 +155,3 @@ const handleBot = (client) => {
     console.log(`${buttonCount} button(s) loaded.`);
     console.log(`${menuCount} menu(s) loaded.`);
 }
-
-module.exports = handleBot;

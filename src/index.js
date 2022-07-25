@@ -1,8 +1,13 @@
-const {Client, Collection, GatewayIntentBits} = require("discord.js"); //imports discord.js package
-const {Player} = require("discord-player");
+//imports discord.js and discord-player package
+import {Client, Collection, GatewayIntentBits} from "discord.js"; 
+import {Player} from "discord-player";
+
+//imports handlers for bot
+import {handleBot} from "./handlers/botHandler.js";
+import {init} from "./handlers/init.js";
 
 //creates bot client - used to access discord api
-const client = new Client({ 
+export const client = new Client({ 
     //things to look out for
     intents: [
         GatewayIntentBits.Guilds,
@@ -23,8 +28,8 @@ client.menus = new Collection();
 // })
 
 //initialises all handlers
-require("./handlers/botHandler")(client);
-require("./handlers/init")(client);
+await(handleBot(client));
+await(init(client));
 
 //login to bot
 client.login(process.env.TOKEN); 

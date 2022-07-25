@@ -1,20 +1,21 @@
-const {REST} = require("@discordjs/rest");
-const {Routes} = require("discord.js");
-const mongoose = require("mongoose");
+import {REST} from "@discordjs/rest";
+import {Routes} from "discord.js";
+import {mongoose} from "mongoose";
+import dotenv from "dotenv";
 
-require("dotenv").config();
+dotenv.config();
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const GUILD_ID = process.env.GUILD_ID;
 const TOKEN = process.env.TOKEN;
 const MONGOOSE_STRING = process.env.MONGOOSE_STRING;
 
-const init = (client) => {
+export const init = (client) => {
     const commandsData = [
         ...Array.from(client.commands.values()).map((c) => c.data.toJSON()),
     ]
 
-    const rest = new REST({version: "9"}).setToken(TOKEN);
+    const rest = new REST({version: "10"}).setToken(TOKEN);
 
     (async () => {
         try {
@@ -32,4 +33,3 @@ const init = (client) => {
     })();
 }
 
-module.exports = init;

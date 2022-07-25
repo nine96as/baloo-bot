@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import {mongoose} from "mongoose";
 
 /**
  * roles structure
@@ -11,4 +11,4 @@ const Schema = new mongoose.Schema({
     roles: Array,
 })
 
-module.exports = mongoose.model("reaction-roles", Schema);
+export const rrModel = mongoose.model("reaction-roles", Schema);
