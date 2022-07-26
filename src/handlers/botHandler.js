@@ -5,6 +5,7 @@ let playerCount = 0;
 let commandCount = 0;
 let buttonCount = 0;
 let menuCount = 0;
+let modalCount = 0;
 
 export const handleBot = async (client) => {
 
@@ -33,63 +34,26 @@ export const handleBot = async (client) => {
                     }
                 }
                 break;
-            // case "player":
-            //     console.log(`--- loading player events ---`);
+            case "player":
+                console.log(`--- loading player events ---`);
     
-            //     for (const file of eventFiles) {
-            //         playerCount++;
-            //         const {event} = await import(`../events/${module}/${file}`);
-            //         console.log(`-> loaded player event ${event.name.toLowerCase()}`);
-            //         /* when an event is triggered by player, takes arguments
-            //         * returned by event and collects them in args array using
-            //         * ... syntax */
-            //         client.player.on(
-            //             event.name,
-            //             async (...args) => await event.execute(...args)
-            //         )
-            //     }
-            //     break;
+                for (const file of eventFiles) {
+                    playerCount++;
+                    const event = await import(`../events/${module}/${file}`);
+                    console.log(`-> loaded player event ${event.name.toLowerCase()}`);
+                    /* when an event is triggered by player, takes arguments
+                    * returned by event and collects them in args array using
+                    * ... syntax */
+                    client.player.on(
+                        event.name,
+                        async (...args) => await event.execute(...args)
+                    )
+                }
+                break;
             default: 
                 break;
         }
     }
-    
-
-    // console.log(`--- loading events ---`);
-    
-    // for (const file of eventFiles) {
-    //     eventCount++;
-    //     const {event} = require(`../events/${file}`);
-    //     console.log(`-> loaded event ${event.name.toLowerCase()}`);
-    //     /* "on" and "once" methods take event name and a callback function
-    //     * callback function takes arguments returned by respective event,
-    //     * collects them in args array using ... syntax */
-    //     if (event.once) {
-    //         client.once(event.name, (...args) => event.execute(...args, client));
-    //     } else {
-    //         client.on(event.name, (...args) => event.execute(...args, client));
-    //     }
-    // }
-
-    // //returns array of file names in given directory
-    // const playerFiles = fs
-    //     .readdirSync(`./src/events/player`)
-    //     .filter(file => file.endsWith(".js"));
-    
-    // console.log(`--- loading player events ---`);
-    
-    // for (const file of playerFiles) {
-    //     playerCount++;
-    //     const {event} = require(`../events/player/${file}`);
-    //     console.log(`-> loaded player event ${event.name.toLowerCase()}`);
-    //     /* when an event is triggered by player, takes arguments
-    //     * returned by event and collects them in args array using
-    //     * ... syntax */
-    //     client.player.on(
-	// 		event.name,
-	// 		async (...args) => await event.execute(...args)
-	// 	)
-    // }
 
     const commands = fs.readdirSync(`./src/commands`);
 
@@ -110,41 +74,58 @@ export const handleBot = async (client) => {
         }
     }
 
-    const buttons = fs.readdirSync(`./src/buttons`);
+    const components = fs.readdirSync(`./src/components`);
 
-    console.log(`--- loading buttons ---`);
+    for (const component of components) {
+        const componentFiles = fs
+            .readdirSync(`./src/components/${component}`)
 
-    for (const module of buttons) {
-        const buttonFiles = fs
-            .readdirSync(`./src/buttons/${module}`)
-            .filter(file => file.endsWith(".js"));
-
-        for (const file of buttonFiles) {
-            buttonCount++;
-            const button = await import(`../buttons/${module}/${file}`);
-            //set new item in collection
-            //key as button name, value as exported module
-            client.buttons.set(button.name, button);
-            console.log(`-> loaded button ${button.name.toLowerCase()}`);
-        }
-    }
-
-    const menus = fs.readdirSync(`./src/menus`);
-
-    console.log(`--- loading menus ---`);
-
-    for (const module of menus) {
-        const menuFiles = fs
-            .readdirSync(`./src/menus/${module}`)
-            .filter(file => file.endsWith(".js"));
-
-        for (const file of menuFiles) {
-            menuCount++;
-            const menu = await import(`../menus/${module}/${file}`);
-            //set new item in collection
-            //key as menu name, value as exported module
-            client.menus.set(menu.name, menu);
-            console.log(`-> loaded menu ${menu.name.toLowerCase()}`);
+        switch (component) {
+            case "buttons":
+                console.log(`--- loading buttons ---`);
+                for (const module of componentFiles) {
+                    const buttonFiles = fs
+                        .readdirSync(`./src/components/${component}/${module}`)
+                        .filter(file => file.endsWith(".js"));
+                    
+                    for (const file of buttonFiles) {
+                        buttonCount++;
+                        const button = await import(`../components/${component}/${module}/${file}`);
+                        //set new item in collection
+                        //key as button name, value as exported module
+                        client.buttons.set(button.name, button);
+                        console.log(`-> loaded button ${button.name.toLowerCase()}`);
+                    }
+                }
+                break;
+            case "menus":
+                console.log(`--- loading menus ---`);
+                for (const module of componentFiles) {
+                    const menuFiles = fs
+                        .readdirSync(`./src/components/${component}/${module}`)
+                        .filter(file => file.endsWith(".js"));
+                    
+                    for (const file of menuFiles) {
+                        menuCount++;
+                        const menu = await import(`../components/${component}/${module}/${file}`);
+                        //set new item in collection
+                        //key as menu name, value as exported module
+                        client.menus.set(menu.name, menu);
+                        console.log(`-> loaded menu ${menu.name.toLowerCase()}`);
+                    }
+                }
+                break;
+            case "modals":
+                console.log(`--- loading modals ---`);
+                for (const file of componentFiles) {
+                    modalCount++;
+                    const modal = await import(`../components/${component}/${file}`);
+                    client.modals.set(modal.name, modal);
+                    console.log(`-> loaded modal ${modal.name.toLowerCase()}`);
+                    break;
+                }
+            default:
+                break;
         }
     }
 
@@ -154,4 +135,5 @@ export const handleBot = async (client) => {
     console.log(`${commandCount} command(s) loaded.`);
     console.log(`${buttonCount} button(s) loaded.`);
     console.log(`${menuCount} menu(s) loaded.`);
+    console.log(`${modalCount} modal(s) loaded.`);
 }

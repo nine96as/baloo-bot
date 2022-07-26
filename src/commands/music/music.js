@@ -109,7 +109,7 @@ export async function execute(interaction) {
                 }
         
                 const embed = new EmbedBuilder()
-                    .setColor(`RANDOM`)
+                    .setColor("Random")
                     .setTitle(`▶️ | new ${result.playlist ? "playlist" : "song"} added to queue`)
         
                 //checks if result is a single track or a playlist
@@ -242,6 +242,7 @@ export async function execute(interaction) {
                 }
 
                 const embed = new EmbedBuilder()
+                    .setColor("Random")
                     .setTitle(`⏭️ | song skipped`)
                     .setDescription(`**[${queue.nowPlaying().title}](${queue.nowPlaying().url})**`)
                     .setThumbnail(queue.nowPlaying().thumbnail)
