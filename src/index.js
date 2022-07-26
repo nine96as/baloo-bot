@@ -1,14 +1,14 @@
-const {Client, Collection, Intents} = require("discord.js"); //imports discord.js package
+const {Client, Collection, GatewayIntentBits} = require("discord.js"); //imports discord.js package
 const {Player} = require("discord-player");
 
 //creates bot client - used to access discord api
 const client = new Client({ 
     //things to look out for
     intents: [
-        Intents.FLAGS.GUILDS,
-        Intents.FLAGS.GUILD_MESSAGES,
-        Intents.FLAGS.GUILD_MEMBERS,
-        Intents.FLAGS.GUILD_VOICE_STATES,
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildVoiceStates,
     ]
 })
 
