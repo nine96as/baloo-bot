@@ -20,12 +20,13 @@ export const client = new Client({
 client.commands = new Collection();
 client.buttons = new Collection();
 client.menus = new Collection();
-// client.player = new Player(client, {
-//     ytdlOptions: {
-//         quality: "highestaudio",
-//         highWaterMark: 1 << 25
-//     }
-// })
+client.modals = new Collection();
+client.player = new Player(client, {
+    ytdlOptions: {
+        quality: "highestaudio",
+        highWaterMark: 1 << 25
+    }
+})
 
 //initialises all handlers
 await(handleBot(client));

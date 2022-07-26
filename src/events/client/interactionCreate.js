@@ -1,3 +1,5 @@
+import {InteractionType} from "discord.js";
+
 export const name = "interactionCreate";
 
 export async function execute(interaction) {
@@ -54,6 +56,24 @@ export async function execute(interaction) {
             console.error(e);
             await interaction.editReply({
                 content: "❌ | error executing this menu",
+                ephemeral: true
+            })
+        }
+    } else if (interaction.type === InteractionType.ModalSubmit) {
+        //checks if modal exists in modal collection
+        const modal = client.modals.get(interaction.customId);
+
+        //exists early if modal doesn't exist
+        if (!modal) return;
+
+        //if modal exists, tries to carry out "execute" function
+        try {
+            await interaction.deferReply({ephemeral: true});
+            await modal.execute(interaction);
+        } catch (e) {
+            console.error(e);
+            await interaction.editReply({
+                content: "❌ | error executing this modal",
                 ephemeral: true
             })
         }
