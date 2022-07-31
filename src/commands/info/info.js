@@ -2,16 +2,16 @@ import {SlashCommandBuilder, EmbedBuilder} from "discord.js";
 
 export const data = new SlashCommandBuilder()
     .setName("info")
-    .setDescription("get info about a user or server")
+    .setDescription("🔬 get info about a user or server")
     .addSubcommand(subcommand => subcommand
         .setName("user")
-        .setDescription("info about a user")
+        .setDescription("🔬 info about a user")
         .addUserOption(option => option
             .setName("target")
             .setDescription("the user")))
     .addSubcommand(subcommand => subcommand
         .setName("server")
-        .setDescription("info about the server"))
+        .setDescription("🔬 info about the server"))
 
 export async function execute(interaction) {
     if (interaction.commandName === "info") {

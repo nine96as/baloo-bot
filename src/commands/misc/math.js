@@ -5,7 +5,7 @@ export const data = new SlashCommandBuilder()
     .setDescription("🧮 complete arithmetic operations")
     .addSubcommand(subcommand => subcommand
         .setName("add")
-        .setDescription("add 2 numbers")
+        .setDescription("🧮 add 2 numbers")
         .addNumberOption(option => option
             .setName("num1")
             .setDescription("first number")
@@ -16,7 +16,7 @@ export const data = new SlashCommandBuilder()
             .setRequired(true)))
     .addSubcommand(subcommand => subcommand
         .setName("sub")
-        .setDescription("subtract 2 numbers")
+        .setDescription("🧮 subtract 2 numbers")
         .addNumberOption(option => option
             .setName("num1")
             .setDescription("first number")
@@ -27,7 +27,7 @@ export const data = new SlashCommandBuilder()
             .setRequired(true)))
     .addSubcommand(subcommand => subcommand
         .setName("mul")
-        .setDescription("multiply 2 numbers")
+        .setDescription("🧮 multiply 2 numbers")
         .addNumberOption(option => option
             .setName("num1")
             .setDescription("first number")
@@ -38,7 +38,7 @@ export const data = new SlashCommandBuilder()
             .setRequired(true)))
     .addSubcommand(subcommand => subcommand
         .setName("div")
-        .setDescription("divide 2 numbers")
+        .setDescription("🧮 divide 2 numbers")
         .addNumberOption(option => option
             .setName("num1")
             .setDescription("first number")
@@ -49,7 +49,7 @@ export const data = new SlashCommandBuilder()
             .setRequired(true)))
     .addSubcommand(subcommand => subcommand
         .setName("mod")
-        .setDescription("find modulo of 2 numbers")
+        .setDescription("🧮 find modulo of 2 numbers")
         .addNumberOption(option => option
             .setName("num1")
             .setDescription("first number")
@@ -60,7 +60,7 @@ export const data = new SlashCommandBuilder()
             .setRequired(true)))
     .addSubcommand(subcommand => subcommand
         .setName("pow")
-        .setDescription("find power of inputted number")
+        .setDescription("🧮 find power of inputted number")
         .addNumberOption(option => option
             .setName("num1")
             .setDescription("first number")

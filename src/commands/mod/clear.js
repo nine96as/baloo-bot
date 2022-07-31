@@ -3,7 +3,7 @@ import wait from 'node:timers/promises';
 
 export const data = new SlashCommandBuilder()
     .setName("clear")
-    .setDescription("clears a specific amount of messages from a channel or target")
+    .setDescription("🚨 clears a specific amount of messages from a channel or target")
     .addNumberOption(option => option
         .setName("number")
         .setDescription("number of messages to clear")
@@ -29,11 +29,11 @@ export async function execute(interaction) {
         })
 
         await interaction.channel.bulkDelete(filtered, true).then(messages => {
-            interaction.reply(`🧼 | cleared ${messages.size} message(s) from ${target}.`);
+            interaction.reply(`🚨 | cleared ${messages.size} message(s) from ${target}.`);
         })
     } else {
         await interaction.channel.bulkDelete(number, true).then(messages => {
-            interaction.reply(`🧼 | cleared ${messages.size} message(s) from this channel.`);
+            interaction.reply(`🚨 | cleared ${messages.size} message(s) from this channel.`);
         })
     }
     await wait.setTimeout(5000);

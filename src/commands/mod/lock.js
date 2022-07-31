@@ -4,7 +4,7 @@ import ms from "ms";
 
 export const data = new SlashCommandBuilder()
     .setName("lock")
-    .setDescription("put this channel into lockdown")
+    .setDescription("🚨 put this channel into lockdown")
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
     .addStringOption(option => option
         .setName("duration")

@@ -7,7 +7,7 @@ export const data = new SlashCommandBuilder()
     .setDescription("🎶 carry out various music operations")
     .addSubcommand(subcommand => subcommand
         .setName("play")
-        .setDescription("▶️ plays a song/playlist")
+        .setDescription("⏯️ plays a song/playlist")
         .addStringOption(option => option
             .setName("song")
             .setDescription("the song to play")
@@ -17,7 +17,7 @@ export const data = new SlashCommandBuilder()
         .setDescription("⏸️ pauses music"))
     .addSubcommand(subcommand => subcommand
         .setName("resume")
-        .setDescription("resumes music"))
+        .setDescription("⏯️ resumes music"))
     .addSubcommand(subcommand => subcommand
         .setName("queue")
         .setDescription("📄 displays song queue")
