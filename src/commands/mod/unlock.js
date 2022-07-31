@@ -3,7 +3,7 @@ import {SlashCommandBuilder, PermissionFlagsBits} from "discord.js";
 
 export const data = new SlashCommandBuilder()
     .setName("unlock")
-    .setDescription("remove a channel from lockdown")
+    .setDescription("🚨 remove a channel from lockdown")
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
 
 export async function execute(interaction) {

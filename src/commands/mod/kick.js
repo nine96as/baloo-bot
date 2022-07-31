@@ -3,7 +3,7 @@ import wait from 'node:timers/promises';
 
 export const data = new SlashCommandBuilder()
     .setName("kick")
-    .setDescription("kick a member")
+    .setDescription("🚨 kick a member")
     .addUserOption(option => option
         .setName("target")
         .setDescription("user to kick")
@@ -22,7 +22,7 @@ export async function execute(interaction) {
     try {
         await interaction.guild.members.kick(member, reason);
         const embed = new EmbedBuilder()
-            .setTitle(`👋 | ${member.user.tag} has been kicked.`)
+            .setTitle(`🚨 | ${member.user.tag} has been kicked.`)
             .setColor("Random")
             .setDescription(
                 `**reason**: ${reason}`

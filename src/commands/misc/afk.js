@@ -4,17 +4,17 @@ import wait from 'node:timers/promises';
 
 export const data = new SlashCommandBuilder()
     .setName("afk")
-    .setDescription("AFK system")
+    .setDescription("📇 AFK system")
     .addSubcommand(subcommand => subcommand
         .setName("set")
-        .setDescription("set/update your AFK status")
+        .setDescription("📇 set/update your AFK status")
         .addStringOption(option => option
             .setName("status")
             .setDescription("status to be set/updated")
             .setRequired(true)))
     .addSubcommand(subcommand => subcommand
         .setName("return")
-        .setDescription("return from being AFK"))
+        .setDescription("📇 return from being AFK"))
 
 export async function execute(interaction) {
     const status = interaction.options.getString("status");

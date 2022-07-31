@@ -2,7 +2,7 @@ import {SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits} from "discord.js
 
 export const data = new SlashCommandBuilder()
     .setName("ban")
-    .setDescription("ban a member")
+    .setDescription("🚨 ban a member")
     .addUserOption(option => option
         .setName("target")
         .setDescription("user to ban")
@@ -23,7 +23,7 @@ export async function execute(interaction) {
             reason
         })
         const embed = new EmbedBuilder()
-            .setTitle(`🔨 | ${member.user.tag} has been banned.`)
+            .setTitle(`🚨 | ${member.user.tag} has been banned.`)
             .setColor("Random")
             .setDescription(
                 `**reason**: ${reason}`

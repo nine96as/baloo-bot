@@ -6,7 +6,7 @@ export const data = new SlashCommandBuilder()
     .setDescription("reaction role system")
     .addSubcommand(subcommand => subcommand
         .setName("add")
-        .setDescription("add a custom reaction role")
+        .setDescription("📂 add a custom reaction role")
         .addRoleOption(option => option
             .setName("role")
             .setDescription("role to be assigned")
@@ -21,14 +21,14 @@ export const data = new SlashCommandBuilder()
             .setRequired(true)))
     .addSubcommand(subcommand => subcommand
         .setName("remove")
-        .setDescription("remove a custom reaction role")
+        .setDescription("📂 remove a custom reaction role")
         .addRoleOption(option => option
             .setName("role")
             .setDescription("role to be removed")
             .setRequired(true)))
     .addSubcommand(subcommand => subcommand
         .setName("panel")
-        .setDescription("🗂️ creates a reaction role panel, with an embed message you can customise")
+        .setDescription("📂 creates a reaction role panel, with an embed message you can customise")
         .addStringOption(option => option
             .setName("title")
             .setDescription("sets embed title")

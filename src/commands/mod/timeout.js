@@ -12,7 +12,7 @@ const durations = [
 
 export const data = new SlashCommandBuilder()
     .setName("timeout")
-    .setDescription("timeout a member")
+    .setDescription("🚨 timeout a member")
     .addUserOption(option => option
         .setName("target")
         .setDescription("user to timeout")
@@ -45,7 +45,7 @@ export async function execute(interaction) {
     try {
         await member.timeout(duration, reason);
         const embed = new EmbedBuilder()
-            .setTitle(`🔇 | ${member.user.tag} has been timed out.`)
+            .setTitle(`⏱️ | ${member.user.tag} has been timed out.`)
             .setColor("Random")
             .setDescription(
                 `**duration**: ${durations.find(d => duration === d.value)?.name}\n` +
