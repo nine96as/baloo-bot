@@ -2,7 +2,7 @@ import {SlashCommandBuilder} from "discord.js";
 
 export const data = new SlashCommandBuilder()
     .setName("dice")
-    .setDescription("chooses random number from min/max given (1/6 by default)")
+    .setDescription("🎲 chooses random number from min/max given (1/6 by default)")
     .addNumberOption(option => option
         .setName("min")
         .setDescription("min value"))

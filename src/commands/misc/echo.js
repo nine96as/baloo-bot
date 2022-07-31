@@ -2,7 +2,7 @@ import {SlashCommandBuilder} from "discord.js";
 
 export const data = new SlashCommandBuilder()
     .setName("echo")
-    .setDescription("replies with your input")
+    .setDescription("🗣️ replies with your input")
     .addStringOption(option => option
         .setName("input")
         .setDescription("input to echo back")

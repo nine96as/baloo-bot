@@ -4,45 +4,45 @@ import finder from "lyrics-finder";
 
 export const data = new SlashCommandBuilder()
     .setName("music")
-    .setDescription("carry out various music operations")
+    .setDescription("🎶 carry out various music operations")
     .addSubcommand(subcommand => subcommand
         .setName("play")
-        .setDescription("plays a song/playlist")
+        .setDescription("▶️ plays a song/playlist")
         .addStringOption(option => option
             .setName("song")
             .setDescription("the song to play")
             .setRequired(true)))
     .addSubcommand(subcommand => subcommand
         .setName("pause")
-        .setDescription("pauses music"))
+        .setDescription("⏸️ pauses music"))
     .addSubcommand(subcommand => subcommand
         .setName("resume")
         .setDescription("resumes music"))
     .addSubcommand(subcommand => subcommand
         .setName("queue")
-        .setDescription("displays song queue")
+        .setDescription("📄 displays song queue")
         .addNumberOption(option => option
             .setName("page")
             .setDescription("page number of queue")
             .setMinValue(1)))
     .addSubcommand(subcommand => subcommand
         .setName("skip")
-        .setDescription("skips current song"))
+        .setDescription("⏭️ skips current song"))
     .addSubcommand(subcommand => subcommand
         .setName("rewind")
-        .setDescription("rewinds to previous song"))
+        .setDescription("⏮️ rewinds to previous song"))
     .addSubcommand(subcommand => subcommand
         .setName("stop")
-        .setDescription("stops all music and clears queue"))
+        .setDescription("⏹️ stops all music and clears queue"))
     .addSubcommand(subcommand => subcommand
         .setName("volume")
-        .setDescription("check or set volume")
+        .setDescription("🔊 check or set volume")
         .addIntegerOption(option => option
             .setName("level")
             .setDescription("volume level to be set (1-100)")))
     .addSubcommand(subcommand => subcommand
         .setName("loop")
-        .setDescription("set loop modes")
+        .setDescription("🔁 set loop modes")
         .addStringOption(option => option
             .setName("mode")
             .setDescription("loop mode to be set")
@@ -54,16 +54,16 @@ export const data = new SlashCommandBuilder()
             .setRequired(true)))
     .addSubcommand(subcommand => subcommand
         .setName("shuffle")
-        .setDescription("shuffles current queue"))
+        .setDescription("🔀 shuffles current queue"))
     .addSubcommand(subcommand => subcommand
         .setName("nowplaying")
-        .setDescription("displays info about currently playing song"))
+        .setDescription("🎶 displays info about currently playing song"))
     .addSubcommand(subcommand => subcommand
         .setName("clearqueue")
-        .setDescription("clears queue"))
+        .setDescription("🧼 clears queue"))
     .addSubcommand(subcommand => subcommand
         .setName("lyrics")
-        .setDescription("fetch lyrics of currently playing song"))
+        .setDescription("📜 fetch lyrics of currently playing song"))
 
 export async function execute(interaction) {
     if (interaction.commandName === "music") {

@@ -2,7 +2,7 @@ import {SlashCommandBuilder, EmbedBuilder} from "discord.js";
 
 export const data = new SlashCommandBuilder()
     .setName("embed")
-    .setDescription("create an embed")
+    .setDescription("📰 create an embed")
     .addStringOption(option => option
         .setName("title")
         .setDescription("sets embed title")
