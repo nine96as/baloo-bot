@@ -2,7 +2,7 @@ import {SlashCommandBuilder} from "discord.js";
 
 export const data = new SlashCommandBuilder()
     .setName("math")
-    .setDescription("complete arithmetic operations")
+    .setDescription("🧮 complete arithmetic operations")
     .addSubcommand(subcommand => subcommand
         .setName("add")
         .setDescription("add 2 numbers")

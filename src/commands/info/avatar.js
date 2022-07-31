@@ -2,7 +2,7 @@ import {SlashCommandBuilder, EmbedBuilder} from "discord.js";
 
 export const data = new SlashCommandBuilder()
     .setName("avatar")
-    .setDescription("get a user's avatar")
+    .setDescription("🔬 get a user's avatar")
     .addUserOption(option => option
         .setName("target")
         .setDescription("member to fetch the avatar from"))

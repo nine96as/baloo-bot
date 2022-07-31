@@ -3,7 +3,7 @@ import {SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, SelectMenuBuilder, 
 
 export const data = new SlashCommandBuilder()
     .setName("panel")
-    .setDescription("creates a reaction role panel, with an embed message you can customise")
+    .setDescription("🗂️ creates a reaction role panel, with an embed message you can customise")
     .addStringOption(option => option
         .setName("title")
         .setDescription("sets embed title")

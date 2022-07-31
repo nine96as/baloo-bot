@@ -2,7 +2,7 @@ import {SlashCommandBuilder, ModalBuilder, ActionRowBuilder, TextInputBuilder, T
 
 export const data = new SlashCommandBuilder()
     .setName("modal")
-    .setDescription("returns a modal")
+    .setDescription("📑 returns a modal")
 
 export async function execute(interaction) {
     const modal = new ModalBuilder()
