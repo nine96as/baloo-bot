@@ -30,7 +30,7 @@ export async function execute(interaction) {
     const guildData = await rrModel.findOne({guildId: interaction.guildId});
 
     if (!guildData?.roles) {
-        return interaction.editReply("❌ | there are no roles in this guild!");
+        return interaction.reply("❌ | there are no roles in this guild!");
     }
 
     const options = guildData.roles.map((x) => {
@@ -67,6 +67,6 @@ export async function execute(interaction) {
                 .addOptions(options)
         )
     ]
-    interaction.editReply("✅ | success!")
+    interaction.reply({content: "✅ | success!", emphemeral: true})
     interaction.channel.send({embeds: [embed], components});
 }

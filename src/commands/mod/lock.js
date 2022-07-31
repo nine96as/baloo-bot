@@ -17,7 +17,7 @@ export async function execute(interaction) {
     const reason = interaction.options.getString("reason") || "no reason given";
 
     if (!interaction.channel.permissionsFor(interaction.guildId).has("SEND_MESSAGES")) {
-        interaction.editReply({
+        interaction.reply({
             content: "🔒 | this channel is already locked.",
             ephemeral: true,
         })
@@ -28,7 +28,7 @@ export async function execute(interaction) {
         SEND_MESSAGES: false,
     })
 
-    interaction.editReply(`🔒 | this channel is now locked with a reason of "${reason}"`);
+    interaction.reply(`🔒 | this channel is now locked with a reason of "${reason}"`);
 
     const duration = interaction.options.getString("duration");
 
@@ -45,7 +45,7 @@ export async function execute(interaction) {
                 SEND_MESSAGES: null,
             })
             interaction
-                .editReply("🔓 | the lockdown has been lifted.")
+                .followUp("🔓 | the lockdown has been lifted.")
                 .catch(() => {});
             await ldModel.deleteOne({channelId: interaction.channel.id});
         }, ms(duration));

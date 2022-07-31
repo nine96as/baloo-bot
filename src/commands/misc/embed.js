@@ -39,7 +39,7 @@ export async function execute(interaction) {
         .setThumbnail(thumbnail)
         .setFooter(footer)
 
-    await interaction.editReply({
+    await interaction.reply({
         embeds: [embed]
     })
 }

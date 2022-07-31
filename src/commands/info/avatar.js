@@ -16,7 +16,7 @@ export async function execute(interaction) {
         .setImage(member.user.avatarURL({size: 2048, dynamic: true}))
         .setTimestamp(Date.now());
     
-    await interaction.editReply({
+    await interaction.reply({
         embeds: [embed]
     })
 }

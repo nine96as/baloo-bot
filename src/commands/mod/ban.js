@@ -16,7 +16,7 @@ export async function execute(interaction) {
     const member = interaction.options.getMember("target");
     const reason = interaction.options.getString("reason") || "no reason given";
 
-    if (!member) return interaction.editReply("invalid member");
+    if (!member) return interaction.reply("invalid member");
 
     try {
         await interaction.guild.bans.create(member, {
@@ -29,11 +29,11 @@ export async function execute(interaction) {
                 `**reason**: ${reason}`
             )
             .setTimestamp()
-        return interaction.editReply({embeds: [embed]});
+        return interaction.reply({embeds: [embed]});
     } catch (e) {
         if (e) {
             console.log(e);
-            return interaction.editReply(`❌ | failed to ban ${member.user.tag}`);
+            return interaction.reply(`❌ | failed to ban ${member.user.tag}`);
         }
     }
 }

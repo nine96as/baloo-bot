@@ -13,5 +13,5 @@ export const data = new SlashCommandBuilder()
 export async function execute(interaction) {
     const min = interaction.options.getNumber("min") || 1;
     const max = interaction.options.getNumber("max") || 6;
-    interaction.editReply(`🎲 | rolled ${Math.floor(Math.random() * max) + min}!`);
+    interaction.reply(`🎲 | rolled ${Math.floor(Math.random() * max) + min}!`);
 }

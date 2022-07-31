@@ -1,12 +1,14 @@
-import {SlashCommandBuilder} from "discord.js";
-import wait from 'node:timers/promises';
+import {SlashCommandBuilder, EmbedBuilder} from "discord.js";
 
 export const data = new SlashCommandBuilder()
     .setName("ping")
-    .setDescription("replies with pong twice!")
+    .setDescription("sends a ping request!")
 
-export async function execute(interaction, client) {
-    await interaction.editReply("🏓 | pong!");
-    await wait.setTimeout(2000);
-    await interaction.editReply("🏓 | pong again!");
+export async function execute(interaction) {
+    const msg = await interaction.reply({
+        content: "🏓 | pong!",
+        fetchReply: true,
+    })
+    
+    await interaction.editReply(`🏓 | pong! \`${msg.createdTimestamp - interaction.createdTimestamp}ms\``);
 }

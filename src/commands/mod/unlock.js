@@ -8,7 +8,7 @@ export const data = new SlashCommandBuilder()
 
 export async function execute(interaction) {
     if (interaction.channel.permissionsFor(interaction.guildId).has("SEND_MESSAGES")) {
-        return interaction.editReply({
+        return interaction.reply({
             content: "🔒 | this channel is not locked.",
             ephemeral: true,
         })
@@ -20,5 +20,5 @@ export async function execute(interaction) {
 
     await ldModel.deleteOne({channelId: interaction.channel.id});
 
-    interaction.editReply("🔓 | the lockdown has been lifted.");
+    interaction.reply("🔓 | the lockdown has been lifted.");
 }

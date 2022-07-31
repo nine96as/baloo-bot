@@ -33,7 +33,7 @@ export async function execute(interaction) {
                     {name: "roles", value: `${member.roles.cache.map((r) => r).join(" ").replace("@everyone", "") || "none"}`},
                     {name: "permissions", value: `${member.permissions.toArray().map(p => p.toLowerCase()).join(", ").replaceAll("_", " ") || "none"}`}
                 )
-            await interaction.editReply({
+            await interaction.reply({
                 embeds: [embed]
             })
         } else if (interaction.options.getSubcommand() === "server") {
@@ -58,7 +58,7 @@ export async function execute(interaction) {
                     {name: "created at", value: `||${interaction.guild.createdAt.toLocaleString()}||`}
                 )
 
-            await interaction.editReply({
+            await interaction.reply({
                 embeds: [embed]
             })
         }
