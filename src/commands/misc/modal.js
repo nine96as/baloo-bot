@@ -17,6 +17,5 @@ export async function execute(interaction) {
             .setStyle(TextInputStyle.Short)
     ))
     
-    //TODO: fix this - doesn't play well with deferReply
     return await interaction.showModal(modal);
 }
