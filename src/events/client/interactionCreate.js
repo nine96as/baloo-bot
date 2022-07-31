@@ -12,16 +12,30 @@ export async function execute(interaction) {
         //exits early if command doesn't exist
         if (!command) return;
 
-        //if command exists, tries to carry out "execute" function
-        try {
-            await interaction.deferReply();
-            await command.execute(interaction);
-        } catch (e) {
-            console.error(e);
-            await interaction.editReply({
-                content: "❌ | error executing this command",
-                ephemeral: true
-            })
+        //music command needs to be deferred
+        if (interaction.commandName === "music") {
+            //if command exists, tries to carry out "execute" function
+            try {
+                await interaction.deferReply();
+                await command.execute(interaction);
+            } catch (e) {
+                console.error(e);
+                await interaction.editReply({
+                    content: "❌ | error executing this command",
+                    ephemeral: true
+                })
+            }
+        } else {
+            //if command exists, tries to carry out "execute" function
+            try {
+                await command.execute(interaction);
+            } catch (e) {
+                console.error(e);
+                await interaction.editReply({
+                    content: "❌ | error executing this command",
+                    ephemeral: true
+                })
+            }
         }
     } else if (interaction.isButton()) {
         //checks if button exists in buttons collection

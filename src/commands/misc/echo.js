@@ -10,5 +10,5 @@ export const data = new SlashCommandBuilder()
         
 export async function execute(interaction) {
     const message = interaction.options.getString("input");
-    await interaction.editReply(`🗣️ | ${message}`);
+    await interaction.reply(`🗣️ | ${message}`);
 }
