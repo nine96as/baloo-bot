@@ -26,7 +26,7 @@ export async function execute(interaction) {
                   text: `ID: ${member.user.id}` 
                 })
                 .setTimestamp()
-                .setThumbnail(member.user.avatarURL({size: 512, dynamic: true}))
+                .setThumbnail(member.user.avatarURL({size: 2048, dynamic: true}))
                 .addFields(
                     {name: "joined", value: member.joinedAt.toLocaleString()},
                     {name: "registered", value: member.user.createdAt.toLocaleString()},
@@ -37,12 +37,10 @@ export async function execute(interaction) {
                 embeds: [embed]
             })
         } else if (interaction.options.getSubcommand() === "server") {
-            const member = interaction.member
-
             const embed = new EmbedBuilder()
                 .setColor("Random")
-                .setAuthor({name: interaction.guild.name, iconURL: interaction.guild.iconURL({dynamic: true})})
-                .setThumbnail(interaction.guild.iconURL({dynamic: true}))
+                .setAuthor({name: interaction.guild.name, iconURL: interaction.guild.iconURL()})
+                .setThumbnail(interaction.guild.iconURL({size: 2048}))
                 .setFooter({
                     text: `ID: ${interaction.guild.id}` 
                 })
