@@ -181,9 +181,13 @@ export async function execute(interaction) {
                     )
             }
         
+            const pages = [];
+            const pageStart = page * 10;
+            const pageEnd = pageStart + 10;
+
             const currentTrack = queue.current;
-            const tracks = queue.tracks.slice(page * 10, page * 10 + 10).map((track, i) => {
-                return `**${page * 10 + i + 1}.** \`[${track.duration}]\` [${track.title}](${track.url})`;
+            const tracks = queue.tracks.slice(pageStart, pageEnd).map((track, i) => {
+                return `**${pageStart + i + 1}.** \`[${track.duration}]\` [${track.title}](${track.url})`;
             }).join("\n");
         
             const embed = new EmbedBuilder()

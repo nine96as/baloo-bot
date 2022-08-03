@@ -47,7 +47,7 @@ export const generateImage = async (member) => {
     
     //draw in welcome img
     ctx.font = "50px Inter"
-    ctx.fillText("Welcome", dim.width/2, dim.margin + 70)
+    ctx.fillText("welcome", dim.width/2, dim.margin + 70)
 
     //draw in username
     ctx.font = "60px Inter";
