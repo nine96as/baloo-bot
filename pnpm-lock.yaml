@@ -222,8 +222,8 @@ packages:
     resolution: {integrity: sha512-F0KIgDJfy2nA3zMLmWGKxcH2ZVEtCZXHHdOQs2gSaQ27+lNeEfGxzkIw90aXswATX7AZ33tahPbzy6KAfUreVw==}
     dev: false
 
-  /@types/node/18.6.3:
-    resolution: {integrity: sha512-6qKpDtoaYLM+5+AFChLhHermMQxc3TOEFIDzrZLPRGHPrLEwqFkkT5Kx3ju05g6X7uDPazz3jHbKPX0KzCjntg==}
+  /@types/node/18.6.4:
+    resolution: {integrity: sha512-I4BD3L+6AWiUobfxZ49DlU43gtI+FTHSv9pE2Zekg6KjMpre4ByusaljW3vYSLJrvQ1ck1hUaeVu8HVlY3vzHg==}
     dev: false
 
   /@types/webidl-conversions/6.1.1:
@@ -233,14 +233,14 @@ packages:
   /@types/whatwg-url/8.2.2:
     resolution: {integrity: sha512-FtQu10RWgn3D9U4aazdwIE2yzphmTJREDqNdODHrbrZmmMqI0vMheC/6NE/J1Yveaj8H+ela+YwWTjq5PGmuhA==}
     dependencies:
-      '@types/node': 18.6.3
+      '@types/node': 18.6.4
       '@types/webidl-conversions': 6.1.1
     dev: false
 
   /@types/ws/8.5.3:
     resolution: {integrity: sha512-6YOoWjruKj1uLf3INHH7D3qTXwFfEsg1kf3c0uDdSBJwfa/llkwIjrAGV7j7mVgGNbzTQ3HiHKKDXl6bJPD97w==}
     dependencies:
-      '@types/node': 18.6.3
+      '@types/node': 18.6.4
     dev: false
 
   /abbrev/1.1.1:
@@ -522,7 +522,7 @@ packages:
       '@discordjs/voice': 0.11.0_2bpuud27k56orizxpgp4t3teli
       libsodium-wrappers: 0.7.10
       soundcloud-scraper: 5.0.3
-      spotify-url-info: 3.1.2
+      spotify-url-info: 3.1.4
       tiny-typed-emitter: 2.1.0
       tslib: 2.4.0
       youtube-sr: 4.3.0
@@ -1609,8 +1609,8 @@ packages:
     engines: {node: '>= 12'}
     dev: false
 
-  /spotify-url-info/3.1.2:
-    resolution: {integrity: sha512-YN2ory6GWuMiHL0xQQu61n4Mf3wq2rfu9HLyjMxorxjDkueouPEtv8eeyQYlT1ZgViA7ZFuY78QGjrgSvqynuA==}
+  /spotify-url-info/3.1.4:
+    resolution: {integrity: sha512-SgoVhdj2GNZL3oRfkpU83uf79h+IaGP6nzrjVh+I63Xz+/YX6sfPxIXiRtfkQvZ6ev/OuU0ajZQsIDi8ADkS1g==}
     engines: {node: '>= 12'}
     dependencies:
       himalaya: 1.1.0
