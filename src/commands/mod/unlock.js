@@ -7,7 +7,7 @@ export const data = new SlashCommandBuilder()
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
 
 export async function execute(interaction) {
-    if (interaction.channel.permissionsFor(interaction.guildId).has("SEND_MESSAGES")) {
+    if (interaction.channel.permissionsFor(interaction.guildId).has(PermissionFlagsBits.SendMessages)) {
         return interaction.reply({
             content: "🔒 | this channel is not locked.",
             ephemeral: true,
@@ -15,7 +15,7 @@ export async function execute(interaction) {
     }
 
     interaction.channel.permissionOverwrites.edit(interaction.guild.id, {
-        SEND_MESSAGES: null,
+        SendMessages: null,
     })
 
     await ldModel.deleteOne({channelId: interaction.channel.id});

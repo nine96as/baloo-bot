@@ -17,6 +17,7 @@ export const data = new SlashCommandBuilder()
         .setDescription("📇 return from being AFK"))
 
 export async function execute(interaction) {
+    const member = interaction.member;
     const status = interaction.options.getString("status");
         
     try {
@@ -35,7 +36,7 @@ export async function execute(interaction) {
                     userId: interaction.user.id
                 })
 
-                interaction.editReply("✅ | your AFK status has been removed.");
+                interaction.reply("✅ | your AFK status has been removed.");
                 await wait.setTimeout(5000);
                 return await interaction.deleteReply();
         }

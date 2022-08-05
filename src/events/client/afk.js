@@ -1,5 +1,6 @@
 import {afkModel} from '../../models/afk.js';
 import {Message} from "discord.js";
+import wait from 'node:timers/promises';
 
 export const name = "messageCreate";
 
@@ -13,6 +14,11 @@ export async function execute(message) {
         guildId: message.guild.id,
         userId: message.author.id
     })
+    // .then(async () => {
+    //     message.reply("welcome back, your AFK has been removed");
+    //     await wait.setTimeout(5000);
+    //     message.deleteReply();
+    // });
 
     if (message.mentions.members.size) {
         message.mentions.members.forEach((m) => {

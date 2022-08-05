@@ -20,7 +20,7 @@ export const ldSystem = async (client) => {
             const timeNow = Date.now();
             if (d.time < timeNow) {
                 channel.permissionOverwrites.edit(d.guildId, {
-                    SEND_MESSAGES: null,
+                    SendMessages: null,
                 })
                 return await ldModel.deleteOne({channelId: channel.id});
             }
@@ -31,7 +31,7 @@ export const ldSystem = async (client) => {
 
             setTimeout(async () => {
                 channel.permissionOverwrites.edit(d.guildId, {
-                    SEND_MESSAGES: null,
+                    SendMessages: null,
                 })
                 await ldModel.deleteOne({channelId: channel.id});
             }, end)

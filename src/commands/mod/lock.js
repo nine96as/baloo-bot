@@ -16,7 +16,7 @@ export const data = new SlashCommandBuilder()
 export async function execute(interaction) {
     const reason = interaction.options.getString("reason") || "no reason given";
 
-    if (!interaction.channel.permissionsFor(interaction.guildId).has("SEND_MESSAGES")) {
+    if (!interaction.channel.permissionsFor(interaction.guildId).has(PermissionFlagsBits.SendMessages)) {
         interaction.reply({
             content: "🔒 | this channel is already locked.",
             ephemeral: true,
@@ -25,7 +25,7 @@ export async function execute(interaction) {
 
     //prevents messages being sent in channel
     interaction.channel.permissionOverwrites.edit(interaction.guildId, {
-        SEND_MESSAGES: false,
+        SendMessages: false,
     })
 
     interaction.reply(`🔒 | this channel is now locked with a reason of "${reason}"`);
@@ -42,7 +42,7 @@ export async function execute(interaction) {
 
         setTimeout(async () => {
             interaction.channel.permissionOverwrites.edit(interaction.guildId, {
-                SEND_MESSAGES: null,
+                SendMessages: null,
             })
             interaction
                 .followUp("🔓 | the lockdown has been lifted.")
