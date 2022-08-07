@@ -1,8 +1,11 @@
-export const name = "favcolour";
+/* eslint-disable require-jsdoc */
+export const name = 'favcolour';
 
 export async function execute(interaction, client) {
-    await interaction.editReply({
-        content: `your fav colour is ${interaction.fields.getTextInputValue("favColourInput")}`,
-        ephemeral: true,
-    })
+  await interaction.editReply({
+    content: `your fav colour is ${interaction.fields.getTextInputValue(
+        'favColourInput',
+    )}`,
+    ephemeral: true,
+  });
 }
