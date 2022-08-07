@@ -53,7 +53,7 @@ export async function execute(interaction) {
                 `(${time(member.user.createdAt, 'R')})`,
               },
               {
-                name: 'roles',
+                name: `roles (${member.roles.cache.size})`,
                 value: `${
                   member.roles.cache
                       .map((r) => r)
@@ -76,35 +76,37 @@ export async function execute(interaction) {
         embeds: [embed],
       });
     } else if (interaction.options.getSubcommand() === 'server') {
+      const guild = interaction.guild;
+
       const embed = new EmbedBuilder()
           .setColor('Random')
           .setAuthor({
-            name: interaction.guild.name,
-            iconURL: interaction.guild.iconURL(),
+            name: guild.name,
+            iconURL: guild.iconURL(),
           })
-          .setThumbnail(interaction.guild.iconURL({size: 2048}))
+          .setThumbnail(guild.iconURL({size: 2048}))
           .setFooter({
-            text: `ID: ${interaction.guild.id}`,
+            text: `ID: ${guild.id}`,
           })
           .setTimestamp()
           .addFields(
-              {name: 'owner', value: `<@${interaction.guild.ownerId}>`},
+              {name: 'owner', value: `<@${guild.ownerId}>`},
               {
                 name: 'total members',
-                value: `${interaction.guild.memberCount}`,
+                value: `${guild.memberCount}`,
               },
               {
                 name: 'total roles',
-                value: `${interaction.guild.roles.cache.size}`,
+                value: `${guild.roles.cache.size}`,
               },
               {
                 name: 'total channels',
-                value: `${interaction.guild.channels.cache.size}`,
+                value: `${guild.channels.cache.size}`,
               },
               {
                 name: 'text channels',
                 value: `${
-                  interaction.guild.channels.cache.filter(
+                  guild.channels.cache.filter(
                       (c) => c.type === 'GUILD_TEXT',
                   ).size
                 }`,
@@ -112,7 +114,7 @@ export async function execute(interaction) {
               {
                 name: 'voice channels',
                 value: `${
-                  interaction.guild.channels.cache.filter(
+                  guild.channels.cache.filter(
                       (c) => c.type === 'GUILD_VOICE',
                   ).size
                 }`,
@@ -120,13 +122,14 @@ export async function execute(interaction) {
               {
                 name: 'role list',
                 value: `${
-                  interaction.guild.roles.cache.map((r) => r).join(' ') ||
+                  guild.roles.cache.map((r) => r).join(' ') ||
                   'none'
                 }`,
               },
               {
                 name: 'created at',
-                value: `||${interaction.guild.createdAt.toLocaleString()}||`,
+                value: `${time(guild.createdAt)} ` +
+                `(${time(guild.createdAt, 'R')})`,
               },
           );
 

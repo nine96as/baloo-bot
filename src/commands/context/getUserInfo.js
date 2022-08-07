@@ -3,7 +3,7 @@ import {
   ContextMenuCommandBuilder,
   EmbedBuilder,
   ApplicationCommandType,
-  time
+  time,
 } from 'discord.js';
 
 export const data = new ContextMenuCommandBuilder()
@@ -14,7 +14,7 @@ export async function execute(interaction) {
   const member = interaction.targetMember;
 
   const embed = new EmbedBuilder()
-      .setColor("Random")
+      .setColor('Random')
       .setAuthor({
         iconURL: member.user.displayAvatarURL(),
         name: member.user.tag,
@@ -39,7 +39,7 @@ export async function execute(interaction) {
             `(${time(member.user.createdAt, 'R')})`,
           },
           {
-            name: 'roles',
+            name: `roles (${member.roles.cache.size})`,
             value: `${
               member.roles.cache
                   .map((r) => r)
