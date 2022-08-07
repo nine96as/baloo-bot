@@ -94,15 +94,14 @@ export async function execute(interaction) {
               {
                 name: 'total members',
                 value: `${guild.memberCount}`,
+                inline: true,
               },
               {
                 name: 'total roles',
                 value: `${guild.roles.cache.size}`,
+                inline: true,
               },
-              {
-                name: 'total channels',
-                value: `${guild.channels.cache.size}`,
-              },
+              {name: '\u200B', value: '\u200B'},
               {
                 name: 'text channels',
                 value: `${
@@ -110,6 +109,7 @@ export async function execute(interaction) {
                       (c) => c.type === ChannelType.GuildText,
                   ).size
                 }`,
+                inline: true,
               },
               {
                 name: 'voice channels',
@@ -118,6 +118,7 @@ export async function execute(interaction) {
                       (c) => c.type === ChannelType.GuildVoice,
                   ).size
                 }`,
+                inline: true,
               },
               {
                 name: 'role list',
