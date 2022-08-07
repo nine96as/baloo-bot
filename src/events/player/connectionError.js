@@ -1,9 +1,9 @@
-module.exports = {
-    name: "connectionError",
-    async execute(queue, error) {
-        console.error(error);
-        queue.metadata.send(
-            `❌ | error emitted from connection: ${error.message}`
-        )
-    }
+/* eslint-disable require-jsdoc */
+export const name = 'connectionError';
+
+export async function execute(queue, error) {
+  console.error(error);
+  queue.metadata.channel.send(
+      `❌ | error emitted from connection: ${error.message}`,
+  );
 }

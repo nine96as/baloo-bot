@@ -1,56 +1,66 @@
-const ldModel = require("../../models/lockdown");
-const ms = require("ms");
-const {SlashCommandBuilder} = require("@discordjs/builders");
-const {PermissionFlagsBits} = require('discord-api-types/v10');
+/* eslint-disable require-jsdoc */
+import {ldModel} from '../../models/lockdown.js';
+import {SlashCommandBuilder, PermissionFlagsBits} from 'discord.js';
+import ms from 'ms';
 
-module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("lock")
-        .setDescription("put this channel into lockdown")
-        .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
-        .addStringOption(option => option
-            .setName("duration")
-            .setDescription("duration of lockdown (1m, 1h, 1d)"))
-        .addStringOption(option => option
-            .setName("reason")
-            .setDescription("reason for lockdown")),
-    async execute(interaction) {
-        const reason = interaction.options.getString("reason") || "no reason given";
+export const data = new SlashCommandBuilder()
+    .setName('lock')
+    .setDescription('🚨 put this channel into lockdown')
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
+    .addStringOption((option) =>
+      option
+          .setName('duration')
+          .setDescription('duration of lockdown (1m, 1h, 1d)'),
+    )
+    .addStringOption((option) =>
+      option.setName('reason').setDescription('reason for lockdown'),
+    );
 
-        if (!interaction.channel.permissionsFor(interaction.guildId).has("SEND_MESSAGES")) {
-            interaction.editReply({
-                content: "🔒 | this channel is already locked.",
-                ephemeral: true,
-            })
-        }
+export async function execute(interaction) {
+  const reason =
+    interaction.options.getString('reason') || 'no reason given';
 
-        //prevents messages being sent in channel
-        interaction.channel.permissionOverwrites.edit(interaction.guildId, {
-            SEND_MESSAGES: false,
-        })
+  if (
+    !interaction.channel
+        .permissionsFor(interaction.guildId)
+        .has(PermissionFlagsBits.SendMessages)
+  ) {
+    interaction.reply({
+      content: '🔒 | this channel is already locked.',
+      ephemeral: true,
+    });
+  }
 
-        interaction.editReply(`🔒 | this channel is now locked with a reason of "${reason}"`);
+  // prevents messages being sent in channel
+  interaction.channel.permissionOverwrites.edit(interaction.guildId, {
+    SendMessages: false,
+  });
 
-        const duration = interaction.options.getString("duration");
+  interaction.reply(
+      `🔒 | this channel is now locked with a reason of "${reason}"`,
+  );
 
-        if (duration) {
-            const end = Date.now() + ms(duration);
-            ldModel.create({
-                guildId: interaction.guildId,
-                channelId: interaction.channel.id,
-                time: end
-            })
+  const duration = interaction.options.getString('duration');
 
-            setTimeout(async () => {
-                interaction.channel.permissionOverwrites.edit(interaction.guildId, {
-                    SEND_MESSAGES: null,
-                })
-                interaction
-                    .editReply("🔓 | the lockdown has been lifted.")
-                    .catch(() => {});
-                await ldModel.deleteOne({channelId: interaction.channel.id});
-            }, ms(duration));
-        }
+  if (duration) {
+    const end = Date.now() + ms(duration);
+    ldModel.create({
+      guildId: interaction.guildId,
+      channelId: interaction.channel.id,
+      time: end,
+    });
 
-    }   
+    setTimeout(async () => {
+      interaction.channel.permissionOverwrites.edit(
+          interaction.guildId,
+          {
+            SendMessages: null,
+          },
+      );
+      interaction
+          .followUp('🔓 | the lockdown has been lifted.')
+          .catch(() => {});
+      await ldModel.deleteOne({channelId: interaction.channel.id});
+    }, ms(duration));
+  }
 }

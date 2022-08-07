@@ -15,7 +15,7 @@ a multi-purpose discord bot made using [discord.js](https://github.com/discordjs
 ## manual installation
 
 ### requirements
-- node.js (v16.6>)
+- node.js (v16.16>)
 - npm
 
 ### initialisation

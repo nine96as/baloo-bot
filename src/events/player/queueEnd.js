@@ -1,11 +1,13 @@
-const {MessageEmbed} = require("discord.js");
+import {EmbedBuilder} from 'discord.js';
 
-module.exports = {
-    name: "queueEnd",
-    async execute(queue) {
-        const embed = new MessageEmbed()
-            .setColor(`RANDOM`)
-            .setTitle("🎶 | queue end")
-            .setDescription("the queue has ended, leaving...")
-    }
+export const name = 'queueEnd';
+
+// eslint-disable-next-line require-jsdoc
+export async function execute(queue) {
+  const embed = new EmbedBuilder()
+      .setColor('Random')
+      .setTitle('🎶 | queue end')
+      .setDescription('the queue has ended, leaving...');
+
+  queue.metadata.channel.send({embeds: [embed]});
 }

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 /**
  * roles structure
@@ -7,8 +7,8 @@ const mongoose = require("mongoose");
  * - roleEmoji: string
  */
 const Schema = new mongoose.Schema({
-    guildId: String,
-    roles: Array,
-})
+  guildId: String,
+  roles: Array,
+});
 
-module.exports = mongoose.model("reaction-roles", Schema);
+export const rrModel = mongoose.model('reaction-roles', Schema);
