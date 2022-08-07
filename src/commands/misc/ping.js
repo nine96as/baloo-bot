@@ -1,13 +1,19 @@
-const {SlashCommandBuilder} = require("@discordjs/builders");
-const wait = require('node:timers/promises').setTimeout;
+/* eslint-disable require-jsdoc */
+import {SlashCommandBuilder} from 'discord.js';
 
-module.exports = {
-    data: new SlashCommandBuilder()
-        .setName("ping")
-        .setDescription("replies with pong twice!"),
-    async execute(interaction) {
-        await interaction.editReply("🏓 | pong!");
-        await wait(2000);
-		await interaction.editReply("🏓 | pong again!");
-    }
+export const data = new SlashCommandBuilder()
+    .setName('ping')
+    .setDescription('🏓 sends a ping request!');
+
+export async function execute(interaction) {
+  const msg = await interaction.reply({
+    content: '🏓 | pong!',
+    fetchReply: true,
+  });
+
+  await interaction.editReply(
+      `🏓 | pong! \`${
+        msg.createdTimestamp - interaction.createdTimestamp
+      }ms\``,
+  );
 }

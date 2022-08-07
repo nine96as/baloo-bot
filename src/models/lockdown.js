@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const Schema = new mongoose.Schema({
-    guildId: String,
-    channelId: String,
-    time: String,
-})
+  guildId: String,
+  channelId: String,
+  time: String,
+});
 
-module.exports = mongoose.model("lockdown", Schema);
+export const ldModel = mongoose.model('lockdown', Schema);

@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
+import {mongoose} from 'mongoose';
 
 const Schema = new mongoose.Schema({
-    guildId: String,
-    userId: String,
-    status: String,
-    time: String,
-})
+  guildId: String,
+  userId: String,
+  status: String,
+  time: String,
+});
 
-module.exports = mongoose.model("afk", Schema);
+export const afkModel = mongoose.model('afk', Schema);

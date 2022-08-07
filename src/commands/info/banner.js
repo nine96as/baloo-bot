@@ -2,24 +2,23 @@
 import {SlashCommandBuilder, EmbedBuilder} from 'discord.js';
 
 export const data = new SlashCommandBuilder()
-    .setName('avatar')
-    .setDescription('🔬 get a user\'s avatar')
+    .setName('banner')
+    .setDescription('🔬 get a user\'s banner')
     .addUserOption((option) =>
       option
           .setName('target')
-          .setDescription('member to fetch the avatar from'),
+          .setDescription('member to fetch the banner from'),
     );
 
 export async function execute(interaction) {
   const member = interaction.options.getMember('target') || interaction.member;
 
+  await member.user.fetch(true);
+
   const embed = new EmbedBuilder()
       .setColor('Random')
-      .setAuthor({
-        iconURL: member.user.displayAvatarURL(),
-        name: member.user.tag,
-      })
-      .setImage(member.user.avatarURL({size: 2048, dynamic: true}));
+      .setAuthor({iconURL: member.user.avatarURL(), name: member.user.tag})
+      .setImage(member.user.bannerURL({size: 2048}));
 
   await interaction.reply({
     embeds: [embed],
