@@ -1,5 +1,5 @@
 /* eslint-disable require-jsdoc */
-import {SlashCommandBuilder, EmbedBuilder, time} from 'discord.js';
+import {SlashCommandBuilder, EmbedBuilder, ChannelType, time} from 'discord.js';
 
 export const data = new SlashCommandBuilder()
     .setName('info')
@@ -107,7 +107,7 @@ export async function execute(interaction) {
                 name: 'text channels',
                 value: `${
                   guild.channels.cache.filter(
-                      (c) => c.type === 'GUILD_TEXT',
+                      (c) => c.type === ChannelType.GuildText,
                   ).size
                 }`,
               },
@@ -115,7 +115,7 @@ export async function execute(interaction) {
                 name: 'voice channels',
                 value: `${
                   guild.channels.cache.filter(
-                      (c) => c.type === 'GUILD_VOICE',
+                      (c) => c.type === ChannelType.GuildVoice,
                   ).size
                 }`,
               },
