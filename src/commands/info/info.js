@@ -1,5 +1,5 @@
 /* eslint-disable require-jsdoc */
-import {SlashCommandBuilder, EmbedBuilder} from 'discord.js';
+import {SlashCommandBuilder, EmbedBuilder, time} from 'discord.js';
 
 export const data = new SlashCommandBuilder()
     .setName('info')
@@ -42,10 +42,15 @@ export async function execute(interaction) {
               member.user.avatarURL({size: 2048, dynamic: true}),
           )
           .addFields(
-              {name: 'joined', value: member.joinedAt.toLocaleString()},
+              {
+                name: 'joined',
+                value: `${time(member.joinedAt)} ` +
+                `(${time(member.joinedAt, 'R')})`,
+              },
               {
                 name: 'registered',
-                value: member.user.createdAt.toLocaleString(),
+                value: `${time(member.user.createdAt)} ` +
+                `(${time(member.user.createdAt, 'R')})`,
               },
               {
                 name: 'roles',

@@ -11,16 +11,22 @@ export const data = new SlashCommandBuilder()
     );
 
 export async function execute(interaction) {
-  const member = interaction.options.getMember('target') || interaction.member;
+  const member =
+    interaction.options.getMember('target') || interaction.member;
 
   await member.user.fetch(true);
 
   const embed = new EmbedBuilder()
       .setColor('Random')
-      .setAuthor({iconURL: member.user.avatarURL(), name: member.user.tag})
+      .setAuthor({
+        iconURL: member.user.avatarURL(),
+        name: member.user.tag,
+      })
       .setImage(member.user.bannerURL({size: 2048}));
 
-  await interaction.reply({
-    embeds: [embed],
-  });
+  member.user.bannerURL() ?
+    await interaction.reply({
+      embeds: [embed],
+    }) :
+    interaction.reply('❌ | this user doesn\'t have a banner');
 }
