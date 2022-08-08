@@ -31,14 +31,14 @@ client.player = new Player(client, {
 })
 
 try {
-  // initialises all handlers
-  await handleDatabase(client)
-  await handleEvents(client)
-  await handleCommands(client)
-  await handleComponents(client)
+    // initialises all handlers
+    await handleDatabase(client)
+    await handleEvents(client)
+    await handleCommands(client)
+    await handleComponents(client)
 
-  // login to bot
-  client.login(process.env.token)
+    // login to bot
+    client.login(process.env.token)
 } catch (e) {
-  console.error(e)
+    console.error(e)
 }

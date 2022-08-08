@@ -25,7 +25,7 @@ export const handleCommands = async (client) => {
 
         for (const file of commandFiles) {
             const command = await import(`../commands/${module}/${file}`)
-            
+
             // set new item in collection
             // key as command name, value as exported module
             client.commands.set(command.data.name, command)
@@ -48,12 +48,11 @@ export const handleCommands = async (client) => {
         Routes.applicationGuildCommands(clientID, developerGuildID),
         { body: developerArray }
     )
-    
+
     //loading of global commands
-    await rest.put(
-        Routes.applicationCommands(clientID),
-        { body: commandsArray }
-    )
+    await rest.put(Routes.applicationCommands(clientID), {
+        body: commandsArray,
+    })
 
     return console.log(table.toString(), '\n✅ | loaded (/) commands.')
 }
