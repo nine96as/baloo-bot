@@ -39,7 +39,7 @@ export async function execute(interaction) {
                     { new: true, upsert: true }
                 )
 
-                return interaction.reply(`${member}} has gone AFK: ${status}`)
+                return interaction.reply(`${member} has gone AFK: ${status}`)
             case 'return':
                 await afkModel.deleteOne({
                     guildId: interaction.guildId,

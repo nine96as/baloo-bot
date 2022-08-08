@@ -3,8 +3,10 @@ import { Client, Collection, GatewayIntentBits } from 'discord.js'
 import { Player } from 'discord-player'
 
 // imports handlers for bot
-import { handleBot } from './handlers/botHandler.js'
-import { init } from './handlers/init.js'
+import { handleDatabase } from './handlers/databaseHandler.js'
+import { handleEvents } from './handlers/eventHandler.js'
+import { handleCommands } from './handlers/commandHandler.js'
+import { handleComponents } from './handlers/componentHandler.js'
 
 // creates bot client - used to access discord api
 export const client = new Client({
@@ -28,9 +30,15 @@ client.player = new Player(client, {
     },
 })
 
-// initialises all handlers
-await handleBot(client)
-await init(client)
+try {
+  // initialises all handlers
+  await handleDatabase(client)
+  await handleEvents(client)
+  await handleCommands(client)
+  await handleComponents(client)
 
-// login to bot
-client.login(process.env.TOKEN)
+  // login to bot
+  client.login(process.env.token)
+} catch (e) {
+  console.error(e)
+}
