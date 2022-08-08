@@ -1,10 +1,10 @@
-import {mongoose} from 'mongoose';
+import mongoose from 'mongoose'
 
 const Schema = new mongoose.Schema({
-  guildId: String,
-  userId: String,
-  status: String,
-  time: String,
-});
+    guildId: String,
+    userId: String,
+    status: String,
+    time: String,
+})
 
-export const afkModel = mongoose.model('afk', Schema);
+export const afkModel = mongoose.model('afk', Schema)

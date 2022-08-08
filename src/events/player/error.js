@@ -1,9 +1,8 @@
-/* eslint-disable require-jsdoc */
-export const name = 'error';
+export const name = 'error'
 
 export async function execute(queue, error) {
-  console.error(error);
-  queue.metadata.channel.send(
-      `❌ | error emitted from queue: ${error.message}`,
-  );
+    console.error(error)
+    queue.metadata.channel.send(
+        `❌ | error emitted from queue: ${error.message}`
+    )
 }
