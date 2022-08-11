@@ -43,11 +43,11 @@ npm i #install dependencies from package.json
 
 | attribute            | type     | description                         |
 | :------------------- | :------- | :---------------------------------- |
-| `TOKEN`              | `string` | bot token (disc dev portal)         |
-| `WELCOME_CHANNEL_ID` | `string` | ID of welcome channel in guild      |
-| `CLIENT_ID`          | `string` | `APPLICATION_ID` in disc dev portal |
-| `GUILD_ID`           | `string` | ID of guild                         |
-| `MONGOOSE_STRING`    | `string` | mongodb database string             |
+| `token`              | `string` | bot token (disc dev portal)         |
+| `welcomeChannelID`   | `string` | ID of welcome channel in guild      |
+| `clientID`           | `string` | `APPLICATION_ID` in disc dev portal |
+| `guildID`            | `string` | ID of guild                         |
+| `mongooseString`     | `string` | mongodb database string             |
 
 ### deployment
 
