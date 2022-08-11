@@ -1,19 +1,36 @@
 import { SlashCommandBuilder } from 'discord.js'
 
+const sides = [
+    { name: 'd4', value: 4 },
+    { name: 'd6', value: 6},
+    { name: 'd8', value: 8 },
+    { name: 'd10', value: 10 },
+    { name: 'd12', value: 4 },
+    { name: 'd20', value: 20 },
+]
+
 export const data = new SlashCommandBuilder()
     .setName('dice')
     .setDescription(
-        '🎲 chooses random number from min/max given (1/6 by default)'
+        '🎲 rolls the dice (d6 by default)'
     )
-    .addNumberOption((option) =>
-        option.setName('min').setDescription('min value')
-    )
-    .addNumberOption((option) =>
-        option.setName('max').setDescription('max value')
+    .addNumberOption((option) => 
+        option
+            .setName('sides')
+            .setDescription('number of sides')
+            .addChoices(
+                { name: 'd4', value: 4 },
+                { name: 'd6', value: 6 },
+                { name: 'd8', value: 8 },
+                { name: 'd10', value: 10 },
+                { name: 'd12', value: 4 },
+                { name: 'd20', value: 20 },
+            )
     )
 
 export async function execute(interaction) {
-    const min = interaction.options.getNumber('min') || 1
-    const max = interaction.options.getNumber('max') || 6
+    const side = interaction.options.getNumber('sides')
+    const min = 1
+    const max = sides.find((s) => side === s.value)?.value || 6
     interaction.reply(`🎲 | rolled ${Math.floor(Math.random() * max) + min}!`)
 }
