@@ -45,12 +45,11 @@ export async function execute(queue) {
             new ButtonBuilder()
                 .setCustomId('stop')
                 .setLabel('⏹️')
-                .setStyle(ButtonStyle.Danger),
+                .setStyle(ButtonStyle.Danger)
         ),
     ]
 
-    queue.metadata.channel.send({ embeds: [embed], components })
-    .then(msg => {
+    queue.metadata.channel.send({ embeds: [embed], components }).then((msg) => {
         setTimeout(() => msg.delete(), 25000)
     })
 }
