@@ -148,10 +148,12 @@ export async function execute(interaction) {
                 })
             }
 
-            const embed = new EmbedBuilder().setColor('Random').setTitle(
-                `▶️ | new ${result.playlist ? 'playlist' : 'song'} ` + 
-                `added to queue`
-            )
+            const embed = new EmbedBuilder()
+                .setColor('Random')
+                .setTitle(
+                    `▶️ | new ${result.playlist ? 'playlist' : 'song'} ` +
+                        `added to queue`
+                )
 
             // checks if result is a single track or a playlist
             if (!result.playlist) {
@@ -293,7 +295,7 @@ export async function execute(interaction) {
                     new ButtonBuilder()
                         .setCustomId('stop')
                         .setLabel('⏹️')
-                        .setStyle(ButtonStyle.Danger),
+                        .setStyle(ButtonStyle.Danger)
                 ),
             ]
 
@@ -507,7 +509,7 @@ export async function execute(interaction) {
                     new ButtonBuilder()
                         .setCustomId('stop')
                         .setLabel('⏹️')
-                        .setStyle(ButtonStyle.Danger),
+                        .setStyle(ButtonStyle.Danger)
                 ),
             ]
 

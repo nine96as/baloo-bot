@@ -8,8 +8,7 @@ export async function execute(queue) {
         .setTitle('🎶 | queue end')
         .setDescription('the queue has ended, leaving...')
 
-    queue.metadata.channel.send({ embeds: [embed] })
-    .then(msg => {
+    queue.metadata.channel.send({ embeds: [embed] }).then((msg) => {
         setTimeout(() => msg.delete(), 5000)
     })
 }
