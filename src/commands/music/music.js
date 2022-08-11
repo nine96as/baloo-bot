@@ -283,7 +283,7 @@ export async function execute(interaction) {
                         .setLabel('⏭️')
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
-                        .setCustomId('loopqueue')
+                        .setCustomId('loop')
                         .setLabel('🔁')
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
@@ -501,7 +501,7 @@ export async function execute(interaction) {
                         .setLabel('⏭️')
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
-                        .setCustomId('looptrack')
+                        .setCustomId('loop')
                         .setLabel('🔁')
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
@@ -570,10 +570,10 @@ export async function execute(interaction) {
                 .setDescription(lyrics)
                 .setThumbnail(`${track.thumbnail}`)
 
-            // checks if character count exceeds limit for a discord message
-            if (embed.description.length >= 4096) {
-                embed.description = `${embed.description.substr(0, 4095)}...`
-            }
+            // // checks if character count exceeds limit for a discord message
+            // if (embed.description.length >= 4096) {
+            //     embed.description = `${embed.description.substr(0, 4095)}...`
+            // }
 
             return interaction.editReply({ embeds: [embed] })
         } else if (interaction.options.getSubcommand() === 'rewind') {
