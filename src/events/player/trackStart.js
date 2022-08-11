@@ -39,7 +39,7 @@ export async function execute(queue) {
                 .setLabel('⏭️')
                 .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
-                .setCustomId('looptrack')
+                .setCustomId('loop')
                 .setLabel('🔁')
                 .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
@@ -50,4 +50,7 @@ export async function execute(queue) {
     ]
 
     queue.metadata.channel.send({ embeds: [embed], components })
+    .then(msg => {
+        setTimeout(() => msg.delete(), 25000)
+    })
 }

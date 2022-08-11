@@ -9,4 +9,7 @@ export async function execute(queue) {
         .setDescription('the queue has ended, leaving...')
 
     queue.metadata.channel.send({ embeds: [embed] })
+    .then(msg => {
+        setTimeout(() => msg.delete(), 5000)
+    })
 }
