@@ -149,8 +149,8 @@ export async function execute(interaction) {
             }
 
             const embed = new EmbedBuilder().setColor('Random').setTitle(
-                `▶️ | new ${result.playlist ? 'playlist' : 'song'} 
-              added to queue`
+                `▶️ | new ${result.playlist ? 'playlist' : 'song'} ` + 
+                `added to queue`
             )
 
             // checks if result is a single track or a playlist
@@ -277,23 +277,23 @@ export async function execute(interaction) {
                     new ButtonBuilder()
                         .setCustomId('rewind')
                         .setLabel('⏮️')
-                        .setStyle(ButtonStyle.Primary),
+                        .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('skip')
                         .setLabel('⏭️')
-                        .setStyle(ButtonStyle.Primary),
-                    new ButtonBuilder()
-                        .setCustomId('stop')
-                        .setLabel('⏹️')
-                        .setStyle(ButtonStyle.Primary),
+                        .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('loopqueue')
                         .setLabel('🔁')
-                        .setStyle(ButtonStyle.Primary),
+                        .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('shuffle')
                         .setLabel('🔀')
-                        .setStyle(ButtonStyle.Primary)
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
+                        .setCustomId('stop')
+                        .setLabel('⏹️')
+                        .setStyle(ButtonStyle.Danger),
                 ),
             ]
 
@@ -491,23 +491,23 @@ export async function execute(interaction) {
                     new ButtonBuilder()
                         .setCustomId('rewind')
                         .setLabel('⏮️')
-                        .setStyle(ButtonStyle.Primary),
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
+                        .setCustomId('pauseplay')
+                        .setLabel('⏯️')
+                        .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('skip')
                         .setLabel('⏭️')
-                        .setStyle(ButtonStyle.Primary),
-                    new ButtonBuilder()
-                        .setCustomId('stop')
-                        .setLabel('⏹️')
-                        .setStyle(ButtonStyle.Primary),
+                        .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('looptrack')
                         .setLabel('🔁')
-                        .setStyle(ButtonStyle.Primary),
+                        .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
-                        .setCustomId('shuffle')
-                        .setLabel('🔀')
-                        .setStyle(ButtonStyle.Primary)
+                        .setCustomId('stop')
+                        .setLabel('⏹️')
+                        .setStyle(ButtonStyle.Danger),
                 ),
             ]
 
