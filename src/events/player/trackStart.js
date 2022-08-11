@@ -29,23 +29,23 @@ export async function execute(queue) {
             new ButtonBuilder()
                 .setCustomId('rewind')
                 .setLabel('⏮️')
-                .setStyle(ButtonStyle.Primary),
+                .setStyle(ButtonStyle.Secondary),
+            new ButtonBuilder()
+                .setCustomId('pauseplay')
+                .setLabel('⏯️')
+                .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
                 .setCustomId('skip')
                 .setLabel('⏭️')
-                .setStyle(ButtonStyle.Primary),
-            new ButtonBuilder()
-                .setCustomId('stop')
-                .setLabel('⏹️')
-                .setStyle(ButtonStyle.Primary),
+                .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
                 .setCustomId('looptrack')
                 .setLabel('🔁')
-                .setStyle(ButtonStyle.Primary),
+                .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
-                .setCustomId('shuffle')
-                .setLabel('🔀')
-                .setStyle(ButtonStyle.Primary)
+                .setCustomId('stop')
+                .setLabel('⏹️')
+                .setStyle(ButtonStyle.Danger),
         ),
     ]
 
