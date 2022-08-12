@@ -21,6 +21,7 @@
         "canvas": "^2.9.3",
         "discord-player": "5.3.0",
         "discord.js": "^14.2.0",
+        "dotenv": "^16.0.1",
         "ffmpeg-static": "^5.0.2",
         "lyrics-finder": "^21.7.0",
         "mongoose": "^6.5.2",
@@ -28,7 +29,6 @@
     },
     "type": "module",
     "devDependencies": {
-        "dotenv": "^16.0.1",
         "eslint": "^8.21.0",
         "eslint-config-prettier": "^8.5.0",
         "nodemon": "^2.0.19",
