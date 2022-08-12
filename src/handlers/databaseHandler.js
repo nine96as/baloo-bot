@@ -1,9 +1,9 @@
+import { config } from 'dotenv'
 import mongoose from 'mongoose'
-import dotenv from 'dotenv'
 
-dotenv.config()
+config()
 
-const mongooseString = process.env.mongooseString
+const { mongooseString } = process.env
 
 export const handleDatabase = async () => {
     mongoose
