@@ -1,3 +1,5 @@
+import { config } from 'dotenv'
+
 // imports discord.js and discord-player package
 import { Client, Collection, GatewayIntentBits } from 'discord.js'
 import { Player } from 'discord-player'
@@ -7,6 +9,10 @@ import { handleDatabase } from './handlers/databaseHandler.js'
 import { handleEvents } from './handlers/eventHandler.js'
 import { handleCommands } from './handlers/commandHandler.js'
 import { handleComponents } from './handlers/componentHandler.js'
+
+config()
+
+const { token } = process.env
 
 // creates bot client - used to access discord api
 export const client = new Client({
@@ -38,7 +44,7 @@ try {
     await handleComponents(client)
 
     // login to bot
-    client.login(process.env.token)
+    client.login(token)
 } catch (e) {
     console.error(e)
 }

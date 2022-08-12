@@ -1,14 +1,12 @@
+import { config } from 'dotenv'
 import { REST } from '@discordjs/rest'
 import { Routes } from 'discord.js'
 import * as fs from 'fs'
 import AsciiTable from 'ascii-table'
-import dotenv from 'dotenv'
 
-dotenv.config()
+config()
 
-const clientID = process.env.clientID
-const developerGuildID = process.env.developerGuildID
-const token = process.env.token
+const { clientID, developerGuildID, token } =  process.env
 
 const table = new AsciiTable().setHeading('command', 'status')
 
