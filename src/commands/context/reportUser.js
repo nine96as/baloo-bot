@@ -30,12 +30,13 @@ export async function execute(interaction) {
 
     await interaction.showModal(modal)
 
-    const modalSubmitInteraction = await interaction.awaitModalSubmit({
-        time: 120000,
-    })
-    .catch(e => {
-        console.error(e)
-    })
+    const modalSubmitInteraction = await interaction
+        .awaitModalSubmit({
+            time: 120000,
+        })
+        .catch((e) => {
+            console.error(e)
+        })
 
     const embed = new EmbedBuilder()
         .setColor('Random')

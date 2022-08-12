@@ -116,9 +116,7 @@ export async function execute(interaction) {
             // is made for the guild
             if (guildData) {
                 // attempts to fetch role data in database
-                const roleData = guildData.roles.find(
-                    (r) => r.roleId === role.id
-                )
+                let roleData = guildData.roles.find((r) => r.roleId === role.id)
 
                 // if found, directory is updated, otherwise a new directory is created
                 if (roleData) {
