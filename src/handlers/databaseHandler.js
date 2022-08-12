@@ -1,7 +1,5 @@
-import { config } from 'dotenv'
+import 'dotenv/config'
 import mongoose from 'mongoose'
-
-config()
 
 const { mongooseString } = process.env
 

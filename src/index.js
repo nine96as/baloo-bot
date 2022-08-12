@@ -1,4 +1,4 @@
-import { config } from 'dotenv'
+import 'dotenv/config'
 
 // imports discord.js and discord-player package
 import { Client, Collection, GatewayIntentBits } from 'discord.js'
@@ -9,8 +9,6 @@ import { handleDatabase } from './handlers/databaseHandler.js'
 import { handleEvents } from './handlers/eventHandler.js'
 import { handleCommands } from './handlers/commandHandler.js'
 import { handleComponents } from './handlers/componentHandler.js'
-
-config()
 
 const { token } = process.env
 

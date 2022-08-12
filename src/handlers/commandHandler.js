@@ -1,10 +1,8 @@
-import { config } from 'dotenv'
+import 'dotenv/config'
 import { REST } from '@discordjs/rest'
 import { Routes } from 'discord.js'
 import * as fs from 'fs'
 import AsciiTable from 'ascii-table'
-
-config()
 
 const { clientID, developerGuildID, token } = process.env
 

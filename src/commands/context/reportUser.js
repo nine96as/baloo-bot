@@ -33,6 +33,9 @@ export async function execute(interaction) {
     const modalSubmitInteraction = await interaction.awaitModalSubmit({
         time: 120000,
     })
+    .catch(e => {
+        console.error(e)
+    })
 
     const embed = new EmbedBuilder()
         .setColor('Random')
