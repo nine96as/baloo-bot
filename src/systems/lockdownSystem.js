@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Client } from 'discord.js'
 import { ldModel } from '../models/lockdown.js'
 
