@@ -6,7 +6,7 @@ import AsciiTable from 'ascii-table'
 
 config()
 
-const { clientID, developerGuildID, token } =  process.env
+const { clientID, developerGuildID, token } = process.env
 
 const table = new AsciiTable().setHeading('command', 'status')
 
