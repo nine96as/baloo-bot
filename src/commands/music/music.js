@@ -568,8 +568,8 @@ export async function execute(interaction) {
 
             const embed = new EmbedBuilder()
                 .setColor('Random')
-                .setTitle(`lyrics for ${track.title}\n(${track.url})`)
-                .setDescription(lyrics)
+                .setTitle(`lyrics for ${track.title}`)
+                .setDescription(`[link](${track.url})\n\n${lyrics}`)
                 .setThumbnail(`${track.thumbnail}`)
 
             // // checks if character count exceeds limit for a discord message
