@@ -1,5 +1,5 @@
-import { 
-    ContextMenuCommandBuilder, 
+import {
+    ContextMenuCommandBuilder,
     ApplicationCommandType,
     EmbedBuilder,
     ModalBuilder,
@@ -27,7 +27,7 @@ export async function execute(interaction) {
                     .setMaxLength(500)
             )
         )
-    
+
     await interaction.showModal(modal)
 
     const modalSubmitInteraction = await interaction.awaitModalSubmit({
@@ -39,11 +39,16 @@ export async function execute(interaction) {
         .setTitle('✅ | reported successfully')
         .addFields(
             { name: 'member', value: `${interaction.targetMember}` },
-            { name: 'reason', value: `${modalSubmitInteraction
-                .fields.getTextInputValue('reportMessage')}` }
+            {
+                name: 'reason',
+                value: `${modalSubmitInteraction.fields.getTextInputValue(
+                    'reportMessage'
+                )}`,
+            }
         )
 
     modalSubmitInteraction.reply({
-        embeds: [embed], ephemeral: true,
+        embeds: [embed],
+        ephemeral: true,
     })
 }

@@ -41,13 +41,13 @@ npm i #install dependencies from package.json
 
 -   create a .env file in the project directory and fill in the following attribute-value combinations
 
-| attribute            | type     | description                         |
-| :------------------- | :------- | :---------------------------------- |
-| `token`              | `string` | bot token (disc dev portal)         |
-| `welcomeChannelID`   | `string` | ID of welcome channel in guild      |
-| `clientID`           | `string` | `APPLICATION_ID` in disc dev portal |
-| `guildID`            | `string` | ID of guild                         |
-| `mongooseString`     | `string` | mongodb database string             |
+| attribute          | type     | description                         |
+| :----------------- | :------- | :---------------------------------- |
+| `token`            | `string` | bot token (disc dev portal)         |
+| `welcomeChannelID` | `string` | ID of welcome channel in guild      |
+| `clientID`         | `string` | `APPLICATION_ID` in disc dev portal |
+| `guildID`          | `string` | ID of guild                         |
+| `mongooseString`   | `string` | mongodb database string             |
 
 ### deployment
 

@@ -2,7 +2,7 @@ import { SlashCommandBuilder } from 'discord.js'
 
 const sides = [
     { name: 'd4', value: 4 },
-    { name: 'd6', value: 6},
+    { name: 'd6', value: 6 },
     { name: 'd8', value: 8 },
     { name: 'd10', value: 10 },
     { name: 'd12', value: 4 },
@@ -11,10 +11,8 @@ const sides = [
 
 export const data = new SlashCommandBuilder()
     .setName('dice')
-    .setDescription(
-        '🎲 rolls the dice (d6 by default)'
-    )
-    .addNumberOption((option) => 
+    .setDescription('🎲 rolls the dice (d6 by default)')
+    .addNumberOption((option) =>
         option
             .setName('sides')
             .setDescription('number of sides')
@@ -24,7 +22,7 @@ export const data = new SlashCommandBuilder()
                 { name: 'd8', value: 8 },
                 { name: 'd10', value: 10 },
                 { name: 'd12', value: 4 },
-                { name: 'd20', value: 20 },
+                { name: 'd20', value: 20 }
             )
     )
 
