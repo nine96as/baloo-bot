@@ -42,7 +42,6 @@ export async function execute(interaction) {
         .setThumbnail(thumbnail)
         .setFooter(footer)
 
-    await interaction.reply({
-        embeds: [embed],
-    })
+    interaction.reply({ content: '✅ | success!', emphemeral: true })
+    interaction.channel.send({ embeds: [embed] })
 }
