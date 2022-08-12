@@ -58,7 +58,7 @@ export async function execute(interaction) {
                             `(${time(member.user.createdAt, 'R')})`,
                     },
                     {
-                        name: `roles (${member.roles.cache.size})`,
+                        name: `roles (${member.roles.cache.size - 1})`,
                         value: `${
                             member.roles.cache
                                 .map((r) => r)
