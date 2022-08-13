@@ -25,7 +25,6 @@ export const data = new SlashCommandBuilder()
         option.setName('footer').setDescription('sets embed footer')
     )
 
-// eslint-disable-next-line require-jsdoc
 export async function execute(interaction) {
     const title = interaction.options.getString('title')
     const description = interaction.options.getString('description') || ''

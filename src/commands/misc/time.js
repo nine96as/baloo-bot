@@ -3,7 +3,7 @@ const date = new Date()
 
 export const data = new SlashCommandBuilder()
     .setName('time')
-    .setDescription('shows the time')
+    .setDescription('shows bot uptime')
 
 export async function execute(interaction) {
     const timeString = time(date)
