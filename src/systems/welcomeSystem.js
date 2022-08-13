@@ -15,7 +15,9 @@ const av = {
     y: 170,
 }
 
-export const generateImage = async (member) => {
+//TODO fix welcome banner - big time
+
+export const welcSystem = async (member) => {
     const username = member.user.username
     const discrim = member.user.discriminator
     const avatarURL = member.user.displayAvatarURL({
