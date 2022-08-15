@@ -10,9 +10,7 @@ const background = 'https://i.imgur.com/0qoZELO.png'
 export const name = 'guildMemberAdd'
 
 export async function execute(member) {
-    const welcomeChannel = member.guild.channels.cache.get(
-        welcomeChannelID
-    )
+    const welcomeChannel = member.guild.channels.cache.get(welcomeChannelID)
 
     const embed = new EmbedBuilder()
         .setColor('Random')
@@ -23,14 +21,13 @@ export async function execute(member) {
         .setThumbnail(member.guild.iconURL({ size: 2048 }))
         .setTitle('welcome to the server!')
         .setDescription(
-            '- get your roles in #roles\n' +
-            '- remember to read the #rules'
+            '- get your roles in #roles\n' + '- remember to read the #rules'
         )
         .setImage(background)
         .setTimestamp()
 
     welcomeChannel.send({
-        embeds: [embed]
+        embeds: [embed],
     })
     // const img = await welcSystem(member)
 
