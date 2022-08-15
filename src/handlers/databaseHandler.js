@@ -1,7 +1,7 @@
-import 'dotenv/config'
-import mongoose from 'mongoose'
+import 'dotenv/config';
+import mongoose from 'mongoose';
 
-const { mongooseString } = process.env
+const { mongooseString } = process.env;
 
 export const handleDatabase = async () => {
     mongoose
@@ -9,5 +9,5 @@ export const handleDatabase = async () => {
             useUnifiedTopology: true,
             useNewUrlParser: true,
         })
-        .then(() => console.log('✅ | connected to mongodb.'))
-}
+        .then(() => console.log('✅ | connected to mongodb.'));
+};

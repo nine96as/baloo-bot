@@ -1,6 +1,6 @@
-import { afkModel } from '../../models/afk.js'
-import { SlashCommandBuilder } from 'discord.js'
-import wait from 'node:timers/promises'
+import { afkModel } from '../../models/afk.js';
+import { SlashCommandBuilder } from 'discord.js';
+import wait from 'node:timers/promises';
 
 export const data = new SlashCommandBuilder()
     .setName('afk')
@@ -18,11 +18,11 @@ export const data = new SlashCommandBuilder()
     )
     .addSubcommand((subcommand) =>
         subcommand.setName('return').setDescription('📇 return from being AFK')
-    )
+    );
 
 export async function execute(interaction) {
-    const member = interaction.member
-    const status = interaction.options.getString('status')
+    const member = interaction.member;
+    const status = interaction.options.getString('status');
 
     try {
         switch (interaction.options.getSubcommand()) {
@@ -37,20 +37,20 @@ export async function execute(interaction) {
                         time: parseInt(interaction.createdTimestamp / 1000),
                     },
                     { new: true, upsert: true }
-                )
+                );
 
-                return interaction.reply(`${member} has gone AFK: ${status}`)
+                return interaction.reply(`${member} has gone AFK: ${status}`);
             case 'return':
                 await afkModel.deleteOne({
                     guildId: interaction.guildId,
                     userId: interaction.user.id,
-                })
+                });
 
-                interaction.reply('✅ | your AFK status has been removed.')
-                await wait.setTimeout(5000)
-                return await interaction.deleteReply()
+                interaction.reply('✅ | your AFK status has been removed.');
+                await wait.setTimeout(5000);
+                return await interaction.deleteReply();
         }
     } catch (e) {
-        console.error(e)
+        console.error(e);
     }
 }

@@ -4,11 +4,11 @@ import {
     ActionRowBuilder,
     TextInputBuilder,
     TextInputStyle,
-} from 'discord.js'
+} from 'discord.js';
 
 export const data = new SlashCommandBuilder()
     .setName('modal')
-    .setDescription('📑 returns a modal')
+    .setDescription('📑 returns a modal');
 
 export async function execute(interaction) {
     const modal = new ModalBuilder()
@@ -22,7 +22,7 @@ export async function execute(interaction) {
                     .setRequired(true)
                     .setStyle(TextInputStyle.Short)
             )
-        )
+        );
 
-    return await interaction.showModal(modal)
+    return await interaction.showModal(modal);
 }

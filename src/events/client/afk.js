@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
-import { afkModel } from '../../models/afk.js'
-import { Message } from 'discord.js'
+import { afkModel } from '../../models/afk.js';
+import { Message } from 'discord.js';
 
-export const name = 'messageCreate'
+export const name = 'messageCreate';
 
 /**
  * @param {Message} message
  */
 export async function execute(message) {
-    if (message.author.bot) return
+    if (message.author.bot) return;
 
     // await afkModel.findOne({
     //     guildId: message.guild.id,
@@ -24,7 +24,7 @@ export async function execute(message) {
     await afkModel.deleteOne({
         guildId: message.guild.id,
         userId: message.author.id,
-    })
+    });
 
     if (message.mentions.members.size) {
         message.mentions.members.forEach((m) => {
@@ -34,14 +34,14 @@ export async function execute(message) {
                     userId: m.id,
                 },
                 async (e, data) => {
-                    if (e) throw e
+                    if (e) throw e;
                     if (data) {
                         message.reply(
                             `${m} went AFK <t:${data.time}:R> - ${data.status}`
-                        )
+                        );
                     }
                 }
-            )
-        })
+            );
+        });
     }
 }

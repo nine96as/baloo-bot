@@ -1,68 +1,68 @@
-import * as fs from 'fs'
-import AsciiTable from 'ascii-table'
+import * as fs from 'fs';
+import AsciiTable from 'ascii-table';
 
-const table = new AsciiTable().setHeading('component', 'status')
+const table = new AsciiTable().setHeading('component', 'status');
 
 export const handleComponents = async (client) => {
-    const components = fs.readdirSync(`./src/components`)
+    const components = fs.readdirSync(`./src/components`);
 
     for (const component of components) {
-        const componentFiles = fs.readdirSync(`./src/components/${component}`)
+        const componentFiles = fs.readdirSync(`./src/components/${component}`);
 
         switch (component) {
             case 'buttons':
                 for (const module of componentFiles) {
                     const buttonFiles = fs
                         .readdirSync(`./src/components/${component}/${module}`)
-                        .filter((file) => file.endsWith('.js'))
+                        .filter((file) => file.endsWith('.js'));
 
                     for (const file of buttonFiles) {
                         const button = await import(
                             `../components/${component}/${module}/${file}`
-                        )
+                        );
                         // set new item in collection
                         // key as button name, value as exported module
-                        client.buttons.set(button.name, button)
+                        client.buttons.set(button.name, button);
 
-                        table.addRow(file, '🟩')
-                        continue
+                        table.addRow(file, '🟩');
+                        continue;
                     }
                 }
-                break
+                break;
             case 'menus':
                 for (const module of componentFiles) {
                     const menuFiles = fs
                         .readdirSync(`./src/components/${component}/${module}`)
-                        .filter((file) => file.endsWith('.js'))
+                        .filter((file) => file.endsWith('.js'));
 
                     for (const file of menuFiles) {
                         const menu = await import(
                             `../components/${component}/${module}/${file}`
-                        )
+                        );
                         // set new item in collection
                         // key as menu name, value as exported module
-                        client.menus.set(menu.name, menu)
+                        client.menus.set(menu.name, menu);
 
-                        table.addRow(file, '🟩')
-                        continue
+                        table.addRow(file, '🟩');
+                        continue;
                     }
                 }
-                break
+                break;
             case 'modals':
                 for (const file of componentFiles) {
                     const modal = await import(
                         `../components/${component}/${file}`
-                    )
-                    client.modals.set(modal.name, modal)
+                    );
+                    client.modals.set(modal.name, modal);
 
-                    table.addRow(file, '🟩')
-                    continue
+                    table.addRow(file, '🟩');
+                    continue;
                 }
-                break
+                break;
             default:
-                break
+                break;
         }
     }
 
-    return console.log(table.toString(), '\n✅ | loaded components.')
-}
+    return console.log(table.toString(), '\n✅ | loaded components.');
+};

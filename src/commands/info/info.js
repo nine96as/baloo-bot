@@ -3,7 +3,7 @@ import {
     EmbedBuilder,
     ChannelType,
     time,
-} from 'discord.js'
+} from 'discord.js';
 
 export const data = new SlashCommandBuilder()
     .setName('info')
@@ -18,13 +18,13 @@ export const data = new SlashCommandBuilder()
     )
     .addSubcommand((subcommand) =>
         subcommand.setName('server').setDescription('🔬 info about the server')
-    )
+    );
 
 export async function execute(interaction) {
     if (interaction.commandName === 'info') {
         if (interaction.options.getSubcommand() === 'user') {
             const member =
-                interaction.options.getMember('target') || interaction.member
+                interaction.options.getMember('target') || interaction.member;
 
             const embed = new EmbedBuilder()
                 .setColor(
@@ -76,12 +76,12 @@ export async function execute(interaction) {
                                 .replaceAll('_', ' ') || 'none'
                         }`,
                     }
-                )
+                );
             await interaction.reply({
                 embeds: [embed],
-            })
+            });
         } else if (interaction.options.getSubcommand() === 'server') {
-            const guild = interaction.guild
+            const guild = interaction.guild;
 
             const embed = new EmbedBuilder()
                 .setColor('Random')
@@ -137,11 +137,11 @@ export async function execute(interaction) {
                             `${time(guild.createdAt)} ` +
                             `(${time(guild.createdAt, 'R')})`,
                     }
-                )
+                );
 
             await interaction.reply({
                 embeds: [embed],
-            })
+            });
         }
     }
 }

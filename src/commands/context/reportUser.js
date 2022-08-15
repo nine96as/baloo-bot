@@ -6,11 +6,11 @@ import {
     ActionRowBuilder,
     TextInputBuilder,
     TextInputStyle,
-} from 'discord.js'
+} from 'discord.js';
 
 export const data = new ContextMenuCommandBuilder()
     .setName('reportUser')
-    .setType(ApplicationCommandType.User)
+    .setType(ApplicationCommandType.User);
 
 export async function execute(interaction) {
     const modal = new ModalBuilder()
@@ -26,17 +26,17 @@ export async function execute(interaction) {
                     .setMinLength(10)
                     .setMaxLength(500)
             )
-        )
+        );
 
-    await interaction.showModal(modal)
+    await interaction.showModal(modal);
 
     const modalSubmitInteraction = await interaction
         .awaitModalSubmit({
             time: 120000,
         })
         .catch((e) => {
-            console.error(e)
-        })
+            console.error(e);
+        });
 
     const embed = new EmbedBuilder()
         .setColor('Random')
@@ -49,10 +49,10 @@ export async function execute(interaction) {
                     'reportMessage'
                 )}`,
             }
-        )
+        );
 
     modalSubmitInteraction.reply({
         embeds: [embed],
         ephemeral: true,
-    })
+    });
 }

@@ -1,4 +1,4 @@
-export const name = 'favcolour'
+export const name = 'favcolour';
 
 export async function execute(interaction) {
     await interaction.editReply({
@@ -6,5 +6,5 @@ export async function execute(interaction) {
             'favColourInput'
         )}`,
         ephemeral: true,
-    })
+    });
 }

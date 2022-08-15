@@ -4,9 +4,9 @@ import {
     ActionRowBuilder,
     ButtonBuilder,
     ButtonStyle,
-} from 'discord.js'
-import { QueryType, QueueRepeatMode } from 'discord-player'
-import finder from 'lyrics-finder'
+} from 'discord.js';
+import { QueryType, QueueRepeatMode } from 'discord-player';
+import finder from 'lyrics-finder';
 
 export const data = new SlashCommandBuilder()
     .setName('music')
@@ -95,7 +95,7 @@ export const data = new SlashCommandBuilder()
         subcommand
             .setName('lyrics')
             .setDescription('📜 fetch lyrics of currently playing song')
-    )
+    );
 
 /**
  * performs complete suite of music commands
@@ -104,13 +104,13 @@ export const data = new SlashCommandBuilder()
 export async function execute(interaction) {
     try {
         if (interaction.options.getSubcommand() === 'play') {
-            const song = interaction.options.getString('song')
+            const song = interaction.options.getString('song');
 
             // checks if user is in a voice channel
             if (!interaction.member.voice.channel) {
                 return interaction.editReply(
                     'please join a voice channel first!'
-                )
+                );
             }
 
             const queue = await interaction.client.player.createQueue(
@@ -120,32 +120,32 @@ export async function execute(interaction) {
                         channel: interaction.channel,
                     },
                 }
-            )
+            );
 
             // verify vc connection
             try {
                 if (!queue.connection) {
-                    await queue.connect(interaction.member.voice.channel)
+                    await queue.connect(interaction.member.voice.channel);
                 }
             } catch (e) {
-                queue.destroy()
+                queue.destroy();
                 return interaction.editReply({
                     content: '❌ | could not join your voice channel!',
                     ephemeral: true,
-                })
+                });
             }
 
             const result = await interaction.client.player.search(song, {
                 requestedBy: interaction.user,
                 searchEngine: QueryType.AUTO,
-            })
+            });
 
             // checks if result was successfully fetched
             if (!result || !result.tracks.length) {
                 return interaction.editReply({
                     content: `❌ | nothing was found when searching for: ${result}`,
                     ephemeral: true,
-                })
+                });
             }
 
             const embed = new EmbedBuilder()
@@ -153,110 +153,110 @@ export async function execute(interaction) {
                 .setTitle(
                     `▶️ | new ${result.playlist ? 'playlist' : 'song'} ` +
                         `added to queue`
-                )
+                );
 
             // checks if result is a single track or a playlist
             if (!result.playlist) {
-                const track = result.tracks[0]
-                embed.setThumbnail(track.thumbnail)
-                embed.setDescription(`**[${track.title}](${track.url})**`)
-                embed.setFooter({ text: `duration: ${track.duration}` })
+                const track = result.tracks[0];
+                embed.setThumbnail(track.thumbnail);
+                embed.setDescription(`**[${track.title}](${track.url})**`);
+                embed.setFooter({ text: `duration: ${track.duration}` });
             }
 
             result.playlist
                 ? queue.addTracks(result.tracks)
-                : queue.addTrack(result.tracks[0])
+                : queue.addTrack(result.tracks[0]);
 
-            await interaction.editReply({ embeds: [embed] })
+            await interaction.editReply({ embeds: [embed] });
 
-            if (!queue.playing) await queue.play()
+            if (!queue.playing) await queue.play();
         } else if (interaction.options.getSubcommand() === 'pause') {
             // checks if user is in a voice channel
             if (!interaction.member.voice.channel) {
                 return interaction.editReply(
                     '❌ | please join a voice channel first!'
-                )
+                );
             }
 
             const queue = interaction.client.player.getQueue(
                 interaction.guildId
-            )
+            );
 
             // checks if queue is empty
             if (!queue) {
                 return await interaction.editReply(
                     '❌ | there are no songs in the queue'
-                )
+                );
             }
 
-            queue.setPaused(true)
+            queue.setPaused(true);
 
-            await interaction.editReply('⏸️ | music has been paused!')
+            await interaction.editReply('⏸️ | music has been paused!');
         } else if (interaction.options.getSubcommand() === 'resume') {
             // checks if user is in a voice channel
             if (!interaction.member.voice.channel) {
                 return interaction.editReply(
                     '❌ | please join a voice channel first!'
-                )
+                );
             }
 
             const queue = interaction.client.player.getQueue(
                 interaction.guildId
-            )
+            );
 
             // checks if queue is empty
             if (!queue) {
                 return await interaction.editReply(
                     '❌ | there are no songs in the queue'
-                )
+                );
             }
 
-            queue.setPaused(false)
+            queue.setPaused(false);
 
-            await interaction.editReply('▶️ | music has been resumed!')
+            await interaction.editReply('▶️ | music has been resumed!');
         } else if (interaction.options.getSubcommand() === 'queue') {
             // checks if user is in a voice channel
             if (!interaction.member.voice.channel) {
                 return interaction.editReply(
                     '❌ | please join a voice channel first!'
-                )
+                );
             }
 
             const queue = interaction.client.player.getQueue(
                 interaction.guildId
-            )
+            );
 
             // checks if queue is empty
             if (!queue) {
                 return await interaction.editReply(
                     '❌ | there are no songs in the queue'
-                )
+                );
             }
 
-            const totalPages = Math.ceil(queue.tracks.length / 10) || 1
-            const page = (interaction.options.getNumber('page') || 1) - 1
+            const totalPages = Math.ceil(queue.tracks.length / 10) || 1;
+            const page = (interaction.options.getNumber('page') || 1) - 1;
 
             // checks if inputted page num exceeds total page number
             if (page > totalPages) {
                 return interaction.editReply(
                     `❌ | page provided invalid; there are only ${totalPages} 
             pages of songs`
-                )
+                );
             }
 
             //   const pages = [];
-            const pageStart = page * 10
-            const pageEnd = pageStart + 10
+            const pageStart = page * 10;
+            const pageEnd = pageStart + 10;
 
-            const currentTrack = queue.current
+            const currentTrack = queue.current;
             const tracks = queue.tracks
                 .slice(pageStart, pageEnd)
                 .map((track, i) => {
                     return `**${pageStart + i + 1}.** \`[${
                         track.duration
-                    }]\` [${track.title}](${track.url})`
+                    }]\` [${track.title}](${track.url})`;
                 })
-                .join('\n')
+                .join('\n');
 
             const embed = new EmbedBuilder()
                 .setColor('Random')
@@ -272,7 +272,7 @@ export async function execute(interaction) {
                 .setFooter({
                     text: `page ${page + 1} of ${totalPages}`,
                 })
-                .setThumbnail(currentTrack.thumbnail)
+                .setThumbnail(currentTrack.thumbnail);
 
             const components = [
                 new ActionRowBuilder().addComponents(
@@ -297,26 +297,26 @@ export async function execute(interaction) {
                         .setLabel('⏹️')
                         .setStyle(ButtonStyle.Danger)
                 ),
-            ]
+            ];
 
-            return interaction.editReply({ embeds: [embed], components })
+            return interaction.editReply({ embeds: [embed], components });
         } else if (interaction.options.getSubcommand() === 'skip') {
             // checks if user is in a voice channel
             if (!interaction.member.voice.channel) {
                 return interaction.editReply(
                     '❌ | please join a voice channel first!'
-                )
+                );
             }
 
             const queue = interaction.client.player.getQueue(
                 interaction.guildId
-            )
+            );
 
             // checks if there is anything playing
             if (!queue || !queue.playing) {
                 return interaction.editReply(
                     '❌ | no music is being played in this guild'
-                )
+                );
             }
 
             const embed = new EmbedBuilder()
@@ -327,142 +327,142 @@ export async function execute(interaction) {
                         queue.nowPlaying().url
                     })**`
                 )
-                .setThumbnail(queue.nowPlaying().thumbnail)
+                .setThumbnail(queue.nowPlaying().thumbnail);
 
-            queue.skip()
+            queue.skip();
 
-            await interaction.editReply({ embeds: [embed] })
+            await interaction.editReply({ embeds: [embed] });
         } else if (interaction.options.getSubcommand() === 'stop') {
             // checks if user is in a voice channel
             if (!interaction.member.voice.channel) {
                 return interaction.editReply(
                     '❌ | please join a voice channel first!'
-                )
+                );
             }
 
             const queue = interaction.client.player.getQueue(
                 interaction.guildId
-            )
+            );
 
             // checks if there is anything playing
             if (!queue || !queue.playing) {
                 return interaction.editReply(
                     '❌ | no music is being played in this guild'
-                )
+                );
             }
 
-            queue.destroy()
+            queue.destroy();
 
-            await interaction.editReply('⏹️ | cya!')
+            await interaction.editReply('⏹️ | cya!');
         } else if (interaction.options.getSubcommand() === 'volume') {
             // checks if user is in a voice channel
             if (!interaction.member.voice.channel) {
                 return interaction.editReply(
                     '❌ | please join a voice channel first!'
-                )
+                );
             }
 
             const queue = interaction.client.player.getQueue(
                 interaction.guildId
-            )
+            );
 
             // checks if there is anything playing
             if (!queue || !queue.playing) {
                 return interaction.editReply(
                     '❌ | no music is being played in this guild'
-                )
+                );
             }
 
-            const volume = interaction.options.getInteger('level')
+            const volume = interaction.options.getInteger('level');
 
             if (!volume) {
-                return interaction.editReply(`🔊 | volume: ${queue.volume}`)
+                return interaction.editReply(`🔊 | volume: ${queue.volume}`);
             } else if (volume.value < 0 || volume.value > 100) {
-                interaction.editReply('❌ | volume must be within 1-100')
+                interaction.editReply('❌ | volume must be within 1-100');
             }
 
-            const v = await queue.setVolume(volume)
+            const v = await queue.setVolume(volume);
             return interaction.editReply(
                 v
                     ? `🔊 | volume set to ${volume}`
                     : `❌ | volume change failed!`
-            )
+            );
         } else if (interaction.options.getSubcommand() === 'loop') {
             // checks if user is in a voice channel
             if (!interaction.member.voice.channel) {
                 return interaction.editReply(
                     '❌ | please join a voice channel first!'
-                )
+                );
             }
 
             const queue = interaction.client.player.getQueue(
                 interaction.guildId
-            )
+            );
 
             // checks if there is anything playing
             if (!queue || !queue.playing) {
                 return interaction.editReply(
                     '❌ | no music is being played in this guild'
-                )
+                );
             }
 
-            const mode = interaction.options.getString('mode')
+            const mode = interaction.options.getString('mode');
 
             if (mode === 'off') {
-                const x = await queue.setRepeatMode(QueueRepeatMode.OFF)
+                const x = await queue.setRepeatMode(QueueRepeatMode.OFF);
                 return await interaction.editReply(
                     x ? `🔁 | looping ${mode}!` : `❌ | loop mode change failed`
-                )
+                );
             } else if (mode === 'queue') {
-                const x = await queue.setRepeatMode(QueueRepeatMode.QUEUE)
+                const x = await queue.setRepeatMode(QueueRepeatMode.QUEUE);
                 return await interaction.editReply(
                     x ? `🔁 | looping ${mode}!` : `❌ | loop mode change failed`
-                )
+                );
             } else if (mode === 'track') {
-                const x = await queue.setRepeatMode(QueueRepeatMode.TRACK)
+                const x = await queue.setRepeatMode(QueueRepeatMode.TRACK);
                 return await interaction.editReply(
                     x ? `🔁 | looping ${mode}!` : `❌ | loop mode change failed`
-                )
+                );
             }
         } else if (interaction.options.getSubcommand() === 'shuffle') {
             // checks if user is in a voice channel
             if (!interaction.member.voice.channel) {
                 return interaction.editReply(
                     '❌ | please join a voice channel first!'
-                )
+                );
             }
 
             const queue = interaction.client.player.getQueue(
                 interaction.guildId
-            )
+            );
 
             // checks if queue is empty
             if (!queue) {
                 return await interaction.editReply(
                     '❌ | there are no songs in the queue'
-                )
+                );
             }
 
-            queue.shuffle()
+            queue.shuffle();
 
-            await interaction.editReply('🔀 | queue has been shuffled!')
+            await interaction.editReply('🔀 | queue has been shuffled!');
         } else if (interaction.options.getSubcommand() === 'nowplaying') {
             // checks if user is in a voice channel
             if (!interaction.member.voice.channel) {
                 return interaction.editReply(
                     '❌ | please join a voice channel first!'
-                )
+                );
             }
 
             const queue = interaction.client.player.getQueue(
                 interaction.guildId
-            )
+            );
 
             // checks if there is anything playing
             if (!queue || !queue.playing) {
                 return interaction.editReply(
                     '❌ | no music is being played in this guild'
-                )
+                );
             }
 
             const embed = new EmbedBuilder()
@@ -486,7 +486,7 @@ export async function execute(interaction) {
                         name: 'progress',
                         value: queue.createProgressBar({ timecodes: true }),
                     }
-                )
+                );
 
             const components = [
                 new ActionRowBuilder().addComponents(
@@ -511,107 +511,107 @@ export async function execute(interaction) {
                         .setLabel('⏹️')
                         .setStyle(ButtonStyle.Danger)
                 ),
-            ]
+            ];
 
-            return interaction.editReply({ embeds: [embed], components })
+            return interaction.editReply({ embeds: [embed], components });
         } else if (interaction.options.getSubcommand() === 'clearqueue') {
             // checks if user is in a voice channel
             if (!interaction.member.voice.channel) {
                 return interaction.editReply(
                     '❌ | please join a voice channel first!'
-                )
+                );
             }
 
             const queue = interaction.client.player.getQueue(
                 interaction.guildId
-            )
+            );
 
             // checks if there is anything playing
             if (!queue || !queue.playing) {
                 return interaction.editReply(
                     '❌ | no music is being played in this guild'
-                )
+                );
             }
 
-            queue.clear()
+            queue.clear();
 
-            await interaction.editReply('🧼 | successfully cleared queue!')
+            await interaction.editReply('🧼 | successfully cleared queue!');
         } else if (interaction.options.getSubcommand() === 'lyrics') {
             // checks if user is in a voice channel
             if (!interaction.member.voice.channel) {
                 return interaction.editReply(
                     'please join a voice channel first!'
-                )
+                );
             }
 
             const queue = interaction.client.player.getQueue(
                 interaction.guildId
-            )
+            );
 
             // checks if there is anything playing
             if (!queue || !queue.playing) {
                 return interaction.editReply(
                     'no music is being played in this guild'
-                )
+                );
             }
 
-            const track = queue.nowPlaying()
-            let lyrics = null
+            const track = queue.nowPlaying();
+            let lyrics = null;
 
             // lyric finder
             try {
-                lyrics = await finder(track.title, '')
-                if (!lyrics) lyrics = `no lyrics found.`
+                lyrics = await finder(track.title, '');
+                if (!lyrics) lyrics = `no lyrics found.`;
             } catch (e) {
-                lyrics = `no lyrics found.`
+                lyrics = `no lyrics found.`;
             }
 
             const embed = new EmbedBuilder()
                 .setColor('Random')
                 .setTitle(`lyrics for ${track.title}`)
                 .setDescription(`[link](${track.url})\n\n${lyrics}`)
-                .setThumbnail(`${track.thumbnail}`)
+                .setThumbnail(`${track.thumbnail}`);
 
             // // checks if character count exceeds limit for a discord message
             // if (embed.description.length >= 4096) {
             //     embed.description = `${embed.description.substr(0, 4095)}...`
             // }
 
-            return interaction.editReply({ embeds: [embed] })
+            return interaction.editReply({ embeds: [embed] });
         } else if (interaction.options.getSubcommand() === 'rewind') {
             // checks if user is in a voice channel
             if (!interaction.member.voice.channel) {
                 return interaction.editReply(
                     '❌ | please join a voice channel first!'
-                )
+                );
             }
 
             const queue = interaction.client.player.getQueue(
                 interaction.guildId
-            )
+            );
 
             // checks if queue is empty
             if (!queue) {
                 return await interaction.editReply(
                     '❌ | there are no songs in the queue'
-                )
+                );
             }
 
             if (queue.previousTracks.length > 1) {
-                const rewind = queue.back()
+                const rewind = queue.back();
                 return await interaction.editReply(
                     rewind
                         ? '⏮️ | rewinded to previous track!'
                         : '❌ | failed to rewind to previous track'
-                )
+                );
             } else {
                 return interaction.editReply({
                     content: '❌ | no previous track to rewind to',
                     ephemeral: true,
-                })
+                });
             }
         }
     } catch (e) {
-        console.error(e)
+        console.error(e);
     }
 }

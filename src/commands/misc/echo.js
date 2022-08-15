@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from 'discord.js'
+import { SlashCommandBuilder } from 'discord.js';
 
 export const data = new SlashCommandBuilder()
     .setName('echo')
@@ -8,9 +8,9 @@ export const data = new SlashCommandBuilder()
             .setName('input')
             .setDescription('input to echo back')
             .setRequired(true)
-    )
+    );
 
 export async function execute(interaction) {
-    const message = interaction.options.getString('input')
-    await interaction.reply(`🗣️ | ${message}`)
+    const message = interaction.options.getString('input');
+    await interaction.reply(`🗣️ | ${message}`);
 }

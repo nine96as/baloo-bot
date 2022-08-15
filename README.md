@@ -59,7 +59,7 @@ npm run start
 
 ### extras
 
-- prettier and eslint scripts are available to automate code formatting
+-   prettier and eslint scripts are available to automate code formatting
 
 ```sh
 npm run format:check #prettier checks formatting
@@ -68,7 +68,7 @@ lint:check #eslint check
 lint:fix #auto-fix errors
 ```
 
-- a nodemon script is available for instant restarts upon file changes
+-   a nodemon script is available for instant restarts upon file changes
 
 ```sh
 npm run start:dev #nodemon listens for file changes
