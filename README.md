@@ -12,7 +12,7 @@ a multi-purpose discord bot made using [discord.js](https://github.com/discordjs
 
 -   a dedicated welcome banner system, lockdown system, afk system, role menu system
 -   fully-featured music system with lyrics search (yt, soundcloud, spotify)
--   makes use of slash commands, buttons and select menus
+-   makes use of slash commands, buttons and select menus, context menus
 -   an array of commands; misc, moderation, reaction roles, information etc
 
 ## manual installation
@@ -55,4 +55,21 @@ npm i #install dependencies from package.json
 
 ```sh
 npm run start
+```
+
+### extras
+
+- prettier and eslint scripts are available to automate code formatting
+
+```sh
+npm run format:check #prettier checks formatting
+npm run format:write #prettier enforces formatting
+lint:check #eslint check
+lint:fix #auto-fix errors
+```
+
+- a nodemon script is available for instant restarts upon file changes
+
+```sh
+npm run start:dev #nodemon listens for file changes
 ```
