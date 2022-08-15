@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, EmbedBuilder } from 'discord.js'
+import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
 
 export const data = new SlashCommandBuilder()
     .setName('avatar')
@@ -7,10 +7,11 @@ export const data = new SlashCommandBuilder()
         option
             .setName('target')
             .setDescription('member to fetch the avatar from')
-    )
+    );
 
 export async function execute(interaction) {
-    const member = interaction.options.getMember('target') || interaction.member
+    const member =
+        interaction.options.getMember('target') || interaction.member;
 
     const embed = new EmbedBuilder()
         .setColor('Random')
@@ -18,9 +19,9 @@ export async function execute(interaction) {
             iconURL: member.user.displayAvatarURL(),
             name: member.user.tag,
         })
-        .setImage(member.user.avatarURL({ size: 2048, dynamic: true }))
+        .setImage(member.user.avatarURL({ size: 2048, dynamic: true }));
 
     await interaction.reply({
         embeds: [embed],
-    })
+    });
 }

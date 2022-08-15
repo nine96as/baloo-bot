@@ -3,14 +3,14 @@ import {
     EmbedBuilder,
     ApplicationCommandType,
     time,
-} from 'discord.js'
+} from 'discord.js';
 
 export const data = new ContextMenuCommandBuilder()
     .setName('getUserInfo')
-    .setType(ApplicationCommandType.User)
+    .setType(ApplicationCommandType.User);
 
 export async function execute(interaction) {
-    const member = interaction.targetMember
+    const member = interaction.targetMember;
 
     const embed = new EmbedBuilder()
         .setColor('Random')
@@ -56,9 +56,9 @@ export async function execute(interaction) {
                         .replaceAll('_', ' ') || 'none'
                 }`,
             }
-        )
+        );
 
     await interaction.reply({
         embeds: [embed],
-    })
+    });
 }

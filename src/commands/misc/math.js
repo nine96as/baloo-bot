@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from 'discord.js'
+import { SlashCommandBuilder } from 'discord.js';
 
 export const data = new SlashCommandBuilder()
     .setName('math')
@@ -104,34 +104,34 @@ export const data = new SlashCommandBuilder()
                     .setDescription('second number')
                     .setRequired(true)
             )
-    )
+    );
 
 export async function execute(interaction) {
     if (interaction.commandName === 'math') {
         if (interaction.options.getSubcommand() === 'add') {
-            const num1 = interaction.options.getNumber('num1')
-            const num2 = interaction.options.getNumber('num2')
-            await interaction.reply(`${num1} + ${num2} = ${num1 + num2}`)
+            const num1 = interaction.options.getNumber('num1');
+            const num2 = interaction.options.getNumber('num2');
+            await interaction.reply(`${num1} + ${num2} = ${num1 + num2}`);
         } else if (interaction.options.getSubcommand() === 'sub') {
-            const num1 = interaction.options.getNumber('num1')
-            const num2 = interaction.options.getNumber('num2')
-            await interaction.reply(`${num1} - ${num2} = ${num1 - num2}`)
+            const num1 = interaction.options.getNumber('num1');
+            const num2 = interaction.options.getNumber('num2');
+            await interaction.reply(`${num1} - ${num2} = ${num1 - num2}`);
         } else if (interaction.options.getSubcommand() === 'mul') {
-            const num1 = interaction.options.getNumber('num1')
-            const num2 = interaction.options.getNumber('num2')
-            await interaction.reply(`${num1} * ${num2} = ${num1 * num2}`)
+            const num1 = interaction.options.getNumber('num1');
+            const num2 = interaction.options.getNumber('num2');
+            await interaction.reply(`${num1} * ${num2} = ${num1 * num2}`);
         } else if (interaction.options.getSubcommand() === 'div') {
-            const num1 = interaction.options.getNumber('num1')
-            const num2 = interaction.options.getNumber('num2')
-            await interaction.reply(`${num1} / ${num2} = ${num1 / num2}`)
+            const num1 = interaction.options.getNumber('num1');
+            const num2 = interaction.options.getNumber('num2');
+            await interaction.reply(`${num1} / ${num2} = ${num1 / num2}`);
         } else if (interaction.options.getSubcommand() === 'mod') {
-            const num1 = interaction.options.getNumber('num1')
-            const num2 = interaction.options.getNumber('num2')
-            await interaction.reply(`${num1} mod ${num2} = ${num1 % num2}`)
+            const num1 = interaction.options.getNumber('num1');
+            const num2 = interaction.options.getNumber('num2');
+            await interaction.reply(`${num1} mod ${num2} = ${num1 % num2}`);
         } else if (interaction.options.getSubcommand() === 'pow') {
-            const num1 = interaction.options.getNumber('num1')
-            const num2 = interaction.options.getNumber('num2')
-            await interaction.reply(`${num1} ^ ${num2} = ${num1 ** num2}`)
+            const num1 = interaction.options.getNumber('num1');
+            const num2 = interaction.options.getNumber('num2');
+            await interaction.reply(`${num1} ^ ${num2} = ${num1 ** num2}`);
         }
     }
 }

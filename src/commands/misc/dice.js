@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from 'discord.js'
+import { SlashCommandBuilder } from 'discord.js';
 
 const sides = [
     { name: 'd4', value: 4 },
@@ -7,7 +7,7 @@ const sides = [
     { name: 'd10', value: 10 },
     { name: 'd12', value: 4 },
     { name: 'd20', value: 20 },
-]
+];
 
 export const data = new SlashCommandBuilder()
     .setName('dice')
@@ -24,11 +24,11 @@ export const data = new SlashCommandBuilder()
                 { name: 'd12', value: 4 },
                 { name: 'd20', value: 20 }
             )
-    )
+    );
 
 export async function execute(interaction) {
-    const side = interaction.options.getNumber('sides')
-    const min = 1
-    const max = sides.find((s) => side === s.value)?.value || 6
-    interaction.reply(`🎲 | rolled ${Math.floor(Math.random() * max) + min}!`)
+    const side = interaction.options.getNumber('sides');
+    const min = 1;
+    const max = sides.find((s) => side === s.value)?.value || 6;
+    interaction.reply(`🎲 | rolled ${Math.floor(Math.random() * max) + min}!`);
 }

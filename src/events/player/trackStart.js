@@ -3,9 +3,9 @@ import {
     ActionRowBuilder,
     ButtonBuilder,
     ButtonStyle,
-} from 'discord.js'
+} from 'discord.js';
 
-export const name = 'trackStart'
+export const name = 'trackStart';
 
 export async function execute(queue) {
     const embed = new EmbedBuilder()
@@ -22,7 +22,7 @@ export async function execute(queue) {
                 name: 'requested by',
                 value: `<@${queue.nowPlaying().requestedBy.id}>`,
             }
-        )
+        );
 
     const components = [
         new ActionRowBuilder().addComponents(
@@ -47,9 +47,9 @@ export async function execute(queue) {
                 .setLabel('⏹️')
                 .setStyle(ButtonStyle.Danger)
         ),
-    ]
+    ];
 
     queue.metadata.channel.send({ embeds: [embed], components }).then((msg) => {
-        setTimeout(() => msg.delete(), 25000)
-    })
+        setTimeout(() => msg.delete(), 25000);
+    });
 }

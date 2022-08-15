@@ -1,16 +1,16 @@
-import 'dotenv/config'
-import { EmbedBuilder } from 'discord.js'
+import 'dotenv/config';
+import { EmbedBuilder } from 'discord.js';
 // import { welcSystem } from '../../systems/welcomeSystem.js'
 
-const { welcomeChannelID } = process.env
+const { welcomeChannelID } = process.env;
 
-const background = 'https://i.imgur.com/0qoZELO.png'
+const background = 'https://i.imgur.com/0qoZELO.png';
 
 // new member welcome message
-export const name = 'guildMemberAdd'
+export const name = 'guildMemberAdd';
 
 export async function execute(member) {
-    const welcomeChannel = member.guild.channels.cache.get(welcomeChannelID)
+    const welcomeChannel = member.guild.channels.cache.get(welcomeChannelID);
 
     const embed = new EmbedBuilder()
         .setColor('Random')
@@ -24,11 +24,11 @@ export async function execute(member) {
             '- get your roles in #roles\n' + '- remember to read the #rules'
         )
         .setImage(background)
-        .setTimestamp()
+        .setTimestamp();
 
     welcomeChannel.send({
         embeds: [embed],
-    })
+    });
     // const img = await welcSystem(member)
 
     // welcomeChannel.send({

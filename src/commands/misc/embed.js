@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, EmbedBuilder } from 'discord.js'
+import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
 
 export const data = new SlashCommandBuilder()
     .setName('embed')
@@ -23,15 +23,15 @@ export const data = new SlashCommandBuilder()
     )
     .addStringOption((option) =>
         option.setName('footer').setDescription('sets embed footer')
-    )
+    );
 
 export async function execute(interaction) {
-    const title = interaction.options.getString('title')
-    const description = interaction.options.getString('description') || ''
-    const image = interaction.options.getString('image')
-    const colour = interaction.options.getString('colour')
-    const thumbnail = interaction.options.getString('thumbnail')
-    const footer = interaction.options.getString('footer')
+    const title = interaction.options.getString('title');
+    const description = interaction.options.getString('description') || '';
+    const image = interaction.options.getString('image');
+    const colour = interaction.options.getString('colour');
+    const thumbnail = interaction.options.getString('thumbnail');
+    const footer = interaction.options.getString('footer');
 
     const embed = new EmbedBuilder()
         .setTitle(title)
@@ -39,8 +39,8 @@ export async function execute(interaction) {
         .setImage(image)
         .setColor(colour)
         .setThumbnail(thumbnail)
-        .setFooter(footer)
+        .setFooter(footer);
 
-    interaction.reply({ content: '✅ | success!', emphemeral: true })
-    interaction.channel.send({ embeds: [embed] })
+    interaction.reply({ content: '✅ | success!', emphemeral: true });
+    interaction.channel.send({ embeds: [embed] });
 }
