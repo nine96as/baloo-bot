@@ -3,7 +3,6 @@
 a multi-purpose discord bot made using [discord.js](https://github.com/discordjs/discord.js) and [discord-player](https://github.com/Androz2091/discord-player)
 
 ## auto-deployment
-
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/996as/baloo-bot)
 <br>
 [![Open in Gitpod](https://camo.githubusercontent.com/76e60919474807718793857d8eb615e7a50b18b04050577e5a35c19421f260a3/68747470733a2f2f676974706f642e696f2f627574746f6e2f6f70656e2d696e2d676974706f642e737667)](https://gitpod.io/#https://github.com/996as/baloo-bot)
@@ -38,16 +37,15 @@ npm i #install dependencies from package.json
 ```
 
 ### configuration
+- create a .env file in the project directory and fill in the following attribute-value combinations
 
--   create a .env file in the project directory and fill in the following attribute-value combinations
-
-| attribute          | type     | description                         |
-| :----------------- | :------- | :---------------------------------- |
-| `token`            | `string` | bot token (disc dev portal)         |
-| `welcomeChannelID` | `string` | ID of welcome channel in guild      |
-| `clientID`         | `string` | `APPLICATION_ID` in disc dev portal |
-| `guildID`          | `string` | ID of guild                         |
-| `mongooseString`   | `string` | mongodb database string             |
+| attribute            | type     | description                          |
+| :------------------- | :------- | :----------------------------------- |
+| `TOKEN`              | `string` | bot token (disc dev portal)          |
+| `WELCOME_CHANNEL_ID` | `string` | ID of welcome channel in guild       |
+| `CLIENT_ID`          | `string` | `APPLICATION_ID` in disc dev portal  |
+| `GUILD_ID`           | `string` | ID of guild                          |
+| `MONGOOSE_STRING`    | `string` | mongodb database string              |
 
 ### deployment
 
