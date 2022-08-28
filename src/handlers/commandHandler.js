@@ -12,7 +12,7 @@ let commandsArray = [];
 let developerArray = [];
 
 export const handleCommands = async (client) => {
-    const commands = fs.readdirSync(`./src/commands`);
+    const commands = fs.readdirSync(`./src/interactions/commands`);
 
     for (const module of commands) {
         const commandFiles = fs

@@ -1,4 +1,4 @@
-import { ldModel } from '../../models/lockdown.js';
+import { ldModel } from '../../../models/lockdown.js';
 import { SlashCommandBuilder, PermissionFlagsBits } from 'discord.js';
 import ms from 'ms';
 
