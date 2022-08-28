@@ -4,21 +4,21 @@ import AsciiTable from 'ascii-table';
 const table = new AsciiTable().setHeading('component', 'status');
 
 export const handleComponents = async (client) => {
-    const components = fs.readdirSync(`./src/components`);
+    const components = fs.readdirSync(`./src/interactions/components`);
 
     for (const component of components) {
-        const componentFiles = fs.readdirSync(`./src/components/${component}`);
+        const componentFiles = fs.readdirSync(`./src/interactions/components/${component}`);
 
         switch (component) {
             case 'buttons':
                 for (const module of componentFiles) {
                     const buttonFiles = fs
-                        .readdirSync(`./src/components/${component}/${module}`)
+                        .readdirSync(`./src/interactions/components/${component}/${module}`)
                         .filter((file) => file.endsWith('.js'));
 
                     for (const file of buttonFiles) {
                         const button = await import(
-                            `../components/${component}/${module}/${file}`
+                            `../interactions/components/${component}/${module}/${file}`
                         );
                         // set new item in collection
                         // key as button name, value as exported module
@@ -32,12 +32,12 @@ export const handleComponents = async (client) => {
             case 'menus':
                 for (const module of componentFiles) {
                     const menuFiles = fs
-                        .readdirSync(`./src/components/${component}/${module}`)
+                        .readdirSync(`./src/interactions/components/${component}/${module}`)
                         .filter((file) => file.endsWith('.js'));
 
                     for (const file of menuFiles) {
                         const menu = await import(
-                            `../components/${component}/${module}/${file}`
+                            `../interactions/components/${component}/${module}/${file}`
                         );
                         // set new item in collection
                         // key as menu name, value as exported module
@@ -51,7 +51,7 @@ export const handleComponents = async (client) => {
             case 'modals':
                 for (const file of componentFiles) {
                     const modal = await import(
-                        `../components/${component}/${file}`
+                        `../interactions/components/${component}/${file}`
                     );
                     client.modals.set(modal.name, modal);
 

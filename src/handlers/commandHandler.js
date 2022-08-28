@@ -16,11 +16,11 @@ export const handleCommands = async (client) => {
 
     for (const module of commands) {
         const commandFiles = fs
-            .readdirSync(`./src/commands/${module}`)
+            .readdirSync(`./src/interactions/commands/${module}`)
             .filter((file) => file.endsWith('.js'));
 
         for (const file of commandFiles) {
-            const command = await import(`../commands/${module}/${file}`);
+            const command = await import(`../interactions/commands/${module}/${file}`);
 
             // set new item in collection
             // key as command name, value as exported module
