@@ -1,4 +1,4 @@
-import { afkModel } from '../../models/afk.js';
+import { afkModel } from '../../../models/afk.js';
 import { SlashCommandBuilder } from 'discord.js';
 import wait from 'node:timers/promises';
 

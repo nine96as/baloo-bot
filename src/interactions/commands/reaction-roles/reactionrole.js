@@ -1,4 +1,4 @@
-import { rrModel } from '../../models/reactionRoles.js';
+import { rrModel } from '../../../models/reactionRoles.js';
 import {
     SlashCommandBuilder,
     EmbedBuilder,
