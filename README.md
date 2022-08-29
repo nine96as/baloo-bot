@@ -4,7 +4,7 @@ a multi-purpose discord bot made using [discord.js](https://github.com/discordjs
 
 ## auto-deployment
 
-- you will have to configure environment variables; **check configuration section below**
+-   you will have to configure environment variables; **check configuration section below**
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/996as/baloo-bot)
 <br>
@@ -40,15 +40,16 @@ npm i #install dependencies from package.json
 ```
 
 ### configuration
-- create a .env file in the project directory and fill in the following attribute-value combinations
 
-| attribute            | type     | description                          |
-| :------------------- | :------- | :----------------------------------- |
-| `TOKEN`              | `string` | bot token (disc dev portal)          |
-| `WELCOME_CHANNEL_ID` | `string` | ID of welcome channel in guild       |
-| `CLIENT_ID`          | `string` | `APPLICATION_ID` in disc dev portal  |
-| `GUILD_ID`           | `string` | ID of guild                          |
-| `MONGOOSE_STRING`    | `string` | mongodb database string              |
+-   create a .env file in the project directory and fill in the following attribute-value combinations
+
+| attribute            | type     | description                         |
+| :------------------- | :------- | :---------------------------------- |
+| `TOKEN`              | `string` | bot token (disc dev portal)         |
+| `WELCOME_CHANNEL_ID` | `string` | ID of welcome channel in guild      |
+| `CLIENT_ID`          | `string` | `APPLICATION_ID` in disc dev portal |
+| `GUILD_ID`           | `string` | ID of guild                         |
+| `MONGOOSE_STRING`    | `string` | mongodb database string             |
 
 ### deployment
 
@@ -74,4 +75,3 @@ lint:fix #auto-fix errors
 ```sh
 npm run start:dev #nodemon listens for file changes
 ```
-

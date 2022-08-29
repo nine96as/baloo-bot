@@ -1,8 +1,12 @@
 import { createCanvas, loadImage, registerFont } from 'canvas';
 import { AttachmentBuilder } from 'discord.js';
 
-registerFont('../.fonts/Inter Desktop/Inter-Regular.otf', { family: 'inter-reg'});
-registerFont('../.fonts/Inter Desktop/Inter-SemiBold.otf', { family: 'inter-semibold'});
+registerFont('../.fonts/Inter Desktop/Inter-Regular.otf', {
+    family: 'inter-reg',
+});
+registerFont('../.fonts/Inter Desktop/Inter-SemiBold.otf', {
+    family: 'inter-semibold',
+});
 
 const background = 'https://i.imgur.com/JZvY7Rl.jpg';
 
@@ -31,7 +35,7 @@ export const welcSystem = async (member) => {
 
     const canvas = createCanvas(dim.width, dim.height);
     const ctx = canvas.getContext('2d');
-    
+
     await loadImage(background).then(async (img) => {
         ctx.drawImage(img, 0, 0);
 
@@ -47,7 +51,7 @@ export const welcSystem = async (member) => {
         //text stylings
         ctx.fillStyle = 'white';
         ctx.textAlign = 'center';
-        
+
         //draw in 'welcome'
         ctx.font = '50px "inter-semibold"';
         ctx.fillText('welcome', dim.width / 2, dim.margin + 70);
@@ -62,7 +66,11 @@ export const welcSystem = async (member) => {
 
         // draw in 'to the server'
         ctx.font = '40px "inter-semibold"';
-        ctx.fillText(`you are the ${memberCount}th member`, dim.width / 2, dim.height - dim.margin - 50);
+        ctx.fillText(
+            `you are the ${memberCount}th member`,
+            dim.width / 2,
+            dim.height - dim.margin - 50
+        );
 
         ctx.beginPath();
         ctx.arc(
@@ -72,15 +80,15 @@ export const welcSystem = async (member) => {
             0,
             Math.PI * 2,
             true
-        );        
+        );
         ctx.closePath();
         ctx.clip();
 
         //load av here
         await loadImage(avatarURL).then((img) => {
             ctx.drawImage(img, av.x, av.y);
-        })
-    })
+        });
+    });
 
     const attachment = new AttachmentBuilder()
         .setFile(canvas.toBuffer())
