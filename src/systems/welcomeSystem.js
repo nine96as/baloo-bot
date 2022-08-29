@@ -1,4 +1,3 @@
-import { welcModel } from '../models/welcome.js';
 import { createCanvas, loadImage, registerFont } from 'canvas';
 import { AttachmentBuilder } from 'discord.js';
 
@@ -24,9 +23,11 @@ export const welcSystem = async (member) => {
     const discrim = member.user.discriminator;
     const memberCount = member.guild.memberCount;
     const avatarURL = member.user.displayAvatarURL({
-        format: 'png',
+        extension: 'png',
         size: av.size,
     });
+
+    console.log(avatarURL);
 
     const canvas = createCanvas(dim.width, dim.height);
     const ctx = canvas.getContext('2d');
@@ -42,24 +43,6 @@ export const welcSystem = async (member) => {
             dim.width - 2 * dim.margin,
             dim.height - 2 * dim.margin
         );
-
-        //load av here
-        // const avImg = await loadImage(avatarURL);
-        // ctx.save();
-
-        // ctx.beginPath();
-        // ctx.arc(
-        //     av.x + av.size / 2,
-        //     av.y + av.size / 2,
-        //     av.size / 2,
-        //     0,
-        //     Math.PI * 2,
-        //     true
-        // );
-        // ctx.closePath();
-        // ctx.clip();
-        // ctx.drawImage(avImg, av.x, av.y);
-        // ctx.restore();
 
         //text stylings
         ctx.fillStyle = 'white';
@@ -82,8 +65,21 @@ export const welcSystem = async (member) => {
         ctx.fillText(`you are the ${memberCount}th member`, dim.width / 2, dim.height - dim.margin - 50);
 
         ctx.beginPath();
-        ctx.stroke();
-        ctx.fill();
+        ctx.arc(
+            av.x + av.size / 2,
+            av.y + av.size / 2,
+            av.size / 2,
+            0,
+            Math.PI * 2,
+            true
+        );        
+        ctx.closePath();
+        ctx.clip();
+
+        //load av here
+        await loadImage(avatarURL).then((img) => {
+            ctx.drawImage(img, av.x, av.y);
+        })
     })
 
     const attachment = new AttachmentBuilder()
