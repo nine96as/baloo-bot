@@ -4,7 +4,7 @@ import { SlashCommandBuilder, PermissionFlagsBits } from 'discord.js';
 export const data = new SlashCommandBuilder()
     .setName('welcome')
     .setDescription('welcome system setup')
-    .addSubcommand((subcommand) => 
+    .addSubcommand((subcommand) =>
         subcommand
             .setName('set')
             .setDescription('⚙️ set welcome channel')

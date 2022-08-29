@@ -7,13 +7,17 @@ export const handleComponents = async (client) => {
     const components = fs.readdirSync(`./src/interactions/components`);
 
     for (const component of components) {
-        const componentFiles = fs.readdirSync(`./src/interactions/components/${component}`);
+        const componentFiles = fs.readdirSync(
+            `./src/interactions/components/${component}`
+        );
 
         switch (component) {
             case 'buttons':
                 for (const module of componentFiles) {
                     const buttonFiles = fs
-                        .readdirSync(`./src/interactions/components/${component}/${module}`)
+                        .readdirSync(
+                            `./src/interactions/components/${component}/${module}`
+                        )
                         .filter((file) => file.endsWith('.js'));
 
                     for (const file of buttonFiles) {
@@ -32,7 +36,9 @@ export const handleComponents = async (client) => {
             case 'menus':
                 for (const module of componentFiles) {
                     const menuFiles = fs
-                        .readdirSync(`./src/interactions/components/${component}/${module}`)
+                        .readdirSync(
+                            `./src/interactions/components/${component}/${module}`
+                        )
                         .filter((file) => file.endsWith('.js'));
 
                     for (const file of menuFiles) {

@@ -20,7 +20,9 @@ export const handleCommands = async (client) => {
             .filter((file) => file.endsWith('.js'));
 
         for (const file of commandFiles) {
-            const command = await import(`../interactions/commands/${module}/${file}`);
+            const command = await import(
+                `../interactions/commands/${module}/${file}`
+            );
 
             // set new item in collection
             // key as command name, value as exported module
