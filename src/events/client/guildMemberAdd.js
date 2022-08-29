@@ -1,38 +1,28 @@
-import 'dotenv/config';
-import { EmbedBuilder } from 'discord.js';
-// import { welcSystem } from '../../systems/welcomeSystem.js'
-
-const { welcomeChannelID } = process.env;
-
-const background = 'https://i.imgur.com/0qoZELO.png';
+/* eslint-disable no-unused-vars */
+import { welcModel } from '../../models/welcome.js';
+import { welcSystem } from '../../systems/welcomeSystem.js'
 
 // new member welcome message
 export const name = 'guildMemberAdd';
 
 export async function execute(member) {
-    const welcomeChannel = member.guild.channels.cache.get(welcomeChannelID);
+    const { guild } = member;
+    
+    const data = await welcModel.findOne({ guildId: guild.id }).catch(err => {});
+    if (!data) return;
 
-    const embed = new EmbedBuilder()
-        .setColor('Random')
-        .setAuthor({
-            iconURL: member.user.displayAvatarURL(),
-            name: member.user.tag,
+    if (data.channelId !== null) {
+        const channel = guild.channels.cache.get(data.channelId);
+
+        // if there is no welc channel, nothing to be done
+        if (!channel) return;
+
+        // otherwise create and send welcome banner
+        const img = await welcSystem(member);
+
+        channel.send({
+            content: `<@${member.id}> hope you enjoy ur stay!`,
+            files: [img],
         })
-        .setThumbnail(member.guild.iconURL({ size: 2048 }))
-        .setTitle('welcome to the server!')
-        .setDescription(
-            '- get your roles in #roles\n' + '- remember to read the #rules'
-        )
-        .setImage(background)
-        .setTimestamp();
-
-    welcomeChannel.send({
-        embeds: [embed],
-    });
-    // const img = await welcSystem(member)
-
-    // welcomeChannel.send({
-    //     content: `<@${member.id}> welcome to the server!`,
-    //     files: [img],
-    // })
+    }
 }
