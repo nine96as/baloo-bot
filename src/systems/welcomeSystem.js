@@ -1,12 +1,13 @@
 import { createCanvas, loadImage, registerFont } from 'canvas';
 import { AttachmentBuilder } from 'discord.js';
 
-registerFont('../.fonts/Inter Desktop/Inter-Regular.otf', {
-    family: 'inter-reg',
-});
-registerFont('../.fonts/Inter Desktop/Inter-SemiBold.otf', {
-    family: 'inter-semibold',
-});
+// server only
+// registerFont('../.fonts/Inter Desktop/Inter-Regular.otf', {
+//     family: 'inter-reg',
+// });
+// registerFont('../.fonts/Inter Desktop/Inter-SemiBold.otf', {
+//     family: 'inter-semibold',
+// });
 
 const background = 'https://i.imgur.com/JZvY7Rl.jpg';
 
@@ -53,11 +54,11 @@ export const welcSystem = async (member) => {
         ctx.textAlign = 'center';
 
         //draw in 'welcome'
-        ctx.font = '50px "inter-semibold"';
+        ctx.font = 'Bold 50px Inter';
         ctx.fillText('welcome', dim.width / 2, dim.margin + 70);
 
         // draw in username
-        ctx.font = '60px "inter-reg"';
+        ctx.font = '60px Inter';
         ctx.fillText(
             username + '#' + discrim,
             dim.width / 2,
@@ -65,7 +66,7 @@ export const welcSystem = async (member) => {
         );
 
         // draw in 'to the server'
-        ctx.font = '40px "inter-semibold"';
+        ctx.font = 'Bold 40px Inter';
         ctx.fillText(
             `you are the ${memberCount}th member`,
             dim.width / 2,
